@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Numans');
+html, body {
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+}
+
+.bg {
+    background-image: url('../images/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur(7px);
+    -webkit-filter: blur(7px);
+    height: 100%;  
+
+}
+
+.container {
+
+    
+    font-weight: bold;
+    align-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    
+    
+}
+
+.card {
+    height: 370px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(43, 49, 55, 0.75) !important;
+}
+
+
+
+.card-header h3 {
+    color: white;
+}
+
+.card-header sub {
+    color: rgba(255, 255, 255, 0.67)
+}
+
+
+
+.input-group-prepend span {
+    width: 50px;
+    background-color: #8d9eac;
+    color: black;
+    border: 0 !important;
+}
+
+input:focus {
+    outline: 0 0 0 0 !important;
+    box-shadow: 0 0 0 0 !important;
+}
+
+.remember {
+    color: white;
+}
+
+.remember input {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+.login_btn {
+    color: black;
+    background-color: rgb(81, 0, 187);
+    width: 100px;
+}
+
+.login_btn:hover {
+    color: black;
+    background-color: white;
+}
+
+.links {
+    color: white;
+}
+
+.links a {
+    margin-left: 4px;
+}
+
+.input-name input   {
+  flex-direction: column;
+}
