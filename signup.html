@@ -96,14 +96,28 @@
                     <sub style="opacity: 0.75;">Please fill in this form to create an account.</h1>
                 </div>
                 <div class="card-body">
+                        <div class="info-group row">
+                                <div class="col"><hr></div>
+                                <div class=".description-text col-auto">Personal Information</div>
+                                <div class="col"><hr></div>
+                            </div>
                     <form>
-
-                        <div class="input-name">
-                            <input type="text" class="form-control" placeholder="username">
-            
-                            <input type="text" class="form-control" placeholder="username">
-
+                        <div class="input-name form-group">
+                            <div class="d-flex flex-row justify-content-between">
+                                <input style="width:46%" type="text" class="form-control" placeholder="First Name">
+                                <input style="width:46%" type="text" class="form-control" placeholder="Last Name">
+                            </div>
                         </div>
+                        <div class="form-group">
+                            <input type"text" class="form-control" placeholder="Email">
+                        </div>
+                    </form>
+                    <div class="info-group row">
+                            <div class="col"><hr></div>
+                            <div class="col-auto">Account</div>
+                            <div class="col"><hr></div>
+                        </div>
+                    <form>
                         <div class="input-group form-group">
 
                             <div class="input-group-prepend">
@@ -112,15 +126,14 @@
                             <input type="text" class="form-control" placeholder="username">
 
                         </div>
-                        <div class="input-group form-group">
+
+                        <div class="input-group form-group padding">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
                             <input type="password" class="form-control" placeholder="password">
                         </div>
-                        <div class="row align-items-center remember">
-                            <input type="checkbox">Remember Me
-                        </div>
+
                         <div class="form-group">
                             <input type="submit" value="Login" class="btn float-right login_btn">
                         </div>

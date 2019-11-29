@@ -10,13 +10,10 @@ html, body {
     background-repeat: no-repeat;
     filter: blur(7px);
     -webkit-filter: blur(7px);
-    height: 100%;  
-
+    height: 100%;
 }
 
 .container {
-
-    
     font-weight: bold;
     align-content: center;
     position: absolute;
@@ -24,19 +21,15 @@ html, body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    
-    
 }
 
 .card {
-    height: 370px;
+    height: 420px;
     margin-top: auto;
     margin-bottom: auto;
     width: 400px;
     background-color: rgba(43, 49, 55, 0.75) !important;
 }
-
-
 
 .card-header h3 {
     color: white;
@@ -45,8 +38,6 @@ html, body {
 .card-header sub {
     color: rgba(255, 255, 255, 0.67)
 }
-
-
 
 .input-group-prepend span {
     width: 50px;
@@ -90,6 +81,17 @@ input:focus {
     margin-left: 4px;
 }
 
-.input-name input   {
-  flex-direction: column;
+.input-name {
+    border: #8d9eac;
+}
+
+
+
+.info-group  hr{
+    
+    border-top: 2px solid rgba(10, 26, 168, 0.795);
+}
+
+.info-group {
+    color: rgba(244, 244, 244, 0.645);
 }
