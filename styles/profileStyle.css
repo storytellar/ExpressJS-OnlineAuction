@@ -1,0 +1,37 @@
+html, body {
+    
+    background-color: rgb(43, 49, 55);
+}
+
+.bg-dark{
+    background-color: rgba(20, 23, 26, 100) !important;
+}
+
+.tabitems:hover {
+    color: yellow;
+    /* font-weight: 700; */
+}
+.tabmenu{
+    margin-left: 5%;
+}
+
+.tabitems {
+    color: white;
+}
+
+#email{
+    color: white;
+    padding-left: 1%;
+}
+
+.info-bar{
+    padding-left: 8%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+}
+
+.main{
+    padding: 5%;
+}
+

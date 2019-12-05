@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
-html, body {
+html, .card {
     height: 100%;
     font-family: 'Numans', sans-serif;
 }
