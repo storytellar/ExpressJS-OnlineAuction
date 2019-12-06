@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>CHỢ ĐEN</title>
+    <title>Title</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -17,13 +17,51 @@
       crossorigin="anonymous"
     />
 
-    <style></style>
-  </head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css"
+    />
+    <style>
+      .tieude1 {
+        float:left; margin-top: 200px; 
+        -webkit-transform: rotate(270deg);   
+          -moz-transform: rotate(270deg);
+          -ms-transform: rotate(270deg);
+          -o-transform: rotate(270deg);
+          transform: rotate(270deg);
+      }
+      .tieude2 {
+        float:right; margin-top: 200px;
+        -webkit-transform: rotate(90deg);   
+          -moz-transform: rotate(90deg);
+          -ms-transform: rotate(90deg);
+          -o-transform: rotate(90deg);
+          transform: rotate(90deg);
+      }
+    @media(max-width:500px){  
+      .tieude {
+        float: none;
+        margin-top: 0;
 
-  <body>
-    <!-- NAVBAR -->
+        -webkit-transform: rotate(0);   
+          -moz-transform: rotate(0);
+          -ms-transform: rotate(0);
+          -o-transform: rotate(0);
+          transform: rotate(0);
+      }
+    }
+    </style>
+  </head>
+  <body style="background-color: rgb(24, 30, 35);">
+    <!-- navbar guest -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-      <a class="navbar-brand" href="#">CHỢ ĐEN</a>
+      <a class="navbar-brand" href="#"
+        ><img src="/images/logo.png" alt="" width="120px" height="auto"
+      /></a>
       <button
         class="navbar-toggler"
         type="button"
@@ -139,36 +177,1056 @@
       </div>
     </nav>
 
+    <!-- searchbar -->
     <div class="container-fluid">
-      <!-- SEARCH BAR -->
-      <div class="row" style="background: rgb(43, 49, 55);">
-        <div class="col-sm"></div>
-        <div class="col-12 col-sm-10 col-md-8 col-lg-6">
-          <div
-            class="search-header d-flex flex-column justify-content-center align-items-center"
-            style="height: 190px;"
-          >
-            <p class="h4 mb-3 text-warning">
-              Hàng nghìn sản phẩm đang chờ bạn!
-            </p>
-            <!-- inputbox -->
-            <div class="input-group mb-3">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Tìm kiếm..."
-              />
-              <div class="input-group-append">
-                <button class="btn btn-warning" type="button">
-                  <img src="/icons/search.svg" height="20px" width="auto" />
-                </button>
+        <!-- SEARCH BAR -->
+        <div class="row" style="background: rgb(43, 49, 55);">
+          <div class="col-sm"></div>
+          <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+            <div class="search-header d-flex flex-column justify-content-center align-items-center" style="height: 230px;">
+              <p class="h4 mb-3 text-warning">Hàng nghìn sản phẩm đang chờ bạn!</p>
+              <!-- inputbox -->
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Tìm kiếm..." />
+                <div class="input-group-append">
+                  <button class="btn btn-warning" type="button">
+                    <img src="/icons/search.svg" height="20px" width="auto" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm"></div>
+        </div>
+    </div>
+
+    <!-- body -->
+    <div class="container my-5">
+      <!-- Khung TOP 5 sản phẩm -->
+      <div class="top5-wrapper my-3">
+        <!-- Tiêu đề  -->
+        <div
+          class="tieude tieude1 text-light d-flex justify-content-center"
+        >
+          <h2 >
+            SẮP KẾT THÚC
+          </h2>
+        </div>
+
+        <!-- Slide sản phẩm -->
+        <div class="top5 d-flex justify-content-center p-2" id="wrapper">
+          <div>
+            <div class="card bg-dark" style="width:20em; color: #8d9eac;">
+              <img src="/images/jews.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <div class="container" style="font-size: medium;">
+                  <div class="row">
+                    <h5 class="col-md-10">Lô 6 người Do Thái</h5>
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      style="width: 15; height: 15;"
+                    >
+                      <img
+                        class="mb-4"
+                        src="/icons/heart.svg"
+                        alt=""
+                        width="15"
+                        height="15"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">180.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div
+                    class="col-md-4"
+                    style="font-size: small; align-self: center;"
+                  >
+                    Le Tan Thinh
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">500.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div class="col-md-4">
+                    <h3>
+                      <span
+                        class="badge badge-danger"
+                        style="font-size: x-small;"
+                        >Giá mua ngay</span
+                      >
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container" style="font-size: x-small;">
+                <div class="row">
+                  <div class="col-md-4">Từ 30/11/2019</div>
+                  <div class="col-md-4">Còn lại: 23h39m</div>
+                  <div class="col-md-4">Số lượt: 12 lượt</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="card bg-dark" style="width:20em; color: #8d9eac;">
+              <img src="/images/jews.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <div class="container" style="font-size: medium;">
+                  <div class="row">
+                    <h5 class="col-md-10">Lô 6 người Do Thái</h5>
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      style="width: 15; height: 15;"
+                    >
+                      <img
+                        class="mb-4"
+                        src="/icons/heart.svg"
+                        alt=""
+                        width="15"
+                        height="15"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">180.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div
+                    class="col-md-4"
+                    style="font-size: small; align-self: center;"
+                  >
+                    Le Tan Thinh
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">500.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div class="col-md-4">
+                    <h3>
+                      <span
+                        class="badge badge-danger"
+                        style="font-size: x-small;"
+                        >Giá mua ngay</span
+                      >
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container" style="font-size: x-small;">
+                <div class="row">
+                  <div class="col-md-4">Từ 30/11/2019</div>
+                  <div class="col-md-4">Còn lại: 23h39m</div>
+                  <div class="col-md-4">Số lượt: 12 lượt</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="card bg-dark" style="width:20em; color: #8d9eac;">
+              <img src="/images/jews.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <div class="container" style="font-size: medium;">
+                  <div class="row">
+                    <h5 class="col-md-10">Lô 6 người Do Thái</h5>
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      style="width: 15; height: 15;"
+                    >
+                      <img
+                        class="mb-4"
+                        src="/icons/heart.svg"
+                        alt=""
+                        width="15"
+                        height="15"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">180.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div
+                    class="col-md-4"
+                    style="font-size: small; align-self: center;"
+                  >
+                    Le Tan Thinh
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">500.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div class="col-md-4">
+                    <h3>
+                      <span
+                        class="badge badge-danger"
+                        style="font-size: x-small;"
+                        >Giá mua ngay</span
+                      >
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container" style="font-size: x-small;">
+                <div class="row">
+                  <div class="col-md-4">Từ 30/11/2019</div>
+                  <div class="col-md-4">Còn lại: 23h39m</div>
+                  <div class="col-md-4">Số lượt: 12 lượt</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="card bg-dark" style="width:20em; color: #8d9eac;">
+              <img src="/images/jews.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <div class="container" style="font-size: medium;">
+                  <div class="row">
+                    <h5 class="col-md-10">Lô 6 người Do Thái</h5>
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      style="width: 15; height: 15;"
+                    >
+                      <img
+                        class="mb-4"
+                        src="/icons/heart.svg"
+                        alt=""
+                        width="15"
+                        height="15"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">180.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div
+                    class="col-md-4"
+                    style="font-size: small; align-self: center;"
+                  >
+                    Le Tan Thinh
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">500.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div class="col-md-4">
+                    <h3>
+                      <span
+                        class="badge badge-danger"
+                        style="font-size: x-small;"
+                        >Giá mua ngay</span
+                      >
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container" style="font-size: x-small;">
+                <div class="row">
+                  <div class="col-md-4">Từ 30/11/2019</div>
+                  <div class="col-md-4">Còn lại: 23h39m</div>
+                  <div class="col-md-4">Số lượt: 12 lượt</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="card bg-dark" style="width:20em; color: #8d9eac;">
+              <img src="/images/jews.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <div class="container" style="font-size: medium;">
+                  <div class="row">
+                    <h5 class="col-md-10">Lô 6 người Do Thái</h5>
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      style="width: 15; height: 15;"
+                    >
+                      <img
+                        class="mb-4"
+                        src="/icons/heart.svg"
+                        alt=""
+                        width="15"
+                        height="15"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">180.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div
+                    class="col-md-4"
+                    style="font-size: small; align-self: center;"
+                  >
+                    Le Tan Thinh
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">500.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div class="col-md-4">
+                    <h3>
+                      <span
+                        class="badge badge-danger"
+                        style="font-size: x-small;"
+                        >Giá mua ngay</span
+                      >
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container" style="font-size: x-small;">
+                <div class="row">
+                  <div class="col-md-4">Từ 30/11/2019</div>
+                  <div class="col-md-4">Còn lại: 23h39m</div>
+                  <div class="col-md-4">Số lượt: 12 lượt</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-sm"></div>
+      </div>
+
+      <!-- Khung TOP 5 sản phẩm -->
+      <div class="top5-wrapper my-5 py-3">
+        <!-- Tiêu đề  -->
+        <div
+          class="tieude tieude2 text-light d-flex justify-content-center"
+        >
+          <h2>
+            TOP XU HƯỚNG
+          </h2>
+        </div>
+
+        <!-- Slide sản phẩm -->
+        <div class="top5 d-flex justify-content-center p-2" id="wrapper">
+          <div>
+            <div class="card bg-dark" style="width:20em; color: #8d9eac;">
+              <img src="/images/jews.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <div class="container" style="font-size: medium;">
+                  <div class="row">
+                    <h5 class="col-md-10">Lô 6 người Do Thái</h5>
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      style="width: 15; height: 15;"
+                    >
+                      <img
+                        class="mb-4"
+                        src="/icons/heart.svg"
+                        alt=""
+                        width="15"
+                        height="15"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">180.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div
+                    class="col-md-4"
+                    style="font-size: small; align-self: center;"
+                  >
+                    Le Tan Thinh
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">500.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div class="col-md-4">
+                    <h3>
+                      <span
+                        class="badge badge-danger"
+                        style="font-size: x-small;"
+                        >Giá mua ngay</span
+                      >
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container" style="font-size: x-small;">
+                <div class="row">
+                  <div class="col-md-4">Từ 30/11/2019</div>
+                  <div class="col-md-4">Còn lại: 23h39m</div>
+                  <div class="col-md-4">Số lượt: 12 lượt</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="card bg-dark" style="width:20em; color: #8d9eac;">
+              <img src="/images/jews.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <div class="container" style="font-size: medium;">
+                  <div class="row">
+                    <h5 class="col-md-10">Lô 6 người Do Thái</h5>
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      style="width: 15; height: 15;"
+                    >
+                      <img
+                        class="mb-4"
+                        src="/icons/heart.svg"
+                        alt=""
+                        width="15"
+                        height="15"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">180.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div
+                    class="col-md-4"
+                    style="font-size: small; align-self: center;"
+                  >
+                    Le Tan Thinh
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">500.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div class="col-md-4">
+                    <h3>
+                      <span
+                        class="badge badge-danger"
+                        style="font-size: x-small;"
+                        >Giá mua ngay</span
+                      >
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container" style="font-size: x-small;">
+                <div class="row">
+                  <div class="col-md-4">Từ 30/11/2019</div>
+                  <div class="col-md-4">Còn lại: 23h39m</div>
+                  <div class="col-md-4">Số lượt: 12 lượt</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="card bg-dark" style="width:20em; color: #8d9eac;">
+              <img src="/images/jews.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <div class="container" style="font-size: medium;">
+                  <div class="row">
+                    <h5 class="col-md-10">Lô 6 người Do Thái</h5>
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      style="width: 15; height: 15;"
+                    >
+                      <img
+                        class="mb-4"
+                        src="/icons/heart.svg"
+                        alt=""
+                        width="15"
+                        height="15"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">180.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div
+                    class="col-md-4"
+                    style="font-size: small; align-self: center;"
+                  >
+                    Le Tan Thinh
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">500.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div class="col-md-4">
+                    <h3>
+                      <span
+                        class="badge badge-danger"
+                        style="font-size: x-small;"
+                        >Giá mua ngay</span
+                      >
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container" style="font-size: x-small;">
+                <div class="row">
+                  <div class="col-md-4">Từ 30/11/2019</div>
+                  <div class="col-md-4">Còn lại: 23h39m</div>
+                  <div class="col-md-4">Số lượt: 12 lượt</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="card bg-dark" style="width:20em; color: #8d9eac;">
+              <img src="/images/jews.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <div class="container" style="font-size: medium;">
+                  <div class="row">
+                    <h5 class="col-md-10">Lô 6 người Do Thái</h5>
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      style="width: 15; height: 15;"
+                    >
+                      <img
+                        class="mb-4"
+                        src="/icons/heart.svg"
+                        alt=""
+                        width="15"
+                        height="15"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">180.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div
+                    class="col-md-4"
+                    style="font-size: small; align-self: center;"
+                  >
+                    Le Tan Thinh
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">500.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div class="col-md-4">
+                    <h3>
+                      <span
+                        class="badge badge-danger"
+                        style="font-size: x-small;"
+                        >Giá mua ngay</span
+                      >
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container" style="font-size: x-small;">
+                <div class="row">
+                  <div class="col-md-4">Từ 30/11/2019</div>
+                  <div class="col-md-4">Còn lại: 23h39m</div>
+                  <div class="col-md-4">Số lượt: 12 lượt</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="card bg-dark" style="width:20em; color: #8d9eac;">
+              <img src="/images/jews.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <div class="container" style="font-size: medium;">
+                  <div class="row">
+                    <h5 class="col-md-10">Lô 6 người Do Thái</h5>
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      style="width: 15; height: 15;"
+                    >
+                      <img
+                        class="mb-4"
+                        src="/icons/heart.svg"
+                        alt=""
+                        width="15"
+                        height="15"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">180.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div
+                    class="col-md-4"
+                    style="font-size: small; align-self: center;"
+                  >
+                    Le Tan Thinh
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">500.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div class="col-md-4">
+                    <h3>
+                      <span
+                        class="badge badge-danger"
+                        style="font-size: x-small;"
+                        >Giá mua ngay</span
+                      >
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container" style="font-size: x-small;">
+                <div class="row">
+                  <div class="col-md-4">Từ 30/11/2019</div>
+                  <div class="col-md-4">Còn lại: 23h39m</div>
+                  <div class="col-md-4">Số lượt: 12 lượt</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Khung TOP 5 sản phẩm -->
+      <div class="top5-wrapper my-3">
+        <!-- Tiêu đề  -->
+        <div
+          class="text-light d-flex justify-content-center"
+        >
+          <h2
+          >
+            TOP SIÊU PHẨM
+          </h2>
+        </div>
+
+        <!-- Slide sản phẩm -->
+        <div class="top5finally d-flex justify-content-center p-2" id="wrapper">
+          <div>
+            <div class="card bg-dark" style="width:20em; color: #8d9eac;">
+              <img src="/images/jews.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <div class="container" style="font-size: medium;">
+                  <div class="row">
+                    <h5 class="col-md-10">Lô 6 người Do Thái</h5>
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      style="width: 15; height: 15;"
+                    >
+                      <img
+                        class="mb-4"
+                        src="/icons/heart.svg"
+                        alt=""
+                        width="15"
+                        height="15"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">180.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div
+                    class="col-md-4"
+                    style="font-size: small; align-self: center;"
+                  >
+                    Le Tan Thinh
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">500.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div class="col-md-4">
+                    <h3>
+                      <span
+                        class="badge badge-danger"
+                        style="font-size: x-small;"
+                        >Giá mua ngay</span
+                      >
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container" style="font-size: x-small;">
+                <div class="row">
+                  <div class="col-md-4">Từ 30/11/2019</div>
+                  <div class="col-md-4">Còn lại: 23h39m</div>
+                  <div class="col-md-4">Số lượt: 12 lượt</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="card bg-dark" style="width:20em; color: #8d9eac;">
+              <img src="/images/jews.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <div class="container" style="font-size: medium;">
+                  <div class="row">
+                    <h5 class="col-md-10">Lô 6 người Do Thái</h5>
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      style="width: 15; height: 15;"
+                    >
+                      <img
+                        class="mb-4"
+                        src="/icons/heart.svg"
+                        alt=""
+                        width="15"
+                        height="15"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">180.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div
+                    class="col-md-4"
+                    style="font-size: small; align-self: center;"
+                  >
+                    Le Tan Thinh
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">500.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div class="col-md-4">
+                    <h3>
+                      <span
+                        class="badge badge-danger"
+                        style="font-size: x-small;"
+                        >Giá mua ngay</span
+                      >
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container" style="font-size: x-small;">
+                <div class="row">
+                  <div class="col-md-4">Từ 30/11/2019</div>
+                  <div class="col-md-4">Còn lại: 23h39m</div>
+                  <div class="col-md-4">Số lượt: 12 lượt</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="card bg-dark" style="width:20em; color: #8d9eac;">
+              <img src="/images/jews.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <div class="container" style="font-size: medium;">
+                  <div class="row">
+                    <h5 class="col-md-10">Lô 6 người Do Thái</h5>
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      style="width: 15; height: 15;"
+                    >
+                      <img
+                        class="mb-4"
+                        src="/icons/heart.svg"
+                        alt=""
+                        width="15"
+                        height="15"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">180.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div
+                    class="col-md-4"
+                    style="font-size: small; align-self: center;"
+                  >
+                    Le Tan Thinh
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">500.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div class="col-md-4">
+                    <h3>
+                      <span
+                        class="badge badge-danger"
+                        style="font-size: x-small;"
+                        >Giá mua ngay</span
+                      >
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container" style="font-size: x-small;">
+                <div class="row">
+                  <div class="col-md-4">Từ 30/11/2019</div>
+                  <div class="col-md-4">Còn lại: 23h39m</div>
+                  <div class="col-md-4">Số lượt: 12 lượt</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="card bg-dark" style="width:20em; color: #8d9eac;">
+              <img src="/images/jews.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <div class="container" style="font-size: medium;">
+                  <div class="row">
+                    <h5 class="col-md-10">Lô 6 người Do Thái</h5>
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      style="width: 15; height: 15;"
+                    >
+                      <img
+                        class="mb-4"
+                        src="/icons/heart.svg"
+                        alt=""
+                        width="15"
+                        height="15"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">180.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div
+                    class="col-md-4"
+                    style="font-size: small; align-self: center;"
+                  >
+                    Le Tan Thinh
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">500.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div class="col-md-4">
+                    <h3>
+                      <span
+                        class="badge badge-danger"
+                        style="font-size: x-small;"
+                        >Giá mua ngay</span
+                      >
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container" style="font-size: x-small;">
+                <div class="row">
+                  <div class="col-md-4">Từ 30/11/2019</div>
+                  <div class="col-md-4">Còn lại: 23h39m</div>
+                  <div class="col-md-4">Số lượt: 12 lượt</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="card bg-dark" style="width:20em; color: #8d9eac;">
+              <img src="/images/jews.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <div class="container" style="font-size: medium;">
+                  <div class="row">
+                    <h5 class="col-md-10">Lô 6 người Do Thái</h5>
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      style="width: 15; height: 15;"
+                    >
+                      <img
+                        class="mb-4"
+                        src="/icons/heart.svg"
+                        alt=""
+                        width="15"
+                        height="15"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">180.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div
+                    class="col-md-4"
+                    style="font-size: small; align-self: center;"
+                  >
+                    Le Tan Thinh
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>
+                      <span class="badge badge-warning">500.000.000 VNĐ</span>
+                    </h3>
+                  </div>
+                  <div class="col-md-4">
+                    <h3>
+                      <span
+                        class="badge badge-danger"
+                        style="font-size: x-small;"
+                        >Giá mua ngay</span
+                      >
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container" style="font-size: x-small;">
+                <div class="row">
+                  <div class="col-md-4">Từ 30/11/2019</div>
+                  <div class="col-md-4">Còn lại: 23h39m</div>
+                  <div class="col-md-4">Số lượt: 12 lượt</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <footer class="section footer-classic bg-dark p-5" style="color: #8d9eac;">
+      <div class="container">
+        <div class="row row-30">
+          <div class="col-md-4 col-xl-5">
+            <div class="pr-xl-4">
+              <a class="brand" href="/index.html"
+                ><img
+                  class="brand-logo-light"
+                  src="/images/logo.png"
+                  alt=""
+                  width="auto"
+                  height="37"
+              /></a>
+
+              <p>Chào mừng đến với chợ đen.</p>
+              <p class="rights">
+                <span>© </span><span class="copyright-year">2019 - </span
+                ><span> </span><span>Bản quyền thuộc về nhóm 2 (Web).</span>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h5>Contacts</h5>
+            <dl class="contact-list">
+              <dt>Địa chỉ:</dt>
+              <dd>Đại học KHTN</dd>
+            </dl>
+            <dl class="contact-list">
+              <dt>email:</dt>
+              <dd>
+                <a href="#" style="color: #8d9eac;">blackmarket@gmail.com</a>
+              </dd>
+            </dl>
+          </div>
+          <div class="col-md-4 col-xl-3">
+            <h5>Về chợ đen</h5>
+            <ul style="list-style-type:none; padding-left: 0;">
+              <li><a href="#" style="color: #8d9eac;">Giới thiệu</a></li>
+              <li><a href="#" style="color: #8d9eac;">Liên hệ</a></li>
+              <li><a href="#" style="color: #8d9eac;">Tuyển dụng</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -187,5 +1245,109 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"
+      type="text/javascript"
+    ></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $(".top5").slick({
+          dot: true,
+          arrows: true,
+          autoplay: true,
+          autoplaySpeed: 3000,
+          infinite: true,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+
+          centerMode: true,
+          responsive: [
+            {
+              breakpoint: 1900,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1
+              }
+            },
+            {
+              breakpoint: 1300,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                centerMode: false
+              }
+            },
+            {
+              breakpoint: 1000,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                centerMode: false
+              }
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                centerMode: true
+              }
+            }
+          ]
+        });
+      });
+      $(document).ready(function() {
+        $(".top5finally").slick({
+          dot: true,
+          arrows: true,
+          autoplay: true,
+          autoplaySpeed: 3000,
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+
+          centerMode: true,
+          responsive: [
+            {
+              breakpoint: 1900,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1
+              }
+            },
+            {
+              breakpoint: 1200,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                centerMode: true
+              }
+            },
+            {
+              breakpoint: 1000,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                arrows: false,
+                centerMode: false
+              }
+            },
+            {
+              breakpoint: 800,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                centerMode: true
+              }
+            }
+          ]
+        });
+      });
+    </script>
+    </script>
   </body>
 </html>
