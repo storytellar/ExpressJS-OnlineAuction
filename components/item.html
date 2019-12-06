@@ -11,54 +11,182 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
     <style>
-        .custom{
-            width: 8em;
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            font: 14px "Open Sans", sans-serif;
+            text-align: center;
+        }
+
+        .tile {
+            width: 100%;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 2px 3px -1px rgba(151, 171, 187, 0.7);
+            float: left;
+            transform-style: preserve-3d;
+            margin: 10px 5px;
+        }
+
+        .header {
+            padding: 10px 0;
+            text-align: center;
+            color: #adb8c2;
+            font-size: 600;
+            font-size: 19px;
+            position: relative;
+        }
+
+        .banner-img {
+            padding: 5px 5px 0;
+        }
+
+        .banner-img img {
+            position: relative;
+            width: 100%;
+            height: 36%;
+            border-radius: 5px;
+            left: 0px;
+            top: 0px;
+            z-index: 1;
+        }
+
+        .banner-img button {
+            position: relative;
+            width: 15%;
+            left: 40%;
+            top: 20px;
+            z-index: 2;
+        }
+
+        .stats strong {
+            display: block;
+            color: #adb8c2;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .stats {
+            overflow: auto;
+            padding: 15px 0;
+            font-size: 16px;
+            color: #59687f;
+            font-weight: 600;
+        }
+
+        .stats div {
+            width: 50%;
+            float: left;
+            text-align: center
+        }
+
+        .stats-single {
+            overflow: auto;
+            padding: 15px 0;
+            font-size: 16px;
+            color: #59687f;
+            font-weight: 600;
+        }
+
+        .stats-single div {
+            width: 100%;
+            float: left;
+            text-align: center
+        }
+
+        .stats-single strong {
+            display: block;
+            color: #adb8c2;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .stats-triple div {
+            width: 33.333%;
+            float: left;
+            text-align: center
+        }
+
+        .stats-triple {
+            overflow: auto;
+            padding: 15px 0;
+            font-size: 16px;
+            color: #59687f;
+            font-weight: 600;
+        }
+
+        .stats-triple strong {
+            display: block;
+            color: #adb8c2;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .stats div:nth-of-type(3) {
+            border: none;
         }
     </style>
 </head>
 
-<div class="card bg-dark" style="width:20em; color: #8d9eac;">
-    <img src="/images/jews.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-        <div class="container" style="font-size: medium;">
-            <div class="row">
-                <h5 class="col-md-10">Lô 6 người Do Thái</h5>
-                <button type="button" class="btn btn-default" style="width: 15; height: 15;">
-                    <img class="mb-4" src="/icons/heart.svg" alt="" width="15" height="15">
-                </button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-                <h3>
-                    <span class="badge badge-warning">180.000.000 VNĐ</span>
-                </h3>
-            </div>
-            <div class="col-md-4" style="font-size: small; align-self: center;">
-                Le Tan Thinh
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-                <h3>
-                    <span class="badge badge-warning">500.000.000 VNĐ</span>
-                </h3>
-            </div>
-            <div class="col-md-4">
-                <h3>
-                    <span class="badge badge-danger" style="font-size: x-small;">Giá mua ngay</span>
-                </h3>
-            </div>
-        </div>
-    </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="tile">
+                <div class="wrapper">
+                    <div class="header bg-dark">
+                        <a href="#" style="color: #8d9eac;">
+                            <h5>Lô 6 người Do Thái</h5>
+                        </a>
+                    </div>
 
+                    <div class="banner-img bg-dark">
+                        <button class="btn btn-primary">
+                            <i class="fa fa-heart"></i>
+                        </button>
+                        <img src="/images/jews.jpg">
+                    </div>
+                    <div class="stats bg-dark">
 
-    <div class="container" style="font-size: x-small;">
-        <div class="row">
-            <div class="col-md-4">Từ 30/11/2019</div>
-            <div class="col-md-4">Còn lại: 23h39m</div>
-            <div class="col-md-4">Số lượt: 12 lượt</div>
+                        <div>
+                            <strong>Giá cao nhất</strong>180.000.000 VNĐ
+                        </div>
+
+                        <div>
+                            <strong>Người ra</strong> Le Tan Thinh
+                        </div>
+
+                    </div>
+
+                    <div class="stats-single bg-dark">
+                        <div>
+                            <strong>Giá mua ngay</strong> 500.000.000 VNĐ
+                        </div>
+                    </div>
+
+                    <div class="stats-triple bg-dark">
+                        <div>
+                            <strong>Ngày đăng</strong> 30/11/2019
+                        </div>
+
+                        <div>
+                            <strong>Còn lại</strong> 23h32p
+                        </div>
+
+                        <div>
+                            <strong>Lượt bid</strong> 12 lượt
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
