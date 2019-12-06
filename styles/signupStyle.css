@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
-html, body {
+html, .card {
     height: 100%;
     font-family: 'Numans', sans-serif;
 }
@@ -24,7 +24,7 @@ html, body {
 }
 
 .card {
-    height: 420px;
+    height: 480px;
     margin-top: auto;
     margin-bottom: auto;
     width: 400px;
