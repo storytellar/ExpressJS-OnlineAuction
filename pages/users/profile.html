@@ -22,8 +22,8 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <a class="navbar-brand" href="/index.html">CHỢ ĐEN</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"><img src="/images/logo.png" alt="" width="120px" height="auto"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -80,114 +80,119 @@
         </li>
       </ul>
       <div class="d-flex flex-direction-row">
-        <a class="nav-link text-light" href="/pages/login.html">Login</a>
-        <a class="btn btn-warning  my-sm-0" href="pages/signup.html">
+        <a class="nav-link text-light" href="#">Login</a>
+        <a class="btn btn-warning  my-sm-0" href="#">
           Sign Up
         </a>
       </div>
     </div>
   </nav>
-  <div class="info-bar bg-dark">
+
+  <div class="info-bar ">
     <div class="info-view d-flex align-items-center">
       <img src="https://placehold.it/45x45" style="width:45; height: 45;" class="rounded-circle">
       <h4 id="email">youremail@gmail.com</h4>
     </div>
   </div>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <div class="collapse navbar-collapse">
 
-      <div class="tabmenu d-flex flex-direction-row ">
-        <a class="tabitems nav-link " href="#" data-toggle="tooltip" data-html="true"
-          title="Your basic information.">Basic Info</a>
-        <a class="tabitems nav-link " href="#" data-toggle="tooltip" data-html="true"
-          title="Change your personal information">Change Info</a>
-        <a class="tabitems nav-link " href="#" data-toggle="tooltip" data-html="true" title="Show your wish list.">Wish
-          List</a>
-        <a class="tabitems nav-link " href="#" data-toggle="tooltip" data-html="true"
-          title="Your won auction.">History</a>
-      </div>
+  
+  <nav class="tabbar bg-subtitle navbar-expand-lg navbar-dark sticky-top ">
+    <div class="tabmenu nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item tabitem nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+        aria-controls="nav-home" aria-selected="true" data-html="true" title="Thông tin cơ bản của bạn.">Thông Tin Cơ
+        Bản</a>
+      <a class="nav-item tabitem nav-link" id="nav-profile-tab" data-toggle="tab" href="#footer" role="tab"
+        aria-controls="nav-profile" aria-selected="false" data-html="true" title="Thay đổi thông tin cá nhân.">Thay đổi
+        thông tin</a>
+      <a class="nav-item tabitem nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+        aria-controls="nav-contact" aria-selected="false" data-html="true"
+        title="Các sản phẩm đã được thêm vào yêu thích.">Yêu thích</a>
+      <a class="nav-item tabitem nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+        aria-controls="nav-contact" aria-selected="false" data-html="true" title="Các sản phẩm đã chiến thắng.">Lịch sử
+        đấu giá</a>
     </div>
   </nav>
-
-  <main class="main">
-    <!-- <div class="card">
-      <div class="card-header">
-          <img src="https://placehold.it/300 " class="img-fluid ">
-      </div>
-      <div class="card-body">
-        <div class="info-group row">
-          <div class="col">
-            <hr>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      <main class="main" id="main">
+        <div class="card bg-dark flex-row flex-wrap">
+          <div class="card-header border-0">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHHrj-_y2FAm84hK88uSS7VaadHEOWinuAGyCdv-sYAdOLGo-K&s"  style="width: 200; height: 200;" alt="//placehold.it/200">
           </div>
-          <div class=".description-text col-auto">Personal Information</div>
-          <div class="col">
-            <hr>
-          </div>
-        </div>
-        <form>
-          <div class="input-name form-group">
-            <div class="d-flex flex-row justify-content-between">
-              <h1 style="width:46%" type="text" class="form-control" placeholder="First Name"> 
-              <h3 style="width:46%" type="text" class="form-control" placeholder="Last Name">
-            </div>
-          </div>
-          <div class="form-group">
-            <input type"text" class="form-control" placeholder="Email">
-          </div>
-          <div class="form-group">
-            <input type"text" class="form-control" placeholder="Address">
-          </div>
-        </form>
-        <div class="info-group row">
-          <div class="col">
-            <hr>
-          </div>
-          <div class="col-auto">Account</div>
-          <div class="col">
-            <hr>
+          <div class="col">       
+            <div class="row">
+              <div class="col-md-auto col-xl-auto justify-content-around">
+                <p class="card-text-dark">Tên: </p>
+                 <div class="info-content">
+                    <span class="badge badge-warning">Trần Dần</span>
+                </div>
+                <p class="card-text-dark">Địa chỉ: </p>
+                 <div class="info-content">
+                    <span class="badge badge-warning">Phao Sần Pa lây</span>
+                </div>
+              </div>
+              <div class="col-xl-5 col-md-4">
+                <span></span>
+              </div>
+              <div class="col-md-auto col-xl-auto">
+                  <p class="card-text-dark">Email: </p>
+                  <div class="info-content">
+                      <span class="badge badge-warning">choden@gmail.com</span>
+                  </div>
+                  <p class="card-text-dark">Mật khẩu: </p>
+                 <div class="info-content">
+                    <span class="badge badge-warning">*********</span>
+                </div>
+              </div>
+    
           </div>
         </div>
-        <form>
-          <div class="input-group form-group">
-
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
-            </div>
-            <input type="text" class="form-control" placeholder="username">
-
+          <div class="w-100"></div>
+          <div class="card-footer w-100 text-muted" id="footer">
+            THÔNG TIN CÁ NHÂN
           </div>
-
-          <div class="input-group form-group padding">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-key"></i></span>
-            </div>
-            <input type="password" class="form-control" placeholder="password">
-          </div>
-
-          <div class="form-group">
-            <input type="submit" value="Sign Up" class="btn float-right login_btn">
-          </div>
-        </form>
-      </div>
-
-    </div> -->
-    <div class="card flex-row flex-wrap">
-        <div class="card-header border-0">
-            <img src="//placehold.it/200" alt="">
         </div>
-        <div class="card-block px-2">
-            <h4 class="card-title">Cao Đình Vĩ</h4>
-            <p class="card-text">cao.d.vi@gmail.com</p>
-
-        </div>
-        <div class="w-100"></div>
-        <div class="card-footer w-100 text-muted">
-            PERSONAL INFORMATION
-        </div>
+      </main>
     </div>
-  </main>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+  </div>
 
 
+
+  <footer class="section footer-classic bg-dark p-5" style="color: #8d9eac;">
+    <div class="container">
+      <div class="row row-30">
+        <div class="col-md-4 col-xl-5">
+          <div class="pr-xl-4"><a class="brand" href="/index.html"><img class="brand-logo-light" src="/images/bm.png"
+                alt="" width="auto" height="37" srcset="images/agency/logo-retina-inverse-280x74.png 2x"></a>
+            <p>Chào mừng đến với chợ đen.</p>
+            <p class="rights"><span>© </span><span class="copyright-year">2019 - </span><span> </span><span>Bản quyền
+                thuộc về nhóm 2 (Web).</span></p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h5>Contacts</h5>
+          <dl class="contact-list">
+            <dt>Địa chỉ:</dt>
+            <dd>Đại học KHTN</dd>
+          </dl>
+          <dl class="contact-list">
+            <dt>email:</dt>
+            <dd><a href="#" style="color: #8d9eac;">blackmarket@gmail.com</a></dd>
+          </dl>
+        </div>
+        <div class="col-md-4 col-xl-3">
+          <h5>Về chợ đen</h5>
+          <ul style="list-style-type:none; padding-left: 0;">
+            <li><a href="#" style="color: #8d9eac;">Giới thiệu</a></li>
+            <li><a href="#" style="color: #8d9eac;">Liên hệ</a></li>
+            <li><a href="#" style="color: #8d9eac;">Tuyển dụng</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 
 </html>
