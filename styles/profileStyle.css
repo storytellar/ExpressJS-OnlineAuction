@@ -58,6 +58,29 @@ html, body {
     margin-bottom: 1px;
 }
 
+.infocard {
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: auto;
+    background-color: rgba(43, 49, 55, 0.75) !important;
+    
+}
+
+.info-container {
+    font-weight: bold;
+    align-content: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
+
+}
+
+.account-form {
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+}
 .badge{
     font-size: 100%;
 }
