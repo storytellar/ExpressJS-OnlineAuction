@@ -18,6 +18,9 @@ html, body {
     
 }
 
+.items-list{
+    padding: 3%
+}
 .active{
     background: rgb(24, 30, 35) !important;
     color: rgb(255,193,7) !important;
