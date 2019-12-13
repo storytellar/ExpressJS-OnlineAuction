@@ -3,12 +3,6 @@ const exphbs = require("express-handlebars");
 require("express-async-errors");
 const app = express();
 
-// Thêm Route ở đây
-var admin = require("./routes/admin.route");
-app.use("/admin", admin);
-
-app.get("/", (req, res) => res.send("Trang chủ"));
-
 app.engine(
   "hbs",
   exphbs({
@@ -17,15 +11,31 @@ app.engine(
 );
 app.set("view engine", "hbs");
 
+app.use(
+  express.urlencoded({
+    extended: true
+  })
+);
+
+app.use("/public", express.static("public"));
+
+// Thêm Route ở đây
+var User = require("./routes/user.route");
+app.use("/user", User);
+
+app.get("/", (req, res) => {
+  res.render("home");
+});
+
 // default 404
 app.use(function(req, res) {
-  res.send("what???");
+  res.send("what??? default 404");
 });
 
 // default error handler
 app.use((err, req, res, next) => {
   console.log(err);
-  res.send("err???");
+  res.send("err??? default error handler");
 });
 
 const port = process.env.PORT || 3000;

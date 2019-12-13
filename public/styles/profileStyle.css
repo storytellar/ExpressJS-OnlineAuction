@@ -1,0 +1,90 @@
+html, body {
+    
+    background: rgb(24, 30, 35);
+}
+
+.tabitem:hover {
+    color: yellow;
+    /* font-weight: 700; */
+}
+.tabmenu{
+    padding-left: 10px;
+}
+
+
+
+.tabitem {
+    color: white;
+    
+}
+
+.items-list{
+    padding: 3%
+}
+.active{
+    background: rgb(24, 30, 35) !important;
+    color: rgb(255,193,7) !important;
+    border-bottom: transparent !important;
+}
+
+#email{
+    color: white;
+    padding-left: 1%;
+}
+
+.info-bar{
+    background: rgb(43, 49, 55);
+    padding-left: 8%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+}
+
+.bg-subtitle{
+    background: rgb(43, 49, 55);
+}
+
+.main{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.card-text-dark {
+    color: #8d9eac;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    margin-bottom: 1px;
+}
+
+.infocard {
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: auto;
+    background-color: rgba(43, 49, 55, 0.75) !important;
+    
+}
+
+.info-container {
+    font-weight: bold;
+    align-content: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
+
+}
+
+.account-form {
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+}
+.badge{
+    font-size: 100%;
+}
+
+.info-content{
+    padding-left: 5px;
+}

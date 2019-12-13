@@ -1,7 +1,9 @@
 var mysql = require("mysql");
+const util = require("util");
+
+// UI login for MySQL
+// https://sv1.tuoihocsinh.com/etc/apps/phpmyadmin
 var pool = mysql.createPool({
-  // UI login for MySQL
-  // https://sv1.tuoihocsinh.com/etc/apps/phpmyadmin
   connectionLimit: 10,
   host: "18.138.175.246",
   user: "thai",
@@ -9,11 +11,12 @@ var pool = mysql.createPool({
   database: "zadmin_thai"
 });
 
-pool.query("SELECT 1 + 1 AS solution", function(error, results, fields) {
-  if (error) throw error;
-  console.log("The solution is: ", results[0].solution);
-});
+const pool_query = util.promisify(pool.query).bind(pool);
 
-module.exports.load = sql => {
-  pool_query(sql);
+module.exports = {
+  load: sql => pool_query(sql),
+  add: (entity, table) => pool_query(`insert into ${table} set ?`, entity),
+  del: (condition, table) => pool_query(`delete from ${table} where ?`, condition),
+  patch: (entity, condition, table) => pool_query(`update ${table} set ? where ?`, [entity, condition]),
 };
+
