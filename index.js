@@ -37,6 +37,9 @@ app.use("/user", userRoute);
 var adminRoute = require("./routes/admin.route");
 app.use("/admin", adminRoute);
 
+var productsRoute = require("./routes/products.route");
+app.use("/products", productsRoute);
+
 
 
 // Default index
