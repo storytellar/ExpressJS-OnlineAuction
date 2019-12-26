@@ -1,14 +1,13 @@
-var mysql = require("mysql");
-const util = require("util");
+const mysql = require('mysql');
+const util = require('util');
 
-// UI login for MySQL
-// https://sv1.tuoihocsinh.com/etc/apps/phpmyadmin
-var pool = mysql.createPool({
-  connectionLimit: 10,
-  host: "18.138.175.246",
-  user: "thai",
-  password: "eju2eqe4a",
-  database: "zadmin_thai"
+const pool = mysql.createPool({
+  connectionLimit: 100,
+  host: '165.22.103.114',
+  port: 3306,
+  user: 'sieuchoden',
+  password: '123456',
+  database: 'sieuchoden'
 });
 
 const pool_query = util.promisify(pool.query).bind(pool);
@@ -19,4 +18,3 @@ module.exports = {
   del: (condition, table) => pool_query(`delete from ${table} where ?`, condition),
   patch: (entity, condition, table) => pool_query(`update ${table} set ? where ?`, [entity, condition]),
 };
-
