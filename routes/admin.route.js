@@ -11,5 +11,6 @@ router.use(express.json());
 router.get("/", controller.welcome);
 router.get("/categories", controller.showCategory);
 router.get("/test", controller.test);
+router.get("/login", controller.login);
 
 module.exports = router;

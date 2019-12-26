@@ -1,0 +1,210 @@
+{{#section 'js'}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(".top5").slick({
+      dot: true,
+      arrows: true,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      infinite: true,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      centerMode: true,
+      responsive: [
+        {
+          breakpoint: 1900,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 1300,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            centerMode: false
+          }
+        },
+        {
+          breakpoint: 750,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            centerMode: true,
+
+          }
+        }
+      ]
+
+    });
+  });
+  $(document).ready(function () {
+    $(".top5finally").slick({
+      dot: true,
+      arrows: true,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      infinite: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+
+      centerMode: true,
+      responsive: [
+        {
+          breakpoint: 1900,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 1300,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            arrows: false,
+            centerMode: false
+          }
+        },
+        {
+          breakpoint: 750,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            centerMode: true,
+          }
+        }
+      ]
+    });
+  });
+</script>
+<script type="text/javascript">
+
+  function clickLoveButton(ID) {
+
+    a = document.querySelector('#lovebutton' + ID).className; if (a == "fa fa-heart-o") {
+      document.querySelector('#lovebutton' + ID).className = "fa fa-heart";
+    } else {
+      document.querySelector('#lovebutton' + ID).className = "fa fa-heart-o";
+    }
+
+    console.log('Gửi ajax post đến /love/' + ID)
+
+  }
+</script>
+{{/section}}
+
+{{#section 'css'}}
+<!-- Bootstrap CSS -->
+<style>
+  .love-button {
+    position: absolute;
+    z-index: 3;
+    border-top-right-radius: 20px;
+    top: 10px;
+    right: 15px;
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    padding: 5px;
+    background-color: #575460;
+    border-radius: 10px;
+  }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{{/section}}
+
+<div class="container-fluid">
+    <!-- SEARCH BAR -->
+    <div class="row" style="background: rgb(43, 49, 55);">
+        <div class="col-sm"></div>
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+            <div class="search-header d-flex flex-column justify-content-center align-items-center"
+                style="height: 230px;">
+                <p class="h4 mb-3 text-warning">TÌM HÀNG TRÊN CHỢ ĐEN</p>
+                <!-- inputbox -->
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm..." />
+                    <div class="input-group-append">
+                        <button class="btn btn-warning" type="button">
+                            <img src="/public/icons/search.svg" height="20px" width="auto" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm"></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="flex-row d-flex flex-wrap" style="padding: 10px;">
+        {{#each this.caterogry_name}}
+        <div class="col-md-4" style="padding-bottom: 2%;">
+            <div class="card bg-dark" style="width:20em;  color: #8d9eac;">
+                <img src="{{imgLink}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <div class="container" style="font-size: medium;">
+                        <div class="row">
+                            <a href="#" class="col-md-10" style="color: #8d9eac;">
+                                <h5>{{itemName}}</h5>
+                            </a>
+                            <button class="love-button">
+                                {{#if isLoved}}
+                                <div id="lovebutton{{ID}}" class="fa fa-heart" aria-hidden="true"
+                                    onclick="clickLoveButton({{ID}})"></div>
+                                {{else}}
+                                <div id="lovebutton{{ID}}" class="fa fa-heart-o" aria-hidden="true"
+                                    onclick="clickLoveButton({{ID}})"></div>
+                                {{/if}}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h3>
+                                <span class="badge badge-warning">{{price}} VNĐ</span>
+                            </h3>
+                        </div>
+                        <div class="col-md-4" style="font-size: small; align-self: center;">
+                            {{top1}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h3>
+                                <span class="badge badge-warning">{{price}} VNĐ</span>
+                            </h3>
+                        </div>
+                        <div class="col-md-4">
+                            <h3>
+                                <span class="badge badge-danger" style="font-size: x-small;">Giá mua ngay</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="container" style="font-size: x-small;">
+                    <div class="row">
+                        <div class="col-md-4">Từ {{postDate}}</div>
+                        <div class="col-md-4">Còn lại: {{timeLeft}}</div>
+                        <div class="col-md-4">Số lượt: {{numOfBid}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+
+
+    </div>
+</div>

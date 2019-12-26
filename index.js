@@ -2,8 +2,14 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const hbs_sections = require("express-handlebars-sections");
 
+// const hbs = require("handlebars"); //
+//  hbs.registerPartial("./views/components/");//
+// //exphbs.registerPartial("views/components/");
+
 require("express-async-errors");
 const app = express();
+
+
 
 app.engine(
   "hbs",
@@ -27,6 +33,14 @@ app.use("/public", express.static("public"));
 // Thêm Route ở đây
 var userRoute = require("./routes/user.route");
 app.use("/user", userRoute);
+
+var adminRoute = require("./routes/admin.route");
+app.use("/admin", adminRoute);
+
+var productsRoute = require("./routes/products.route");
+app.use("/products", productsRoute);
+
+
 
 // Default index
 app.get("/", (req, res) => {
@@ -89,11 +103,14 @@ app.get("/", (req, res) => {
   const top5xuhuong = top5ketthuc;
   const top5sieupham = top5ketthuc;
 
+
   res.render("home", {
     top5ketthuc,
     top5xuhuong,
     top5sieupham  
   });
+
+  
 });
 
 // default 404

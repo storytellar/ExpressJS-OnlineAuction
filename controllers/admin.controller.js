@@ -22,3 +22,7 @@ module.exports.test = async (req, res) => {
     layout: false
   });
 };
+
+module.exports.login = async (req, res) => {
+  res.render("admin/login", {layout:false});
+}
