@@ -8,6 +8,14 @@ module.exports.login = async (req, res) => {
   });
 };
 
+module.exports.postLogin = async (req, res) => {
+  console.log(req.body);
+  
+  res.render("user/login", {
+    layout: false
+  });
+};
+
 module.exports.signup = async (req, res) => {
   res.render("user/signup", { layout: false });
 };

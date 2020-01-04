@@ -1,5 +1,6 @@
 module.exports.welcome = async (req, res) => {
-  res.render("home");
+  if (!res.locals.login)
+    res.redirect('/admin/login');
 };
 
 module.exports.showCategory = async (req, res) => {

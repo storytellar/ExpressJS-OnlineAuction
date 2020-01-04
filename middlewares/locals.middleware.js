@@ -1,10 +1,26 @@
-// demo
-module.exports.requireAuth = function (req, res, next){
-    if (req.session.isAuthenticated === null) {
-        req.session.isAuthenticated = false;
+const categoryModel = require("../models/category.model");
+
+// Lấy thông tin Category ở thanh Menu
+module.exports.getMenu = async (req, res, next) => {
+  let listBigCategory = await categoryModel.getAllBigCategory();
+  let listSmallCategory = await categoryModel.getAllCataloge();
+  let Menu = listBigCategory.map(row => {
+    let SubMenu = []
+
+    listSmallCategory.forEach(e => {
+      if (e.bigCatID === row.id){
+        SubMenu.push(e);
       }
+    });
+
+    return {
+      ID: row.id,
+      Name: row.BCName,
+      SubMenu: SubMenu
+    };
+  });
   
-      res.locals.lcIsAuthenticated = req.session.isAuthenticated;
-      res.locals.lcAuthUser = req.session.authUser;
-      next();
+  res.locals.lcMenu = Menu;
+
+  next();
 };

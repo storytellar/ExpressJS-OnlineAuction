@@ -9,7 +9,6 @@ router.use(express.json());
 // Thêm link ở dưới đây
 // localhost/admin/ + ....
 router.get("/", controller.welcome);
-router.get("/categories", controller.showCategory);
 router.get("/test", controller.test);
 router.get("/login", controller.login);
 

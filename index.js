@@ -4,6 +4,8 @@ const hbs_sections = require("express-handlebars-sections");
 
 var HomeController = require("./controllers/home.controller");
 
+const localMiddleware = require('./middlewares/locals.middleware')
+
 require("express-async-errors");
 const app = express();
 
@@ -35,13 +37,13 @@ app.use("/user", userRoute);
 var adminRoute = require("./routes/admin.route");
 app.use("/admin", adminRoute);
 
-var productsRoute = require("./routes/products.route");
-app.use("/products", productsRoute);
+var productRoute = require("./routes/product.route");
+app.use("/product", productRoute);
 
 
 
 // TRANG CHỦ
-app.get("/", HomeController.welcome);
+app.get("/", localMiddleware.getMenu, HomeController.welcome);
 
 // default 404
 app.use(function(req, res) {

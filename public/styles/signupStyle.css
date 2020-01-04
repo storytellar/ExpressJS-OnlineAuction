@@ -7,8 +7,6 @@ html, .card {
     background-image: url('../images/bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    filter: blur(7px);
-    -webkit-filter: blur(7px);
     height: 100%;
 }
 

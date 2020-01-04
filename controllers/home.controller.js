@@ -1,8 +1,9 @@
 const productModel = require("../models/product.model");
-const moment = require("moment")
-moment.locale('vi');
+const moment = require("moment");
+moment.locale("vi");
 // Trang chủ
 module.exports.welcome = async (req, res) => {
+
   // Lấy data dạng thô về, sau đó map thành dạng attributes đẹp phía dưới
   // Có thể console.log thử ra để xem dạng data
   const [
@@ -14,9 +15,6 @@ module.exports.welcome = async (req, res) => {
     productModel.getFiveTrendingProducts(),
     productModel.getFiveSuperProducts()
   ]);
-
-  console.log(rawData_Top5KetThuc);
-  
 
   top5ketthuc = rawData_Top5KetThuc.map(row => {
     return {

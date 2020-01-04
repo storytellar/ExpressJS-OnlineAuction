@@ -2,6 +2,10 @@ module.exports.welcome = async (req, res) => {
   res.render("home");
 };
 
+module.exports.search = async (req, res) => {
+  res.send("Từ khoá search:" + req.query.keyword);
+};
+
 module.exports.profile = async (req, res) => {
   const user_info = {
     firstname: "Dần",
@@ -14,6 +18,12 @@ module.exports.profile = async (req, res) => {
 };
 
 module.exports.category = async (req, res) => {
+  CategoryID = req.query.id;
+  PageID = req.query.page ? req.query.page : 1; // default là 1
+  console.log('Đây là id của trang category: ' + CategoryID);
+  console.log('Đây là page của trang category: ' + PageID);
+  // demo: http://localhost:3000/product/category?id=7&page=2
+  
   const caterogry_name = [
     {
       ID: 0,

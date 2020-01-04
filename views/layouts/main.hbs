@@ -3,11 +3,13 @@
 
 <head>
 
+  <title>Chợ đen</title>
+  <link rel="shortcut icon" type="image/png" href="/public/icons/favicon.ico" />
+  <link rel="shortcut icon" type="image/png" href="/public/icons/favicon.ico" />
+
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -20,7 +22,7 @@
 <body style="background-color: #2C3137;">
   <!-- navbar guest -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <a class="navbar-brand" href="#"><img src="/public/images/logo.png" alt="" width="120px" height="auto"></a>
+    <a class="navbar-brand" href="/"><img src="/public/images/logo.png" alt="" width="120px" height="auto"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -28,57 +30,23 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
+        {{#each lcMenu}}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            Đồ điện tử
-          </a>
-          <!-- xdsdsdssdds -->
-          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item bg-dark text-light" href="#">Điện thoại di động</a>
-            <a class="dropdown-item bg-dark text-light" href="#">Máy tính xách tay</a>
-            <a class="dropdown-item bg-dark text-light" href="#">Máy tính bảng</a>
-            <a class="dropdown-item bg-dark text-light" href="#">Thiết bị thông minh</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Đồ gia dụng
+            {{Name}}
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item bg-dark text-light" href="#">Tủ lạnh</a>
-            <a class="dropdown-item bg-dark text-light" href="#">Máy giặt</a>
-            <a class="dropdown-item bg-dark text-light" href="#">Máy lạnh</a>
+            {{#each SubMenu}}
+            <a class="dropdown-item bg-dark text-light" href="/product/category?id={{id}}&page=1">{{catName}}</a>
+            {{/each}}
           </div>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Đồ văn phòng
-          </a>
-          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item bg-dark text-light" href="#">Máy móc</a>
-            <a class="dropdown-item bg-dark text-light" href="#">Thiết bị</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Bất động sản
-          </a>
-          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item bg-dark text-light" href="#">Căn hộ</a>
-            <a class="dropdown-item bg-dark text-light" href="#">Nhà ở</a>
-            <a class="dropdown-item bg-dark text-light" href="#">Đất đai</a>
-            <a class="dropdown-item bg-dark text-light" href="#">Văn phòng</a>
-            <a class="dropdown-item bg-dark text-light" href="#">Mặt bằng</a>
-          </div>
-        </li>
+        {{/each}}
       </ul>
       <div class="d-flex flex-direction-row">
-        <a class="nav-link text-light" href="/user/login">Login</a>
-        <a class="btn btn-warning  my-sm-0" href="/user/signup">Sign Up</a>
+        <a class="nav-link text-light" href="/user/login">Đăng nhập</a>
+        <a class="btn btn-warning  my-sm-0" href="/user/signup">Đăng ký</a>
       </div>
     </div>
   </nav>
