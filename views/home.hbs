@@ -166,32 +166,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 {{/section}}
 
-<div class="container-fluid">
-  <!-- SEARCH BAR -->
-  <div class="row" style="background: rgb(43, 49, 55);">
-    <div class="col-sm"></div>
-    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
-      <div class="search-header d-flex flex-column justify-content-center align-items-center" style="height: 230px;">
-        <p class="h4 mb-3 text-warning">TÌM HÀNG TRÊN CHỢ ĐEN</p>
-        <!-- inputbox -->
-        <form class="input-group mb-3" action="/product/search" method="get">
-          <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Tìm kiếm..." />
-          <div class="input-group-append">
-            <button class="btn btn-warning" type="submit">
-              <img src="/public/icons/search.svg" height="20px" width="auto" />
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="col-sm"></div>
-  </div>
-</div>
 
-<!-- HTML: BODY -->
-<div class=" container-fluid d-flex align-items-center justify-content-center" style="background-color: #353A40;">
-  <div class="display-4 text-light py-4 text-center">SÀN ĐẤU GIÁ LỚN NHẤT THẾ GIỚI</div>
-</div>
 <div class="container my-5">
 
   <!-- Khung TOP 5 sản phẩm -->
@@ -208,7 +183,7 @@
       {{#each this.top5ketthuc}}
       <div>
         <div class="item">
-          <a href="/pages/detail-item.html" class="" style="text-decoration: none  ;">
+          <a href="/product/detail/{{ID}}" class="" style="text-decoration: none  ;">
             <img src="{{imgLink}}" alt="" style="width: 300px;
                                       height: 200px; 
                                       border-top-left-radius: 20px;
@@ -274,7 +249,7 @@
       {{#each this.top5xuhuong}}
       <div>
         <div class="item">
-          <a href="/pages/detail-item.html" class="" style="text-decoration: none  ;">
+          <a href="/product/detail/{{ID}}" class="" style="text-decoration: none  ;">
             <img src="{{imgLink}}" alt="" style="width: 300px;
                                       height: 200px; 
                                       border-top-left-radius: 20px;
@@ -340,7 +315,7 @@
       {{#each this.top5sieupham}}
       <div>
         <div class="item">
-          <a href="/pages/detail-item.html" class="" style="text-decoration: none  ;">
+          <a href="/product/detail/{{ID}}" class="" style="text-decoration: none  ;">
             <img src="{{imgLink}}" alt="" style="width: 300px;
                                       height: 200px; 
                                       border-top-left-radius: 20px;

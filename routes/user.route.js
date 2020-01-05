@@ -3,6 +3,9 @@ var router = express.Router();
 
 var controller = require("../controllers/user.controller");
 
+const localMiddleware = require('../middlewares/locals.middleware')
+
+
 // middleware
 router.use(express.json());
 

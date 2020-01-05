@@ -3,7 +3,6 @@ const moment = require("moment");
 moment.locale("vi");
 // Trang chủ
 module.exports.welcome = async (req, res) => {
-
   // Lấy data dạng thô về, sau đó map thành dạng attributes đẹp phía dưới
   // Có thể console.log thử ra để xem dạng data
   const [
