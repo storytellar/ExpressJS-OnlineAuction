@@ -11,5 +11,9 @@ router.use(express.json());
 router.get("/", controller.welcome);
 router.get("/test", controller.test);
 router.get("/login", controller.login);
+router.post("/login", controller.postLogin);
+router.post("/logout", controller.logout);
+router.get("/mngr", controller.mngr);
+
 
 module.exports = router;
