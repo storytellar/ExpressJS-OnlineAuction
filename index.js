@@ -55,7 +55,10 @@ app.use(function(req, res) {
 // default error handler
 app.use((err, req, res, next) => {
   console.log(err);
-  res.send("err??? default error handler");
+  res.render("error.hbs", {
+    layout: false,
+    err
+  });
 });
 
 const port = process.env.PORT || 3000;
