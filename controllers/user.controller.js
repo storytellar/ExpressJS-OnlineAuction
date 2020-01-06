@@ -1,3 +1,6 @@
+var userModel = require('../models/user.model');
+//const bcrypt = require('bcryptjs');
+
 module.exports.welcome = async (req, res) => {
   res.render("home");
 };
@@ -10,7 +13,7 @@ module.exports.login = async (req, res) => {
 
 module.exports.postLogin = async (req, res) => {
   console.log(req.body);
-  
+
   res.render("user/login", {
     layout: false
   });
@@ -20,16 +23,38 @@ module.exports.signup = async (req, res) => {
   res.render("user/signup", { layout: false });
 };
 
+module.exports.postSignup = async (req, res) => {
+  const isAvailable = await userModel.isAvailable(req.body.email);
+  delete req.body.confirm_password;
+  req.body.password = await userModel.hashPassword(req.body.password);
+  console.log(req.body, isAvailable);
+
+  if (isAvailable === true) {
+    console.log('Email Available');
+
+
+    // to model
+    const result = await userModel.addUser(req.body);
+    
+   // alert("Đăng ký thành công, \nBạn sẽ được chuyển tới trang đăng nhập.");
+    res.render("user/login", { layout: false });
+    console.log(result);
+  }
+  else console.log();
+
+  delete isAvailable;
+};
+
 
 module.exports.profile = async (req, res) => {
-  const user_info = 
-    {
-      firstname: "Dần",
-      lastname: "Trần",
-      address: "Phau sần Ba Lây",
-      email: "dantran.haingoai@gmail.com",
-      username: "tientrivutru",
-    };
+  const user_info =
+  {
+    firstname: "Dần",
+    lastname: "Trần",
+    address: "Phau sần Ba Lây",
+    email: "dantran.haingoai@gmail.com",
+    username: "tientrivutru",
+  };
   res.render("user/profile", { user_info });
 };
 
