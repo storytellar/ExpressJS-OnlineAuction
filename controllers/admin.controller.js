@@ -1,5 +1,9 @@
 var adminModel = require('../models/admin.model');
-//const bcrypt = require('bcryptjs');
+var productModel = require('../models/product.model');
+// var catModel = require('../models/category.model');
+const moment = require("moment");
+//const config = require("../config/default.json");
+moment.locale("vi");
 
 module.exports.welcome = async (req, res) => {
   if (!res.locals.login)
@@ -52,9 +56,75 @@ module.exports.postLogin = async (req, res) => {
   res.redirect('/admin/mngr')
 }
 
+module.exports.mngr = async (req, res) => {
+  const catRaw = await adminModel.listAllCategories();
+  const prodRaw = await productModel.getItems();
+  const biddersRaw = await adminModel.listAllBidders();
+  const sellersRaw = await adminModel.listAllSellers();
+
+  const cats = catRaw.map(raw => {
+    return{
+      catID: raw.id,
+      catName: raw.catName,
+      bigCatID: raw.bigCatID
+    }
+  })
+
+  const prods = prodRaw.map(row => {
+    return {
+      ID: row.id,
+      itemName: row.prodName,
+      price: row.giahientai.toLocaleString({
+        style: 'currency',
+        currency: 'VND'
+      }),
+      top1: row.bestbidder,
+      postDate: row.ngaydang.toLocaleString("vi-VN"),
+      timeLeft: moment(row.ketthuc).from(row.ngaydang),
+      numOfBid: row.bids,
+      imgLink: row.imgLink
+    }
+  })
+
+  const bidders = biddersRaw.map(raw => {
+    return{
+      id: raw.id,
+      firstName: raw.firstName,
+      lastName: raw.lastName,
+    }
+  })
+
+  const sellers = sellersRaw.map(raw => {
+    return{
+      id: raw.id,
+      firstName: raw.firstName,
+      lastName: raw.lastName,
+    }
+  })
+  res.render("admin/mngr", { layout: false, categories: cats, products: prods, bidders: bidders, sellers: sellers });
+}
+
 module.exports.logout = async (req, res) => {
   req.session.isAuthenticated = false;
   req.session.authUser = null;
 
   res.redirect('/admin/login');
+}
+
+module.exports.delete = async (req, res) => {
+  const rs = await adminModel.delCat(req.body.id);
+  console.log(req.body);
+  res.redirect('/admin/mngr');
+}
+
+module.exports.deleteBidder = async (req, res) => {
+  const rs = await adminModel.delBid(req.body.id);
+  console.log(req.body.id);
+  res.redirect('/admin/mngr');
+}
+
+module.exports.edit = async (req, res) => {
+  const rs = await adminModel.editCat(req.body);
+  console.log(req.body);
+  res.redirect('/admin/mngr');
 }
