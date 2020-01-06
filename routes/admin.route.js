@@ -14,7 +14,7 @@ router.get("/login", controller.login);
 router.post("/login", controller.postLogin);
 router.post("/logout", controller.logout);
 //router.get("/mngr", controller.mngr);
-const restrict = require('../middlewares/auth.middleware');
+const restrict = require('../middlewares/auth.middleware').adminRestrict;
 router.get('/mngr', restrict, async function (req, res) {
     res.render("admin/mngr", { layout: false });
 })

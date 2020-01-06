@@ -54,11 +54,34 @@ module.exports.addUser = async user => {
 
 module.exports.getUserName = async username => {
     const rows = await db.load(`SELECT * FROM user as urs WHERE urs.username  = '${username}'`);
-    console.log(rows);
-    console.log(rows.length);
+   //console.log(rows);
+   // console.log(rows.length);
     if (rows.length === 0) {
         return null;
     }
     return rows[0];
     
+}
+
+module.exports.getByID = async  id =>{
+    const rows = await db.load(`SELECT * FROM user as urs WHERE urs.id  = '${id}'`);
+    //console.log(rows);
+    //console.log(rows.length);
+
+    if (rows.length === 0) {
+        return null;
+    }
+    return rows[0];
+}
+
+module.exports.getWishlistByID = async id =>{
+    const rows = await db.load(`SELECT p.* FROM product as p, wishlist as wl WHERE wl.userID  = '${id}' && wl.productID = p.id`);
+
+    console.log('abc'+ rows[0]);
+    console.log(rows.length);
+
+    if (rows.length === 0) {
+        return rows;
+    }
+    return rows;
 }

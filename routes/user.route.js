@@ -4,6 +4,7 @@ var router = express.Router();
 var controller = require("../controllers/user.controller");
 
 const localMiddleware = require('../middlewares/locals.middleware')
+const restrict = require('../middlewares/auth.middleware').userRestrict;
 
 
 // middleware
@@ -18,8 +19,10 @@ router.post("/login", controller.postLogin);
 
 router.get("/signup", controller.signup);
 router.post("/signup", controller.postSignup);
-router.get("/profile", controller.profile)
+// router.get("/profile", controller.profile)
 
+
+router.get('/profile', restrict,  controller.profile);
 
 router.get("/category", controller.category);
 
