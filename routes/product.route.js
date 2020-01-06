@@ -11,6 +11,8 @@ const localMiddleware = require('../middlewares/locals.middleware')
 // Thêm link ở dưới đây
 // localhost/user/ + ....
 router.get("/detail/:id", localMiddleware.getMenu, controller.showDetailItem);
+router.post("/detail/:id", localMiddleware.getMenu, controller.bidingAndBuy);
+
 router.get("/category", localMiddleware.getMenu, controller.category);
 router.get("/search", localMiddleware.getMenu, controller.search);
 

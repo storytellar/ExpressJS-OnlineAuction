@@ -44,10 +44,21 @@
         </li>
         {{/each}}
       </ul>
+      {{#if lcAuthenticated}}
+     <div class="fa fa-user color-white" style="color: aliceblue;">
+       <span></span>
+       <a class="btn text-light" href="/user/profile">{{lcAuthUser.firstName}}</a>
+        <a class="btn btn-warning  my-sm-0" href="/user/signout">Đăng xuất</a>
+
+     </div>
+      {{else}}
       <div class="d-flex flex-direction-row">
         <a class="nav-link text-light" href="/user/login">Đăng nhập</a>
         <a class="btn btn-warning  my-sm-0" href="/user/signup">Đăng ký</a>
       </div>
+      
+      
+      {{/if}}
     </div>
   </nav>
 

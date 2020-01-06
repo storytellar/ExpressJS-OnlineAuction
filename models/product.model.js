@@ -73,3 +73,26 @@ module.exports.pageByCat = (catID, offset) => {
         and u.id = b.bidderID and i.prodID = p.id and p.catalogeID = ${catID} and p.isSold = 0
   GROUP BY (b.productID) limit ${config.pagination.limit} offset ${offset}`);
 }
+
+module.exports.addBidderbyID = async (userID, productID, price) => {
+  bidderEntity = {
+    bidderID: userID,
+    productID: productID,
+    priceBid: price,
+
+  }
+  const result = await db.add(bidderEntity,'bidders');
+  console.log(result) ;
+}
+
+module.exports.setProductBought = async (productID) => {
+  boughtEntity = [
+    {
+      isSold: '1',
+    },
+    {
+      id: '${productID}',
+    }
+  ]
+  db.patch(boughtEntity[0],boughtEntity[1],'product');
+}

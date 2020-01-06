@@ -20,9 +20,10 @@ router.post("/login", controller.postLogin);
 router.get("/signup", controller.signup);
 router.post("/signup", controller.postSignup);
 // router.get("/profile", controller.profile)
+router.get("/signout", controller.signout)
 
 
-router.get('/profile', restrict,  controller.profile);
+router.get('/profile', restrict, localMiddleware.getAuthUser,  controller.profile);
 
 router.get("/category", controller.category);
 

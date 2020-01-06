@@ -45,7 +45,7 @@ app.use("/product", productRoute);
 
 
 // TRANG CHỦ
-app.get("/", localMiddleware.getMenu, HomeController.welcome);
+app.get("/", localMiddleware.getMenu, localMiddleware.getAuthUser, HomeController.welcome);
 
 // default 404
 app.use(function(req, res) {
