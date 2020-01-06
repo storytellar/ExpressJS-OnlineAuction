@@ -133,7 +133,7 @@
                 <hr>
               </div>
             </div>
-            <form>
+            <form method="POST">
               <div class="form-group">
                 <div class="d-flex flex-row justify-content-center ">
                   <div class="col card-text-dark ">
@@ -164,23 +164,23 @@
               </div>
 
 
-            </form>
-            <div class="info-group row">
-              <div class="col">
-                <hr>
+              
+              <div class="info-group row">
+                <div class="col">
+                  <hr>
+                </div>
+                <div class="col-auto">Tài khoản</div>
+                <div class="col">
+                  <hr>
+                </div>
               </div>
-              <div class="col-auto">Account</div>
-              <div class="col">
-                <hr>
-              </div>
-            </div>
-            <form class="account-form">
+             
               <div class="input-group form-group">
 
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-user"></i></span>
                 </div>
-                <input type="text" class="form-control" placeholder="tientrivutru">
+                <input type="text" name="username" class="form-control" placeholder="username">
 
               </div>
 
@@ -188,14 +188,14 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-key"></i></span>
                 </div>
-                <input type="password" class="form-control" placeholder="old password">
+                <input type="password" name="old_password" class="form-control" placeholder="old password">
               </div>
               <div class="input-group form-group padding">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-key"></i></span>
                 </div>
-                <input type="password" class="form-control" placeholder="new password">
-                <input type="password" class="form-control" placeholder="re-type password">
+                <input type="password"  name="new_password" class="form-control" placeholder="new password">
+                <input type="password" name="retype_password" class="form-control" placeholder="re-type password">
               </div>
 
               <div class="form-group">
@@ -230,7 +230,7 @@
                 {{initPrice}} VND
               </span>
               <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
-                
+
               </span>
               <div class="detailInfo d-flex flex-direction-row justify-content-between"
                 style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
