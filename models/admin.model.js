@@ -20,7 +20,6 @@ module.exports.listAllCategories = async () => {
 
 module.exports.getAdminName = async adminName => {
   const rows = await db.load(`SELECT * FROM admin a WHERE a.adminName = '${adminName}'`);
-  console.log(rows);
   if(rows.length > 0){
     return rows[0];
   }
