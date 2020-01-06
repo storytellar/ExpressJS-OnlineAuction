@@ -1,3 +1,6 @@
+var adminModel = require('../models/admin.model');
+//const bcrypt = require('bcryptjs');
+
 module.exports.welcome = async (req, res) => {
   if (!res.locals.login)
     res.redirect('/admin/login');
@@ -28,4 +31,29 @@ module.exports.test = async (req, res) => {
 
 module.exports.login = async (req, res) => {
   res.render("admin/login", {layout:false});
+}
+
+module.exports.postLogin = async (req, res) => {
+  const ad = await adminModel.getAdminName(req.body.adminName);
+  console.log(req.session);
+  if(ad === null){
+    
+    return res.render("admin/login", {layout:false, err_message: 'Invalid name or password!'});
+  }
+
+  if(req.body.password !== ad.password){
+    return res.render("admin/login", {layout:false, err_message: 'Invalid name or password!'});
+  }
+
+  delete ad.password;
+
+  res.redirect('/admin/mngr');
+}
+
+module.exports.logout = async (req, res) => {
+  res.redirect('/login');
+}
+
+module.exports.mngr = async (req, res) => {
+  res.render("admin/mngr", {layout:false});
 }
