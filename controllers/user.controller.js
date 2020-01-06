@@ -12,11 +12,20 @@ module.exports.login = async (req, res) => {
 };
 
 module.exports.postLogin = async (req, res) => {
-  console.log(req.body);
+  const urs = await userModel.getUserName(req.body.username);
+  const isValid = userModel.isValid(req.body.password, urs.password);
 
-  res.render("user/login", {
-    layout: false
-  });
+  if (!isValid) {
+    console.log('Cant Validate ' + isValid);
+    return res.render("user/login", { layout: false, err_message: 'Invalid name or password!' });
+  }
+
+  delete urs.password;
+  delete isValid;
+  req.session.isAuthenticated = true;
+  req.session.authUser = urs;
+
+  res.redirect('/user/profile')
 };
 
 module.exports.signup = async (req, res) => {
@@ -35,8 +44,8 @@ module.exports.postSignup = async (req, res) => {
 
     // to model
     const result = await userModel.addUser(req.body);
-    
-   // alert("Đăng ký thành công, \nBạn sẽ được chuyển tới trang đăng nhập.");
+
+    // alert("Đăng ký thành công, \nBạn sẽ được chuyển tới trang đăng nhập.");
     res.render("user/login", { layout: false });
     console.log(result);
   }
@@ -47,15 +56,26 @@ module.exports.postSignup = async (req, res) => {
 
 
 module.exports.profile = async (req, res) => {
-  const user_info =
-  {
-    firstname: "Dần",
-    lastname: "Trần",
-    address: "Phau sần Ba Lây",
-    email: "dantran.haingoai@gmail.com",
-    username: "tientrivutru",
-  };
-  res.render("user/profile", { user_info });
+
+ user_info = req.session.authUser;
+ 
+  isCurrent = true;
+  if (req.query.id) {
+    isCurrent = false;
+
+    user_info = await userModel.getByID(req.query.id);
+   console.log('ID: ' +user_info.id);
+
+    
+
+  }
+
+ // console.log(req.query);
+  //console.log(isCurrent);
+  wishlist = await  userModel.getWishlistByID(user_info.id);
+    console.log( wishlist[0]);
+
+  res.render("user/profile", { user_info, isCurrent, wishlist});
 };
 
 
@@ -90,7 +110,7 @@ module.exports.category = async (req, res) => {
       postDate: "23/10/2019",
       timeLeft: "3 ngày",
       numOfBid: "26",
-      imgLink: "/public/images/jews.jpg"
+      imgLink: "/public/images/jews.jpg",
     },
     {
       ID: 3,
@@ -100,7 +120,7 @@ module.exports.category = async (req, res) => {
       postDate: "23/10/2019",
       timeLeft: "3 ngày",
       numOfBid: "26",
-      imgLink: "/public/images/jews.jpg"
+      imgLink: "/public/images/jews.jpg",
     },
     {
       ID: 4,

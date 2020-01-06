@@ -4,704 +4,709 @@
 {{/section}}
 {{#section 'css'}}
 
- <title>Profile</title>
+<title>Profile</title>
 
-      <link rel="stylesheet" type="text/css" href="/./public/styles/profileStyle.css">
+<link rel="stylesheet" type="text/css" href="/./public/styles/profileStyle.css">
 
-  <style>
-    .item {
-      background-color: #353a40;
-      width: 300px;
-      height: 420px;
-      border-radius: 20px;
-      -webkit-box-shadow: -5px 7px 14px -2px rgba(114, 126, 140, 1);
-      -moz-box-shadow: -5px 7px 14px -2px rgba(114, 126, 140, 1);
-      box-shadow: -5px 7px 14px -2px rgba(114, 126, 140, 1);
-      margin: 20px;
-      position: relative;
-    }
+<style>
+  .item {
+    background-color: #353a40;
+    width: 300px;
+    height: 420px;
+    border-radius: 20px;
+    -webkit-box-shadow: -5px 7px 14px -2px rgba(114, 126, 140, 1);
+    -moz-box-shadow: -5px 7px 14px -2px rgba(114, 126, 140, 1);
+    box-shadow: -5px 7px 14px -2px rgba(114, 126, 140, 1);
+    margin: 20px;
+    position: relative;
+  }
 
-    .love-button {
-      position: absolute;
-      z-index: 3;
-      border-top-right-radius: 20px;
-      top: 10px;
-      right: 15px;
-      color: white;
-      font-size: 24px;
-      text-decoration: none;
-      padding: 5px;
-      background-color: #575460;
-      border-radius: 10px;
-    }
-  </style>
+  .love-button {
+    position: absolute;
+    z-index: 3;
+    border-top-right-radius: 20px;
+    top: 10px;
+    right: 15px;
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    padding: 5px;
+    background-color: #575460;
+    border-radius: 10px;
+  }
+</style>
 
 {{/section}}
 
 <div class="info-bar ">
-    <div class="info-view d-flex align-items-center">
-      <img src="https://placehold.it/45x45" style="width:45; height: 45;" class="rounded-circle">
-      <h4 id="email">{{user_info.email}}</h4>
+  <div class="info-view d-flex align-items-center">
+    <img src="https://placehold.it/45x45" style="width:45; height: 45;" class="rounded-circle">
+    <h4 id="email">{{user_info.email}}</h4>
+  </div>
+</div>
+
+
+<nav class="tabbar bg-subtitle navbar-expand-lg navbar-dark sticky-top ">
+  <div class="tabmenu nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item tabitem nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+      aria-controls="nav-home" aria-selected="true" data-html="true" title="Thông tin cơ bản của bạn.">Thông Tin Cơ
+      Bản</a>
+    {{#if isCurrent}}
+    <a class="nav-item tabitem nav-link" id="nav-change-info-tab" data-toggle="tab" href="#nav-changeinfo" role="tab"
+      aria-controls="nav-profile" aria-selected="false" data-html="true" title="Thay đổi thông tin cá nhân.">Thay đổi
+      thông tin</a>
+    {{/if}}
+    <a class="nav-item tabitem nav-link" id="nav-wish-list-tab" data-toggle="tab" href="#nav-wishlist" data-html="true"
+      role="tab">Yêu thích</a>
+    <a class="nav-item tabitem nav-link" id="nav-auctioning-tab" data-toggle="tab" href="#nav-auctioning"
+      data-html="true" role="tab">Đang tham gia</a>
+    <a class="nav-item tabitem nav-link" id="nav-history-tab" data-toggle="tab" href="#nav-history" role="tab"
+      aria-controls="nav-contact" aria-selected="false" data-html="true" title="Các sản phẩm đã chiến thắng.">Lịch sử
+      đấu giá</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel">
+    <div class="main" id="main">
+      <div class="card bg-dark flex-row flex-wrap">
+        <div class="card-header border-0">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHHrj-_y2FAm84hK88uSS7VaadHEOWinuAGyCdv-sYAdOLGo-K&s"
+            style="width: 200; height: 200;" alt="//placehold.it/200">
+        </div>
+
+        <div class="col">
+          <div class="row">
+            <div class="col-md-auto col-xl-auto justify-content-around">
+              <p class="card-text-dark">Tên: </p>
+              <div class="info-content">
+                <span class="badge badge-warning">{{user_info.lastName}} {{user_info.firstName}}</span>
+              </div>
+              <p class="card-text-dark">Địa chỉ: </p>
+              <div class="info-content">
+                <span class="badge badge-warning">{{user_info.address}}</span>
+              </div>
+            </div>
+            <div class="col-xl-5 col-md-4">
+              <span></span>
+            </div>
+            <div class="col-md-auto col-xl-auto">
+              <p class="card-text-dark">Email: </p>
+              <div class="info-content">
+                <span class="badge badge-warning">{{user_info.email}}</span>
+              </div>
+              <p class="card-text-dark">Mật khẩu: </p>
+              <div class="info-content">
+                <span class="badge badge-warning">*********</span>
+
+                {{!-- You never get a password from here --}}
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="w-100"></div>
+        <div class="card-footer w-100 text-muted" id="footer">
+          THÔNG TIN CÁ NHÂN
+        </div>
+      </div>
     </div>
   </div>
-
-
-  <nav class="tabbar bg-subtitle navbar-expand-lg navbar-dark sticky-top ">
-    <div class="tabmenu nav nav-tabs" id="nav-tab" role="tablist">
-      <a class="nav-item tabitem nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-        aria-controls="nav-home" aria-selected="true" data-html="true" title="Thông tin cơ bản của bạn.">Thông Tin Cơ
-        Bản</a>
-      <a class="nav-item tabitem nav-link" id="nav-change-info-tab" data-toggle="tab" href="#nav-changeinfo" role="tab"
-        aria-controls="nav-profile" aria-selected="false" data-html="true" title="Thay đổi thông tin cá nhân.">Thay đổi
-        thông tin</a>
-      <a class="nav-item tabitem nav-link" id="nav-wish-list-tab" data-toggle="tab" href="#nav-wishlist"
-        data-html="true" role="tab">Yêu thích</a>
-      <a class="nav-item tabitem nav-link" id="nav-auctioning-tab" data-toggle="tab" href="#nav-auctioning"
-        data-html="true" role="tab">Đang tham gia</a>
-      <a class="nav-item tabitem nav-link" id="nav-history-tab" data-toggle="tab" href="#nav-history" role="tab"
-        aria-controls="nav-contact" aria-selected="false" data-html="true" title="Các sản phẩm đã chiến thắng.">Lịch sử
-        đấu giá</a>
-    </div>
-  </nav>
-  <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel">
-      <div class="main" id="main">
-        <div class="card bg-dark flex-row flex-wrap">
-          <div class="card-header border-0">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHHrj-_y2FAm84hK88uSS7VaadHEOWinuAGyCdv-sYAdOLGo-K&s"
-              style="width: 200; height: 200;" alt="//placehold.it/200">
+  {{#if isCurrent}}
+  <div class="tab-pane fade" id="nav-changeinfo" role="tabpanel">
+    <div class="info-container">
+      <div class="card bg-dark  ">
+        <div class="infocard card bg-dark ">
+          <div class="card-header card-text-dark flex-row flex-wrap">
+            <h3>Thay đổi thông tin</h3>
+            <sub style="opacity: 0.75;">Thay đổi thông tin, bỏ trống nếu bạn không muốn thay đổi.</h1>
           </div>
-          
-          <div class="col">
-            <div class="row">
-              <div class="col-md-auto col-xl-auto justify-content-around">
-                <p class="card-text-dark">Tên: </p>
-                <div class="info-content">
-                  <span class="badge badge-warning">{{user_info.lastname}} {{user_info.firstname}}</span>
-                </div>
-                <p class="card-text-dark">Địa chỉ: </p>
-                <div class="info-content">
-                  <span class="badge badge-warning">{{user_info.address}}</span>
-                </div>
+          <div class="card-body">
+            <div class="info-group row">
+              <div class="col">
+                <hr>
               </div>
-              <div class="col-xl-5 col-md-4">
-                <span></span>
+              <div class=".description-text col-auto">Thông tin cá nhân</div>
+              <div class="col">
+                <hr>
               </div>
-              <div class="col-md-auto col-xl-auto">
-                <p class="card-text-dark">Email: </p>
-                <div class="info-content">
-                  <span class="badge badge-warning">{{user_info.email}}</span>
-                </div>
-                <p class="card-text-dark">Mật khẩu: </p>
-                <div class="info-content">
-                  <span class="badge badge-warning">*********</span>
-    
-    {{!-- You never get a password from here --}}
-
-                </div>
-              </div>
-
             </div>
-          </div>
-          
-          <div class="w-100"></div>
-          <div class="card-footer w-100 text-muted" id="footer">
-            THÔNG TIN CÁ NHÂN
+            <form>
+              <div class="form-group">
+                <div class="d-flex flex-row justify-content-center ">
+                  <div class="col card-text-dark ">
+                    <p>Họ</p>
+                    <input style="width:100%" type="text" class="form-control" placeholder="{{user_info.lastname}}">
+                  </div>
+                  <div class="col card-text-dark ">
+                    <p>Tên</p>
+                    <input style="width:100%" type="text" class="form-control" placeholder="{{user_info.firstname}}">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="d-flex flex-row justify-content-center">
+                  <div class="col card-text-dark ">
+                    <p>Email</p>
+                    <input style="width:100%" type="text" class="form-control" placeholder="trandan.danhhai@gmail.com">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="d-flex flex-row justify-content-center">
+                  <div class="col card-text-dark ">
+                    <p>Địa chỉ</p>
+                    <input style="width:100%" type="text" class="form-control" placeholder="Phau sần Pa lây">
+                  </div>
+                </div>
+              </div>
+
+
+            </form>
+            <div class="info-group row">
+              <div class="col">
+                <hr>
+              </div>
+              <div class="col-auto">Account</div>
+              <div class="col">
+                <hr>
+              </div>
+            </div>
+            <form class="account-form">
+              <div class="input-group form-group">
+
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="tientrivutru">
+
+              </div>
+
+              <div class="input-group form-group padding">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input type="password" class="form-control" placeholder="old password">
+              </div>
+              <div class="input-group form-group padding">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input type="password" class="form-control" placeholder="new password">
+                <input type="password" class="form-control" placeholder="re-type password">
+              </div>
+
+              <div class="form-group">
+                <input type="submit" value="Cập nhật" class="btn btn-warning">
+              </div>
+            </form>
+
+
           </div>
         </div>
       </div>
     </div>
-    <div class="tab-pane fade" id="nav-changeinfo" role="tabpanel">
-      <div class="info-container">
-        <div class="card bg-dark  ">
-          <div class="infocard card bg-dark ">
-            <div class="card-header card-text-dark flex-row flex-wrap">
-              <h3>Thay đổi thông tin</h3>
-              <sub style="opacity: 0.75;">Thay đổi thông tin, bỏ trống nếu bạn không muốn thay đổi.</h1>
-            </div>
-            <div class="card-body">
-              <div class="info-group row">
-                <div class="col">
-                  <hr>
-                </div>
-                <div class=".description-text col-auto">Thông tin cá nhân</div>
-                <div class="col">
-                  <hr>
-                </div>
-              </div>
-              <form>
-                <div class="form-group">
-                  <div class="d-flex flex-row justify-content-center ">
-                    <div class="col card-text-dark ">
-                      <p>Họ</p>
-                      <input style="width:100%" type="text" class="form-control" placeholder="{{user_info.lastname}}">
-                    </div>
-                    <div class="col card-text-dark ">
-                      <p>Tên</p>
-                      <input style="width:100%" type="text" class="form-control" placeholder="{{user_info.firstname}}">
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="d-flex flex-row justify-content-center">
-                    <div class="col card-text-dark ">
-                      <p>Email</p>
-                      <input style="width:100%" type="text" class="form-control"
-                        placeholder="trandan.danhhai@gmail.com">
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="d-flex flex-row justify-content-center">
-                    <div class="col card-text-dark ">
-                      <p>Địa chỉ</p>
-                      <input style="width:100%" type="text" class="form-control" placeholder="Phau sần Pa lây">
-                    </div>
-                  </div>
-                </div>
-
-
-              </form>
-              <div class="info-group row">
-                <div class="col">
-                  <hr>
-                </div>
-                <div class="col-auto">Account</div>
-                <div class="col">
-                  <hr>
-                </div>
-              </div>
-              <form class="account-form">
-                <div class="input-group form-group">
-
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                  </div>
-                  <input type="text" class="form-control" placeholder="tientrivutru">
-
-                </div>
-
-                <div class="input-group form-group padding">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-key"></i></span>
-                  </div>
-                  <input type="password" class="form-control" placeholder="old password">
-                </div>
-                <div class="input-group form-group padding">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fas fa-key"></i></span>
-                    </div>
-                    <input type="password" class="form-control" placeholder="new password">
-                    <input type="password" class="form-control" placeholder="re-type password">
-                  </div>
-
-                <div class="form-group">
-                  <input type="submit" value="Cập nhật" class="btn btn-warning">
-                </div>
-              </form>
-
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="tab-pane fade" id="nav-wishlist" role="tabpanel">
-      <div class="items-list">
-        <div class="d-flex  flex-wrap">
-          <div class="item">
-            <a href="########" class="" style="text-decoration: none  ;">
-              <img src="/images/jews.jpg" alt="" style="width: 300px;
+  </div>
+  {{/if}}
+  <div class="tab-pane fade" id="nav-wishlist" role="tabpanel">
+    <div class="items-list">
+      <div class="d-flex  flex-wrap">
+        {{#each wishlist}}
+        <div class="item">
+          <a href="########" class="" style="text-decoration: none  ;">
+            <img src="/./public/images/product/1/ak1.jpg" alt="" style="width: 300px;
                                   height: 200px; 
                                   border-top-left-radius: 20px;
                                   border-top-right-radius: 20px;" />
-              <div class="itemContent mx-3 my-2">
-                <h3 class="" style="color: #bacbd8">
-                  Cần bán gấp lô 6 người Do Thái
-                </h3>
+            <div class="itemContent mx-3 my-2">
+              <h3 class="" style="color: #bacbd8">
+                {{prodName}}
+              </h3>
 
-                <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
-                  style="width: 265px; height: 40px; font-size: 20px;">
-                  180.000.000 VND
-                </span>
-                <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
-                  👉 TOP 1 : Lê Hồng Thái
-                </span>
-                <div class="detailInfo d-flex flex-direction-row justify-content-between"
-                  style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
-                  <div class="text-muted">
-                    <div class="">Ngày đăng</div>
-                    <span>12/12/2012</span>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Còn lại</div>
-                    <span>3 ngày</span>
-                  </div>
-                  <div class="text-muted">
+              <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
+                style="width: 265px; height: 40px; font-size: 20px;">
+                {{initPrice}} VND
+              </span>
+              <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
+                👉 TOP 1 : Lê Hồng Thái
+              </span>
+              <div class="detailInfo d-flex flex-direction-row justify-content-between"
+                style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
+                <div class="text-muted">
+                  <div class="">Ngày đăng</div>
+                  <span>{{startDate}}</span>
+                </div>
+                <div class="text-muted">
+                  <div class="">Kết thúc</div>
+                  <span>{{endDate}}</span>
+                </div>
+                {{!-- <div class="text-muted">
                     <div class="">Lượt đấu</div>
                     <span>23 lượt</span>
-                  </div>
-                </div>
+                  </div> --}}
               </div>
-            </a>
+            </div>
+          </a>
 
-            <a href="###" class="love-button">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </a>
-          </div>
-          <div class="item">
-            <a href="########" class="" style="text-decoration: none  ;">
-              <img src="/images/jews.jpg" alt="" style="width: 300px;
+          <a href="###" class="love-button">
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+          </a>
+        </div>
+        {{/each}}
+        {{!-- <div class="item">
+          <a href="########" class="" style="text-decoration: none  ;">
+            <img src="{{imgLink}}" alt="" style="width: 300px;
                                     height: 200px; 
                                     border-top-left-radius: 20px;
                                     border-top-right-radius: 20px;" />
-              <div class="itemContent mx-3 my-2">
-                <h3 class="" style="color: #bacbd8">
-                  Cần bán gấp lô 6 người Do Thái
-                </h3>
+            <div class="itemContent mx-3 my-2">
+              <h3 class="" style="color: #bacbd8">
+                Cần bán gấp lô 6 người Do Thái
+              </h3>
 
-                <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
-                  style="width: 265px; height: 40px; font-size: 20px;">
-                  180.000.000 VND
-                </span>
-                <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
-                  👉 TOP 1 : Lê Hồng Thái
-                </span>
-                <div class="detailInfo d-flex flex-direction-row justify-content-between"
-                  style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
-                  <div class="text-muted">
-                    <div class="">Ngày đăng</div>
-                    <span>12/12/2012</span>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Còn lại</div>
-                    <span>3 ngày</span>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Lượt đấu</div>
-                    <span>23 lượt</span>
-                  </div>
+              <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
+                style="width: 265px; height: 40px; font-size: 20px;">
+                180.000.000 VND
+              </span>
+              <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
+                👉 TOP 1 : Lê Hồng Thái
+              </span>
+              <div class="detailInfo d-flex flex-direction-row justify-content-between"
+                style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
+                <div class="text-muted">
+                  <div class="">Ngày đăng</div>
+                  <span>12/12/2012</span>
+                </div>
+                <div class="text-muted">
+                  <div class="">Còn lại</div>
+                  <span>3 ngày</span>
+                </div>
+                <div class="text-muted">
+                  <div class="">Lượt đấu</div>
+                  <span>23 lượt</span>
                 </div>
               </div>
-            </a>
+            </div>
+          </a>
 
-            <a href="###" class="love-button">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </a>
-          </div>
-          <div class="item">
-            <a href="########" class="" style="text-decoration: none  ;">
-              <img src="/images/jews.jpg" alt="" style="width: 300px;
+          <a href="###" class="love-button">
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="item">
+          <a href="########" class="" style="text-decoration: none  ;">
+            <img src="{{imgLink}}" alt="" style="width: 300px;
                                       height: 200px; 
                                       border-top-left-radius: 20px;
                                       border-top-right-radius: 20px;" />
-              <div class="itemContent mx-3 my-2">
-                <h3 class="" style="color: #bacbd8">
-                  Cần bán gấp lô 6 người Do Thái
-                </h3>
+            <div class="itemContent mx-3 my-2">
+              <h3 class="" style="color: #bacbd8">
+                Cần bán gấp lô 6 người Do Thái
+              </h3>
 
-                <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
-                  style="width: 265px; height: 40px; font-size: 20px;">
-                  180.000.000 VND
-                </span>
-                <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
-                  👉 TOP 1 : Lê Hồng Thái
-                </span>
-                <div class="detailInfo d-flex flex-direction-row justify-content-between"
-                  style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
-                  <div class="text-muted">
-                    <div class="">Ngày đăng</div>
-                    <span>12/12/2012</span>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Còn lại</div>
-                    <span>3 ngày</span>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Lượt đấu</div>
-                    <span>23 lượt</span>
-                  </div>
+              <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
+                style="width: 265px; height: 40px; font-size: 20px;">
+                180.000.000 VND
+              </span>
+              <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
+                👉 TOP 1 : Lê Hồng Thái
+              </span>
+              <div class="detailInfo d-flex flex-direction-row justify-content-between"
+                style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
+                <div class="text-muted">
+                  <div class="">Ngày đăng</div>
+                  <span>12/12/2012</span>
+                </div>
+                <div class="text-muted">
+                  <div class="">Còn lại</div>
+                  <span>3 ngày</span>
+                </div>
+                <div class="text-muted">
+                  <div class="">Lượt đấu</div>
+                  <span>23 lượt</span>
                 </div>
               </div>
-            </a>
+            </div>
+          </a>
 
-            <a href="###" class="love-button">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
+          <a href="###" class="love-button">
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+          </a>
+        </div> --}}
       </div>
     </div>
-    <div class="tab-pane fade" id="nav-auctioning" role="tabpanel">
-      <div class="items-list">
-        <div class="d-flex  flex-wrap">
-          <div class="item">
-            <a href="########" class="" style="text-decoration: none  ;">
-              <img src="/images/jews.jpg" alt="" style="width: 300px;
+  </div>
+  <div class="tab-pane fade" id="nav-auctioning" role="tabpanel">
+    <div class="items-list">
+      <div class="d-flex  flex-wrap">
+        <div class="item">
+          <a href="########" class="" style="text-decoration: none  ;">
+            <img src="{{imgLink}}" alt="" style="width: 300px;
                                           height: 200px; 
                                           border-top-left-radius: 20px;
                                           border-top-right-radius: 20px;" />
-              <div class="itemContent mx-3 my-2">
-                <h3 class="" style="color: #bacbd8">
-                  Cần bán gấp lô 6 người Do Thái
-                </h3>
+            <div class="itemContent mx-3 my-2">
+              <h3 class="" style="color: #bacbd8">
+                Cần bán gấp lô 6 người Do Thái
+              </h3>
 
-                <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
-                  style="width: 265px; height: 40px; font-size: 20px;">
-                  180.000.000 VND
-                </span>
-                <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
-                  Your rank: 👉 28
-                </span>
-                <div class="detailInfo d-flex flex-direction-row justify-content-between"
-                  style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
-                  <div class="text-muted">
-                    <div class="">Ngày đăng</div>
-                    <span>12/12/2012</span>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Còn lại</div>
-                    <span>3 ngày</span>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Lượt đấu</div>
-                    <span>23 lượt</span>
-                  </div>
+              <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
+                style="width: 265px; height: 40px; font-size: 20px;">
+                180.000.000 VND
+              </span>
+              <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
+                Your rank: 👉 28
+              </span>
+              <div class="detailInfo d-flex flex-direction-row justify-content-between"
+                style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
+                <div class="text-muted">
+                  <div class="">Ngày đăng</div>
+                  <span>12/12/2012</span>
+                </div>
+                <div class="text-muted">
+                  <div class="">Còn lại</div>
+                  <span>3 ngày</span>
+                </div>
+                <div class="text-muted">
+                  <div class="">Lượt đấu</div>
+                  <span>23 lượt</span>
                 </div>
               </div>
-            </a>
+            </div>
+          </a>
 
-            <a href="###" class="love-button">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </a>
-          </div>
-          <div class="item">
-            <a href="########" class="" style="text-decoration: none  ;">
-              <img src="/images/jews.jpg" alt="" style="width: 300px;
+          <a href="###" class="love-button">
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="item">
+          <a href="########" class="" style="text-decoration: none  ;">
+            <img src="{{imgLink}}" alt="" style="width: 300px;
                                             height: 200px; 
                                             border-top-left-radius: 20px;
                                             border-top-right-radius: 20px;" />
-              <div class="itemContent mx-3 my-2">
-                <h3 class="" style="color: #bacbd8">
-                  Cần bán gấp lô 6 người Do Thái
-                </h3>
+            <div class="itemContent mx-3 my-2">
+              <h3 class="" style="color: #bacbd8">
+                Cần bán gấp lô 6 người Do Thái
+              </h3>
 
-                <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
-                  style="width: 265px; height: 40px; font-size: 20px;">
-                  180.000.000 VND
-                </span>
-                <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
-                  Your rank: 👉 28
-                </span>
-                <div class="detailInfo d-flex flex-direction-row justify-content-between"
-                  style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
-                  <div class="text-muted">
-                    <div class="">Ngày đăng</div>
-                    <span>12/12/2012</span>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Còn lại</div>
-                    <span>3 ngày</span>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Lượt đấu</div>
-                    <span>23 lượt</span>
-                  </div>
+              <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
+                style="width: 265px; height: 40px; font-size: 20px;">
+                180.000.000 VND
+              </span>
+              <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
+                Your rank: 👉 28
+              </span>
+              <div class="detailInfo d-flex flex-direction-row justify-content-between"
+                style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
+                <div class="text-muted">
+                  <div class="">Ngày đăng</div>
+                  <span>12/12/2012</span>
+                </div>
+                <div class="text-muted">
+                  <div class="">Còn lại</div>
+                  <span>3 ngày</span>
+                </div>
+                <div class="text-muted">
+                  <div class="">Lượt đấu</div>
+                  <span>23 lượt</span>
                 </div>
               </div>
-            </a>
+            </div>
+          </a>
 
-            <a href="###" class="love-button">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </a>
-          </div>
-          <div class="item">
-            <a href="########" class="" style="text-decoration: none  ;">
-              <img src="/images/jews.jpg" alt="" style="width: 300px;
+          <a href="###" class="love-button">
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="item">
+          <a href="########" class="" style="text-decoration: none  ;">
+            <img src="{{imgLink}}" alt="" style="width: 300px;
                                               height: 200px; 
                                               border-top-left-radius: 20px;
                                               border-top-right-radius: 20px;" />
-              <div class="itemContent mx-3 my-2">
-                <h3 class="" style="color: #bacbd8">
-                  Cần bán gấp lô 6 người Do Thái
-                </h3>
+            <div class="itemContent mx-3 my-2">
+              <h3 class="" style="color: #bacbd8">
+                Cần bán gấp lô 6 người Do Thái
+              </h3>
 
-                <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
-                  style="width: 265px; height: 40px; font-size: 20px;">
-                  180.000.000 VND
-                </span>
-                <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
-                  Your rank: 👉 28
-                </span>
-                <div class="detailInfo d-flex flex-direction-row justify-content-between"
-                  style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
-                  <div class="text-muted">
-                    <div class="">Ngày đăng</div>
-                    <span>12/12/2012</span>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Còn lại</div>
-                    <span>3 ngày</span>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Lượt đấu</div>
-                    <span>23 lượt</span>
-                  </div>
+              <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
+                style="width: 265px; height: 40px; font-size: 20px;">
+                180.000.000 VND
+              </span>
+              <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
+                Your rank: 👉 28
+              </span>
+              <div class="detailInfo d-flex flex-direction-row justify-content-between"
+                style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
+                <div class="text-muted">
+                  <div class="">Ngày đăng</div>
+                  <span>12/12/2012</span>
+                </div>
+                <div class="text-muted">
+                  <div class="">Còn lại</div>
+                  <span>3 ngày</span>
+                </div>
+                <div class="text-muted">
+                  <div class="">Lượt đấu</div>
+                  <span>23 lượt</span>
                 </div>
               </div>
-            </a>
+            </div>
+          </a>
 
-            <a href="###" class="love-button">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="tab-pane fade" id="nav-history" role="tabpanel">
-      <div class="items-list">
-        <div class="d-flex  flex-wrap">
-          <div class="item">
-            <a href="########" class="" style="text-decoration: none  ;">
-              <img src="/images/jews.jpg" alt="" style="width: 300px;
-                                      height: 200px; 
-                                      border-top-left-radius: 20px;
-                                      border-top-right-radius: 20px;" />
-              <div class="itemContent mx-3 my-2">
-                <h3 class="" style="color: #bacbd8">
-                  Cần bán gấp lô 6 người Do Thái
-                </h3>
-
-                <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
-                  style="width: 265px; height: 40px; font-size: 20px;">
-                  180.000.000 VND
-                </span>
-                <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
-                  👉 TOP 1 : You (Trần Dần)
-                </span>
-                <div class="detailInfo d-flex flex-direction-row justify-content-between"
-                  style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
-                  <div class="text-muted">
-                    <div class="">Ngày đăng</div>
-                    <span>12/12/2012</span>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Đã kết thúc</div>
-
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Lượt đấu</div>
-                    <span>23 lượt</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            <a href="###" class="love-button">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </a>
-          </div>
-          <div class="item">
-            <a href="########" class="" style="text-decoration: none  ;">
-              <img src="/images/jews.jpg" alt="" style="width: 300px;
-                                        height: 200px; 
-                                        border-top-left-radius: 20px;
-                                        border-top-right-radius: 20px;" />
-              <div class="itemContent mx-3 my-2">
-                <h3 class="" style="color: #bacbd8">
-                  Cần bán gấp lô 6 người Do Thái
-                </h3>
-
-                <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
-                  style="width: 265px; height: 40px; font-size: 20px;">
-                  180.000.000 VND
-                </span>
-                <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
-                  👉 TOP 1 : You (Trần Dần)
-                </span>
-                <div class="detailInfo d-flex flex-direction-row justify-content-between"
-                  style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
-                  <div class="text-muted">
-                    <div class="">Ngày đăng</div>
-                    <span>12/12/2012</span>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Đã kết thúc</div>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Lượt đấu</div>
-                    <span>23 lượt</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            <a href="###" class="love-button">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </a>
-          </div>
-          <div class="item">
-            <a href="########" class="" style="text-decoration: none  ;">
-              <img src="/images/jews.jpg" alt="" style="width: 300px;
-                                          height: 200px; 
-                                          border-top-left-radius: 20px;
-                                          border-top-right-radius: 20px;" />
-              <div class="itemContent mx-3 my-2">
-                <h3 class="" style="color: #bacbd8">
-                  Cần bán gấp lô 6 người Do Thái
-                </h3>
-
-                <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
-                  style="width: 265px; height: 40px; font-size: 20px;">
-                  180.000.000 VND
-                </span>
-                <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
-                  👉 TOP 1 : You (Trần Dần)
-                </span>
-                <div class="detailInfo d-flex flex-direction-row justify-content-between"
-                  style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
-                  <div class="text-muted">
-                    <div class="">Ngày đăng</div>
-                    <span>12/12/2012</span>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Đã kết thúc</div>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Lượt đấu</div>
-                    <span>23 lượt</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            <a href="###" class="love-button">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="d-flex  flex-wrap">
-          <div class="item">
-            <a href="########" class="" style="text-decoration: none  ;">
-              <img src="/images/jews.jpg" alt="" style="width: 300px;
-                                    height: 200px; 
-                                    border-top-left-radius: 20px;
-                                    border-top-right-radius: 20px;" />
-              <div class="itemContent mx-3 my-2">
-                <h3 class="" style="color: #bacbd8">
-                  Cần bán gấp lô 6 người Do Thái
-                </h3>
-
-                <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
-                  style="width: 265px; height: 40px; font-size: 20px;">
-                  180.000.000 VND
-                </span>
-                <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
-                  👉 TOP 1 : You (Trần Dần)
-                </span>
-                <div class="detailInfo d-flex flex-direction-row justify-content-between"
-                  style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
-                  <div class="text-muted">
-                    <div class="">Ngày đăng</div>
-                    <span>12/12/2012</span>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Đã kết thúc</div>
-
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Lượt đấu</div>
-                    <span>23 lượt</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            <a href="###" class="love-button">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </a>
-          </div>
-          <div class="item">
-            <a href="########" class="" style="text-decoration: none  ;">
-              <img src="/images/jews.jpg" alt="" style="width: 300px;
-                                      height: 200px; 
-                                      border-top-left-radius: 20px;
-                                      border-top-right-radius: 20px;" />
-              <div class="itemContent mx-3 my-2">
-                <h3 class="" style="color: #bacbd8">
-                  Cần bán gấp lô 6 người Do Thái
-                </h3>
-
-                <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
-                  style="width: 265px; height: 40px; font-size: 20px;">
-                  180.000.000 VND
-                </span>
-                <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
-                  👉 TOP 1 : You (Trần Dần)
-                </span>
-                <div class="detailInfo d-flex flex-direction-row justify-content-between"
-                  style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
-                  <div class="text-muted">
-                    <div class="">Ngày đăng</div>
-                    <span>12/12/2012</span>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Đã kết thúc</div>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Lượt đấu</div>
-                    <span>23 lượt</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            <a href="###" class="love-button">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </a>
-          </div>
-          <div class="item">
-            <a href="########" class="" style="text-decoration: none  ;">
-              <img src="/images/jews.jpg" alt="" style="width: 300px;
-                                        height: 200px; 
-                                        border-top-left-radius: 20px;
-                                        border-top-right-radius: 20px;" />
-              <div class="itemContent mx-3 my-2">
-                <h3 class="" style="color: #bacbd8">
-                  Cần bán gấp lô 6 người Do Thái
-                </h3>
-
-                <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
-                  style="width: 265px; height: 40px; font-size: 20px;">
-                  180.000.000 VND
-                </span>
-                <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
-                  👉 TOP 1 : You (Trần Dần)
-                </span>
-                <div class="detailInfo d-flex flex-direction-row justify-content-between"
-                  style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
-                  <div class="text-muted">
-                    <div class="">Ngày đăng</div>
-                    <span>12/12/2012</span>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Đã kết thúc</div>
-                  </div>
-                  <div class="text-muted">
-                    <div class="">Lượt đấu</div>
-                    <span>23 lượt</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            <a href="###" class="love-button">
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </a>
-          </div>
+          <a href="###" class="love-button">
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+          </a>
         </div>
       </div>
     </div>
   </div>
+  <div class="tab-pane fade" id="nav-history" role="tabpanel">
+    <div class="items-list">
+      <div class="d-flex  flex-wrap">
+        <div class="item">
+          <a href="########" class="" style="text-decoration: none  ;">
+            <img src="{{imgLink}}" alt="" style="width: 300px;
+                                      height: 200px; 
+                                      border-top-left-radius: 20px;
+                                      border-top-right-radius: 20px;" />
+            <div class="itemContent mx-3 my-2">
+              <h3 class="" style="color: #bacbd8">
+                Cần bán gấp lô 6 người Do Thái
+              </h3>
+
+              <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
+                style="width: 265px; height: 40px; font-size: 20px;">
+                180.000.000 VND
+              </span>
+              <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
+                👉 TOP 1 : You (Trần Dần)
+              </span>
+              <div class="detailInfo d-flex flex-direction-row justify-content-between"
+                style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
+                <div class="text-muted">
+                  <div class="">Ngày đăng</div>
+                  <span>12/12/2012</span>
+                </div>
+                <div class="text-muted">
+                  <div class="">Đã kết thúc</div>
+
+                </div>
+                <div class="text-muted">
+                  <div class="">Lượt đấu</div>
+                  <span>23 lượt</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <a href="###" class="love-button">
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="item">
+          <a href="########" class="" style="text-decoration: none  ;">
+            <img src="{{imgLink}}" alt="" style="width: 300px;
+                                        height: 200px; 
+                                        border-top-left-radius: 20px;
+                                        border-top-right-radius: 20px;" />
+            <div class="itemContent mx-3 my-2">
+              <h3 class="" style="color: #bacbd8">
+                Cần bán gấp lô 6 người Do Thái
+              </h3>
+
+              <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
+                style="width: 265px; height: 40px; font-size: 20px;">
+                180.000.000 VND
+              </span>
+              <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
+                👉 TOP 1 : You (Trần Dần)
+              </span>
+              <div class="detailInfo d-flex flex-direction-row justify-content-between"
+                style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
+                <div class="text-muted">
+                  <div class="">Ngày đăng</div>
+                  <span>12/12/2012</span>
+                </div>
+                <div class="text-muted">
+                  <div class="">Đã kết thúc</div>
+                </div>
+                <div class="text-muted">
+                  <div class="">Lượt đấu</div>
+                  <span>23 lượt</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <a href="###" class="love-button">
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="item">
+          <a href="########" class="" style="text-decoration: none  ;">
+            <img src="{{imgLink}}" alt="" style="width: 300px;
+                                          height: 200px; 
+                                          border-top-left-radius: 20px;
+                                          border-top-right-radius: 20px;" />
+            <div class="itemContent mx-3 my-2">
+              <h3 class="" style="color: #bacbd8">
+                Cần bán gấp lô 6 người Do Thái
+              </h3>
+
+              <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
+                style="width: 265px; height: 40px; font-size: 20px;">
+                180.000.000 VND
+              </span>
+              <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
+                👉 TOP 1 : You (Trần Dần)
+              </span>
+              <div class="detailInfo d-flex flex-direction-row justify-content-between"
+                style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
+                <div class="text-muted">
+                  <div class="">Ngày đăng</div>
+                  <span>12/12/2012</span>
+                </div>
+                <div class="text-muted">
+                  <div class="">Đã kết thúc</div>
+                </div>
+                <div class="text-muted">
+                  <div class="">Lượt đấu</div>
+                  <span>23 lượt</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <a href="###" class="love-button">
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="d-flex  flex-wrap">
+        <div class="item">
+          <a href="########" class="" style="text-decoration: none  ;">
+            <img src="{{imgLink}}" alt="" style="width: 300px;
+                                    height: 200px; 
+                                    border-top-left-radius: 20px;
+                                    border-top-right-radius: 20px;" />
+            <div class="itemContent mx-3 my-2">
+              <h3 class="" style="color: #bacbd8">
+                Cần bán gấp lô 6 người Do Thái
+              </h3>
+
+              <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
+                style="width: 265px; height: 40px; font-size: 20px;">
+                180.000.000 VND
+              </span>
+              <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
+                👉 TOP 1 : You (Trần Dần)
+              </span>
+              <div class="detailInfo d-flex flex-direction-row justify-content-between"
+                style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
+                <div class="text-muted">
+                  <div class="">Ngày đăng</div>
+                  <span>12/12/2012</span>
+                </div>
+                <div class="text-muted">
+                  <div class="">Đã kết thúc</div>
+
+                </div>
+                <div class="text-muted">
+                  <div class="">Lượt đấu</div>
+                  <span>23 lượt</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <a href="###" class="love-button">
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="item">
+          <a href="########" class="" style="text-decoration: none  ;">
+            <img src="{{imgLink}}" alt="" style="width: 300px;
+                                      height: 200px; 
+                                      border-top-left-radius: 20px;
+                                      border-top-right-radius: 20px;" />
+            <div class="itemContent mx-3 my-2">
+              <h3 class="" style="color: #bacbd8">
+                Cần bán gấp lô 6 người Do Thái
+              </h3>
+
+              <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
+                style="width: 265px; height: 40px; font-size: 20px;">
+                180.000.000 VND
+              </span>
+              <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
+                👉 TOP 1 : You (Trần Dần)
+              </span>
+              <div class="detailInfo d-flex flex-direction-row justify-content-between"
+                style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
+                <div class="text-muted">
+                  <div class="">Ngày đăng</div>
+                  <span>12/12/2012</span>
+                </div>
+                <div class="text-muted">
+                  <div class="">Đã kết thúc</div>
+                </div>
+                <div class="text-muted">
+                  <div class="">Lượt đấu</div>
+                  <span>23 lượt</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <a href="###" class="love-button">
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="item">
+          <a href="########" class="" style="text-decoration: none  ;">
+            <img src="{{imgLink}}" alt="" style="width: 300px;
+                                        height: 200px; 
+                                        border-top-left-radius: 20px;
+                                        border-top-right-radius: 20px;" />
+            <div class="itemContent mx-3 my-2">
+              <h3 class="" style="color: #bacbd8">
+                Cần bán gấp lô 6 người Do Thái
+              </h3>
+
+              <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
+                style="width: 265px; height: 40px; font-size: 20px;">
+                180.000.000 VND
+              </span>
+              <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
+                👉 TOP 1 : You (Trần Dần)
+              </span>
+              <div class="detailInfo d-flex flex-direction-row justify-content-between"
+                style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
+                <div class="text-muted">
+                  <div class="">Ngày đăng</div>
+                  <span>12/12/2012</span>
+                </div>
+                <div class="text-muted">
+                  <div class="">Đã kết thúc</div>
+                </div>
+                <div class="text-muted">
+                  <div class="">Lượt đấu</div>
+                  <span>23 lượt</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <a href="###" class="love-button">
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
