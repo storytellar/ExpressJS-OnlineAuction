@@ -9,8 +9,8 @@
 <head>
     <title>Chợ đen | Đăng ký</title>
 
-  <link rel="shortcut icon" type="image/png" href="/public/icons/favicon.ico" />
-  <link rel="shortcut icon" type="image/png" href="/public/icons/favicon.ico" />
+    <link rel="shortcut icon" type="image/png" href="/public/icons/favicon.ico" />
+    <link rel="shortcut icon" type="image/png" href="/public/icons/favicon.ico" />
 
     <!--Bootsrap 4 CDN-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -43,51 +43,135 @@
                         <hr>
                     </div>
                 </div>
-                <form>
+                <form method="POST" name='register'>
                     <div class="input-name form-group">
                         <div class="d-flex flex-row justify-content-between">
-                            <input style="width:46%" type="text" class="form-control" placeholder="Họ">
-                            <input style="width:46%" type="text" class="form-control" placeholder="Tên">
+                            <div class="form-group">
+                                <input style="width:90%" type="text" class="form-control" placeholder="Họ"
+                                    name="lastname">
+                            </div>
+                            <div class="form-group">
+                                <input style="width:90%" type="text" class="form-control" placeholder="Tên"
+                                    name="firstname">
+                            </div>
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <input type"text" class="form-control" placeholder="Email">
+                        <input type="text" class="form-control" placeholder="Địa chỉ" name="address">
                     </div>
-                    <div class="form-group">
-                        <input type"text" class="form-control" placeholder="Địa chỉ">
+
+                    <div class="info-group row">
+                        <div class="col">
+                            <hr>
+                        </div>
+                        <div class="col-auto">Tài khoản</div>
+                        <div class="col">
+                            <hr>
+                        </div>
                     </div>
-                </form>
-                <div class="info-group row">
-                    <div class="col">
-                        <hr>
-                    </div>
-                    <div class="col-auto">Tài khoản</div>
-                    <div class="col">
-                        <hr>
-                    </div>
-                </div>
-                <form>
+
                     <div class="input-group form-group">
 
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="username">
-
+                        <input type="text" class="form-control" placeholder="Email" id="email" name="email">
                     </div>
 
                     <div class="input-group form-group padding">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" class="form-control" placeholder="password">
+
+                        <input type="password" class="form-control" placeholder="password" id="password"
+                            name="password">
+                    </div>
+
+                    <div class="input-group form-group padding">
+                        <div class="input-group-prepend ">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="re-type password" id="confirm_password"
+                            name="confirm_password">
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" value="Đăng ký" class="btn float-right login_btn">
+                        <input type="submit" value="Đăng ký" id="submit" class="btn float-right login_btn">
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+
+
+<script>
+    var inputs = document.forms['register'].getElementsByTagName('input');
+    var run_onchange = false;
+    function valid() {
+        var errors = false;
+        var reg_mail = /^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$/;
+        for (var i = 0; i < inputs.length; i++) {
+            var value = inputs[i].value;
+            var id = inputs[i].getAttribute('name');
+
+            // Tạo phần tử span lưu thông tin lỗi
+            var span = document.createElement('span');
+            // Nếu span đã tồn tại thì remove
+            var p = inputs[i].parentNode;
+            if (p.lastChild.nodeName == 'SPAN') { p.removeChild(p.lastChild); }
+
+            // Kiểm tra rỗng
+            if (value == '') {
+                span.innerHTML = "<span style='color: red; font-size: 10px;'>Trường này là bắt buộc</span>";
+            } else {
+                // Kiểm tra các trường hợp khác
+                if (id == 'email') {
+                    if (reg_mail.test(value) == false) { span.innerHTML = "<span style='color: red; font-size: 10px;'>Email không hợp lệ (ví dụ: abc@gmail.com)</span>"; }
+                    var email = value;
+                }
+
+                // Kiểm tra password
+                if (id == 'password') {
+                    if (value.length < 6) { span.innerHTML = "<span style='color: red; font-size: 10px;'>Password phải từ 6 ký tự</span>"; }
+                    var pass = value;
+                }
+                // Kiểm tra password nhập lại
+                if (id == 'confirm_password' && value != pass) { span.innerHTML = "<span style='color: red; font-size: 10px;'>Password nhập lại chưa đúng</span>"; }
+
+            }
+
+            // Nếu có lỗi thì chèn span vào hồ sơ, chạy onchange, submit return false, highlight border
+            if (span.innerHTML != '') {
+                inputs[i].parentNode.appendChild(span);
+                errors = true;
+                run_onchange = true;
+                inputs[i].style.border = '1px solid #c6807b';
+                inputs[i].style.background = '#fffcf9';
+            }
+        }// end for
+
+       
+        return !errors;
+    }// end valid()
+
+    // Chạy hàm kiểm tra valid()
+    var register = document.getElementById('submit');
+    register.onclick = function () {
+        return valid();
+    }
+
+    // Kiểm tra lỗi với sự kiện onchange -> gọi lại hàm valid()
+    for (var i = 0; i < inputs.length; i++) {
+        var id = inputs[i].getAttribute('id');
+        inputs[i].onchange = function () {
+            if (run_onchange == true) {
+                this.style.border = '1px solid #999';
+                this.style.background = '#fff';
+                valid();
+            }
+        }
+    }// end for
+</script>
