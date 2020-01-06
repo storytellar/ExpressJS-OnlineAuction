@@ -55,15 +55,15 @@ module.exports.getProductsByCat = catID => {
           and u.id = b.bidderID and i.prodID = p.id and p.catalogeID = ${catID} and p.isSold = 0
     GROUP BY (b.productID)`
   )
-}
+};
 
 module.exports.countByCat = async catID => {
   const rows = await db.load(`select count(*) as total from product p where p.isSold = 0 and p.catalogeID = ${catID}`);
   return rows[0].total;
-}
+};
 
 module.exports.pageByCat = (catID, offset) => {
-  return db.load(`SELECT p.id, p.prodName, p.startDate AS ngaydang, p.endDate AS ketthuc, u.username AS bestbidder, b.priceBid AS giahientai, COUNT(DISTINCT b2.bidderID) as bids, i.imgLink
+  return db.load(`SELECT p.id, p.prodName, p.startDate as ngaydang, p.endDate , u.username AS bestbidder, b.priceBid AS giahientai, COUNT(DISTINCT b2.bidderID) as bids, i.imgLink
   FROM product p, bidders b, user u, bidders b2, img i
   WHERE p.id = b.productID and p.id = b2.productID
         and u.id = (SELECT bidderID
@@ -72,7 +72,8 @@ module.exports.pageByCat = (catID, offset) => {
                           and bb.productID = p.id)
         and u.id = b.bidderID and i.prodID = p.id and p.catalogeID = ${catID} and p.isSold = 0
   GROUP BY (b.productID) limit ${config.pagination.limit} offset ${offset}`);
-}
+};
+
 
 module.exports.addBidderbyID = async (userID, productID, price) => {
   bidderEntity = {
@@ -83,7 +84,7 @@ module.exports.addBidderbyID = async (userID, productID, price) => {
   }
   const result = await db.add(bidderEntity,'bidders');
   console.log(result) ;
-}
+};
 
 module.exports.setProductBought = async (productID) => {
   boughtEntity = [
@@ -95,4 +96,22 @@ module.exports.setProductBought = async (productID) => {
     }
   ]
   db.patch(boughtEntity[0],boughtEntity[1],'product');
-}
+};
+
+module.exports.getTotalItems = async (key) => {
+  const rows = await db.load(`select count(*) as total from product p where p.isSold = 0 and p.prodName LIKE '%${key}%'`);
+  return rows[0].total;
+};
+
+module.exports.getAllItems = (key, offset) => {
+  return db.load(`SELECT p.id, p.prodName, p.startDate AS ngaydang, p.endDate AS ketthuc, u.username AS bestbidder, b.priceBid AS giahientai, COUNT(DISTINCT b2.bidderID) as bids, i.imgLink
+  FROM product p, bidders b, user u, bidders b2, img i
+  WHERE p.id = b.productID and p.id = b2.productID
+        and u.id = (SELECT bidderID
+                    FROM bidders bb 
+                    WHERE priceBid = (SELECT MAX(priceBid) FROM bidders WHERE bb.productID = productID) 
+                          and bb.productID = p.id)
+        and u.id = b.bidderID and i.prodID = p.id and p.isSold = 0 and p.prodName LIKE '%${key}%'
+  GROUP BY (b.productID) limit ${config.pagination.limit} offset ${offset}`);
+
+};

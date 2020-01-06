@@ -86,8 +86,20 @@ module.exports.profile = async (req, res) => {
   //console.log(isCurrent);
   wishlist = await userModel.getWishlistByID(user_info.id);
   console.log(wishlist[0]);
+  const wishlistViewModel = wishlist.map(each => {
+    return {
+      id: each.id,
+      prodName: each.prodName,
+      initPrice: each.initPrice.toLocaleString({
+        style: 'currency',
+        currency: 'VND'
+      }),
+      startDate: each.startDate,
+      endDate: each.endDate,
+    }
+  })
 
-  res.render("user/profile", { user_info, isCurrent, wishlist });
+  res.render("user/profile", { user_info, isCurrent, wishlistViewModel });
 };
 
 module.exports.signout = (req, res) => {

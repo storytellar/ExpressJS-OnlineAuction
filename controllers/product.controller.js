@@ -4,7 +4,52 @@ const config = require("../config/default.json");
 moment.locale("vi");
 
 module.exports.search = async (req, res) => {
-  res.send("Từ khoá search:" + req.query.keyword);
+  //res.send("Từ khoá search:" + req.query.keyword);
+  const page = +req.query.page || 1;
+  if (page < 0) page = 1;
+  const offset = (page - 1) * config.pagination.limit;
+
+  const [total, rows] = await Promise.all([
+    productModel.getTotalItems(req.query.keyword),
+    productModel.getAllItems(req.query.keyword, offset)
+  ])
+
+  const nPages = Math.ceil(total / config.pagination.limit);
+  const page_items = [];
+  for (i = 1; i <= nPages; i++) {
+    const item = {
+      value: i,
+      isActive: i === page
+    }
+    page_items.push(item);
+  }
+
+  const caterogry_name = rows.map(row => {
+    return {
+      ID: row.id,
+      itemName: row.prodName,
+      price: row.giahientai.toLocaleString({
+        style: 'currency',
+        currency: 'VND'
+      }),
+      top1: row.bestbidder,
+      postDate: row.ngaydang.toLocaleString("vi-VN"),
+      timeLeft: moment(row.ketthuc).from(row.ngaydang),
+      numOfBid: row.bids,
+      imgLink: row.imgLink
+    }
+  })
+  //console.log(caterogry_name);
+
+  res.render("product/item-search", {
+    caterogry_name: caterogry_name,
+    empty: rows.length === 0,
+    page_items,
+    can_go_prev: page > 1,
+    can_go_next: page < nPages,
+    prev_value: page - 1,
+    next_value: page + 1
+  });
 };
 
 module.exports.category = async (req, res) => {
@@ -42,7 +87,10 @@ module.exports.category = async (req, res) => {
     return {
       ID: row.id,
       itemName: row.prodName,
-      price: row.instantPrice,
+      price: row.giahientai.toLocaleString({
+        style: 'currency',
+        currency: 'VND'
+      }),
       top1: row.bestbidder,
       postDate: row.ngaydang.toLocaleString("vi-VN"),
       timeLeft: moment(row.ketthuc).from(row.ngaydang),

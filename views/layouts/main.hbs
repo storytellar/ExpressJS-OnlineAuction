@@ -15,6 +15,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   {{{_sections.css}}}
 
 </head>
@@ -45,50 +48,50 @@
         {{/each}}
       </ul>
       {{#if lcAuthenticated}}
-     <div class="fa fa-user color-white" style="color: aliceblue;">
-       <span></span>
-       <a class="btn text-light" href="/user/profile">{{lcAuthUser.firstName}}</a>
+      <div class="fa fa-user color-white" style="color: aliceblue;">
+        <span></span>
+        <a class="btn text-light" href="/user/profile">{{lcAuthUser.firstName}}</a>
         <a class="btn btn-warning  my-sm-0" href="/user/signout">Đăng xuất</a>
 
-     </div>
+      </div>
       {{else}}
       <div class="d-flex flex-direction-row">
         <a class="nav-link text-light" href="/user/login">Đăng nhập</a>
         <a class="btn btn-warning  my-sm-0" href="/user/signup">Đăng ký</a>
       </div>
-      
-      
+
+
       {{/if}}
     </div>
   </nav>
 
 
   <div class="container-fluid">
-  <!-- SEARCH BAR -->
-  <div class="row" style="background: rgb(43, 49, 55);">
-    <div class="col-sm"></div>
-    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
-      <div class="search-header d-flex flex-column justify-content-center align-items-center" style="height: 230px;">
-        <p class="h4 mb-3 text-warning">TÌM HÀNG TRÊN CHỢ ĐEN</p>
-        <!-- inputbox -->
-        <form class="input-group mb-3" action="/product/search" method="get">
-          <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Tìm kiếm..." />
-          <div class="input-group-append">
-            <button class="btn btn-warning" type="submit">
-              <img src="/public/icons/search.svg" height="20px" width="auto" />
-            </button>
-          </div>
-        </form>
+    <!-- SEARCH BAR -->
+    <div class="row" style="background: rgb(43, 49, 55);">
+      <div class="col-sm"></div>
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+        <div class="search-header d-flex flex-column justify-content-center align-items-center" style="height: 230px;">
+          <p class="h4 mb-3 text-warning">TÌM HÀNG TRÊN CHỢ ĐEN</p>
+          <!-- inputbox -->
+          <form class="input-group mb-3" action="/product/search" method="get">
+            <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Tìm kiếm..." />
+            <div class="input-group-append">
+              <button class="btn btn-warning" type="submit">
+                <img src="/public/icons/search.svg" height="20px" width="auto" />
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
+      <div class="col-sm"></div>
     </div>
-    <div class="col-sm"></div>
   </div>
-</div>
 
-<!-- HTML: BODY -->
-<div class=" container-fluid d-flex align-items-center justify-content-center" style="background-color: #353A40;">
-  <div class="display-4 text-light py-4 text-center">SÀN ĐẤU GIÁ LỚN NHẤT THẾ GIỚI</div>
-</div>
+  <!-- HTML: BODY -->
+  <div class=" container-fluid d-flex align-items-center justify-content-center" style="background-color: #353A40;">
+    <div class="display-4 text-light py-4 text-center">SÀN ĐẤU GIÁ LỚN NHẤT THẾ GIỚI</div>
+  </div>
 
 
 
