@@ -165,62 +165,90 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 {{/section}}
 
-
 <div class="container">
-    <div class="flex-row d-flex flex-wrap" style="padding: 10px;">
-        {{#each this.caterogry_name}}
-        <div>
-        <div class="item">
-          <a href="/pages/detail-item.html" class="" style="text-decoration: none  ;">
-            <img src="{{imgLink}}" alt="" style="width: 300px;
+  {{#if this.empty}}
+  <div align="center">
+    <h4 style="color: #bacbd8;">Không có sản phẩm ở danh mục này!</h4>
+  </div>
+  {{else}}
+  <div class="flex-row d-flex flex-wrap" style="padding: 10px;">
+    {{#each this.caterogry_name}}
+    <div>
+      <div class="item">
+        <a href="/pages/detail-item.html" class="" style="text-decoration: none  ;">
+          <img src="{{imgLink}}" alt="" style="width: 300px;
                                       height: 200px; 
                                       border-top-left-radius: 20px;
                                       border-top-right-radius: 20px;" />
-            <div class="itemContent px-3 py-2">
-              <h3 class="" style="color: #bacbd8">
-                {{!-- Lô 6 người Do Thái --}}
-                {{itemName}}
-              </h3>
+          <div class="itemContent px-3 py-2">
+            <h3 class="" style="color: #bacbd8">
+              {{!-- Lô 6 người Do Thái --}}
+              {{itemName}}
+            </h3>
 
-              <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
-                style="width: 265px; height: 40px; font-size: 20px;">
-                {{!-- 180.000.000 VND --}}
-                {{price}} VNĐ
-              </span>
-              <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
-                👉 TOP 1 :
-                {{!-- Lê Hồng Thái --}}
-                {{top1}}
-              </span>
-              <div class="detailInfo d-flex flex-direction-row justify-content-between"
-                style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
-                <div class="text-muted">
-                  <div class="">Ngày đăng</div>
-                  <span>{{postDate}}</span>
-                </div>
-                <div class="text-muted">
-                  <div class="">Kết thúc vào</div>
-                  <span>{{timeLeft}}</span>
-                </div>
-                <div class="text-muted">
-                  <div class="">Lượt đấu</div>
-                  <span>{{numOfBid}}</span>
-                </div>
+            <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
+              style="width: 265px; height: 40px; font-size: 20px;">
+              {{!-- 180.000.000 VND --}}
+              {{price}} VNĐ
+            </span>
+            <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
+              👉 TOP 1 :
+              {{!-- Lê Hồng Thái --}}
+              {{top1}}
+            </span>
+            <div class="detailInfo d-flex flex-direction-row justify-content-between"
+              style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
+              <div class="text-muted">
+                <div class="">Ngày đăng</div>
+                <span>{{postDate}}</span>
+              </div>
+              <div class="text-muted">
+                <div class="">Kết thúc vào</div>
+                <span>{{timeLeft}}</span>
+              </div>
+              <div class="text-muted">
+                <div class="">Lượt đấu</div>
+                <span>{{numOfBid}}</span>
               </div>
             </div>
-          </a>
+          </div>
+        </a>
 
-          <button class="love-button">
-            {{#if isLoved}}
-            <div id="lovebutton{{ID}}" class="fa fa-heart" aria-hidden="true" onclick="clickLoveButton({{ID}})"></div>
-            {{else}}
-            <div id="lovebutton{{ID}}" class="fa fa-heart-o" aria-hidden="true" onclick="clickLoveButton({{ID}})"></div>
-            {{/if}}
-          </button>
-        </div>
+        <button class="love-button">
+          {{#if isLoved}}
+          <div id="lovebutton{{ID}}" class="fa fa-heart" aria-hidden="true" onclick="clickLoveButton({{ID}})"></div>
+          {{else}}
+          <div id="lovebutton{{ID}}" class="fa fa-heart-o" aria-hidden="true" onclick="clickLoveButton({{ID}})"></div>
+          {{/if}}
+        </button>
       </div>
-        {{/each}}
-
-
     </div>
+    {{/each}}
+  </div>
+  <nav>
+    <ul class="pagination justify-content-end">
+      <li class="page-item {{#unless this.can_go_prev}}disabled{{/unless}}">
+        <a class="page-link" href="?page={{prev_value}}" tabindex="-1" aria-disabled="true">
+          <i class="fa fa-backward" aria-hidden="true"></i>
+        </a>
+      </li>
+      {{#each this.page_items}}
+      {{#if this.isActive}}
+      <li class="page-item active" aria-current="page">
+        <a class="page-link" href="javascript:;">{{value}} <span class="sr-only">(current)</span></a>
+      </li>
+      {{else}}
+      <li class="page-item">
+        <a class="page-link" href="?page={{value}}">{{value}}</a>
+      </li>
+      {{/if}}
+      {{/each}}
+      <li class="page-item {{#unless this.can_go_next}}disabled{{/unless}}">
+        <a class="page-link" href="?page={{next_value}}">
+          <i class="fa fa-forward" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  {{/if}}
 </div>
