@@ -35,7 +35,7 @@ module.exports.login = async (req, res) => {
 
 module.exports.postLogin = async (req, res) => {
   const ad = await adminModel.getAdminName(req.body.adminName);
-  console.log(req.session);
+
   if(ad === null){
     
     return res.render("admin/login", {layout:false, err_message: 'Invalid name or password!'});
@@ -46,14 +46,28 @@ module.exports.postLogin = async (req, res) => {
   }
 
   delete ad.password;
+  req.session.isAuthenticated = true;
+  req.session.authUser = ad;
+  console.log(req.session.isAuthenticated);
 
-  res.redirect('/admin/mngr');
+
+  const url = req.query.retUrl || '/';
+  res.redirect(url);
 }
 
 module.exports.logout = async (req, res) => {
-  res.redirect('/login');
+  req.session.isAuthenticated = false;
+  req.session.authUser = null;
+  console.log('logged out: ' + req.session.isAuthenticated);
+
+  res.redirect(req.headers.referer);
 }
 
 module.exports.mngr = async (req, res) => {
+  console.log(req.session.isAuthenticated);
+  if(!req.session.isAuthenticated){
+
+    res.redirect('/login');
+  }
   res.render("admin/mngr", {layout:false});
 }
