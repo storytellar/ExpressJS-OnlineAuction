@@ -22,9 +22,9 @@ module.exports.welcome = async (req, res) => {
       price: row.giahientai,
       top1: row.bestbidder,
       postDate: row.ngaydang.toLocaleDateString("vi-VN"),
-      timeLeft: moment(1580041786000).from(row.ngaydang), // truyen vao ngay ket thuc
+      timeLeft: moment(row.ketthuc).from(), // truyen vao ngay ket thuc
       numOfBid: row.bids,
-      imgLink: "/public/images/jews.jpg",
+      imgLink: row.imgLink,
       isLoved: true
     };
   });
@@ -35,9 +35,9 @@ module.exports.welcome = async (req, res) => {
       price: row.giahientai,
       top1: row.bestbidder,
       postDate: row.ngaydang.toLocaleDateString("vi-VN"),
-      timeLeft: moment(1580041786000).from(row.ngaydang), // truyen vao ngay ket thuc
+      timeLeft: moment(row.ketthuc).from(), // truyen vao ngay ket thuc
       numOfBid: row.bids,
-      imgLink: "/public/images/jews.jpg",
+      imgLink: row.imgLink,
       isLoved: true
     };
   });
@@ -48,9 +48,9 @@ module.exports.welcome = async (req, res) => {
       price: row.giahientai,
       top1: row.bestbidder,
       postDate: row.ngaydang.toLocaleDateString("vi-VN"),
-      timeLeft: moment(1580041786000).from(row.ngaydang), // truyen vao ngay ket thuc
+      timeLeft: moment(row.ketthuc).from(), // truyen vao ngay ket thuc
       numOfBid: row.bids,
-      imgLink: "/public/images/jews.jpg",
+      imgLink: row.imgLink,
       isLoved: true
     };
   });
