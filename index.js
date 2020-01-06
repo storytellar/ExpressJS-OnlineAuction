@@ -30,6 +30,8 @@ app.use(
 
 app.use("/public", express.static("public"));
 
+require('./middlewares/session.middleware')(app);
+
 // Thêm Route ở đây
 var userRoute = require("./routes/user.route");
 app.use("/user", userRoute);

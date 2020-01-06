@@ -13,7 +13,11 @@ router.get("/test", controller.test);
 router.get("/login", controller.login);
 router.post("/login", controller.postLogin);
 router.post("/logout", controller.logout);
-router.get("/mngr", controller.mngr);
+//router.get("/mngr", controller.mngr);
+const restrict = require('../middlewares/auth.middleware');
+router.get('/mngr', restrict, async function (req, res) {
+    res.render("admin/mngr", { layout: false });
+})
 
 
 module.exports = router;
