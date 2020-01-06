@@ -1,4 +1,5 @@
 const categoryModel = require("../models/category.model");
+const productModel = require("../models/product.model");
 
 // Lấy thông tin Category ở thanh Menu
 module.exports.getMenu = async (req, res, next) => {

@@ -1,4 +1,5 @@
 const db = require("../utils/db");
+const config = require("../config/default.json")
 
 module.exports.getFiveEndingProducts = () => {
   return db.load(
@@ -32,12 +33,43 @@ module.exports.getBestBidder = productID => {
 
 module.exports.getProductImages = productID => {
   return db.load(
-      `SELECT * FROM img WHERE prodID = ${productID}`
+    `SELECT * FROM img WHERE prodID = ${productID}`
   );
 };
 
 module.exports.getFiveRelativeProductImages = productID => {
   return db.load(
-      `SELECT I.* FROM product P1, product P2, img I WHERE P1.id = ${productID} and P1.catalogeID = P2.catalogeID and P2.id != P1.id and I.prodID = P2.id GROUP BY prodID Limit 5`
+    `SELECT I.* FROM product P1, product P2, img I WHERE P1.id = ${productID} and P1.catalogeID = P2.catalogeID and P2.id != P1.id and I.prodID = P2.id GROUP BY prodID Limit 5`
   );
 };
+
+module.exports.getProductsByCat = catID => {
+  return db.load(
+    `SELECT p.id, p.prodName, p.startDate AS ngaydang, p.endDate AS ketthuc, u.username AS bestbidder, b.priceBid AS giahientai, COUNT(DISTINCT b2.bidderID) as bids, i.imgLink
+    FROM product p, bidders b, user u, bidders b2, img i
+    WHERE p.id = b.productID and p.id = b2.productID
+          and u.id = (SELECT bidderID
+                      FROM bidders bb 
+                      WHERE priceBid = (SELECT MAX(priceBid) FROM bidders WHERE bb.productID = productID) 
+                            and bb.productID = p.id)
+          and u.id = b.bidderID and i.prodID = p.id and p.catalogeID = ${catID} and p.isSold = 0
+    GROUP BY (b.productID)`
+  )
+}
+
+module.exports.countByCat = async catID => {
+  const rows = await db.load(`select count(*) as total from product p where p.isSold = 0 and p.catalogeID = ${catID}`);
+  return rows[0].total;
+}
+
+module.exports.pageByCat = (catID, offset) => {
+  return db.load(`SELECT p.id, p.prodName, p.startDate AS ngaydang, p.endDate AS ketthuc, u.username AS bestbidder, b.priceBid AS giahientai, COUNT(DISTINCT b2.bidderID) as bids, i.imgLink
+  FROM product p, bidders b, user u, bidders b2, img i
+  WHERE p.id = b.productID and p.id = b2.productID
+        and u.id = (SELECT bidderID
+                    FROM bidders bb 
+                    WHERE priceBid = (SELECT MAX(priceBid) FROM bidders WHERE bb.productID = productID) 
+                          and bb.productID = p.id)
+        and u.id = b.bidderID and i.prodID = p.id and p.catalogeID = ${catID} and p.isSold = 0
+  GROUP BY (b.productID) limit ${config.pagination.limit} offset ${offset}`);
+}
