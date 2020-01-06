@@ -2,7 +2,7 @@ const db = require("../utils/db");
 
 module.exports.getFiveEndingProducts = () => {
   return db.load(
-    "SELECT p.id, p.prodName, p.startDate AS ngaydang, p.endDate AS ketthuc, u.username AS bestbidder, b.priceBid AS giahientai, COUNT(DISTINCT b2.bidderID) as bids, i.imgLink FROM product p, bidders b, user u, bidders b2, img i WHERE p.id = b.productID and p.id = b2.productID and u.id = (SELECT bidderID FROM bidders bb WHERE priceBid = (SELECT MAX(priceBid) FROM bidders WHERE bb.productID = productID) and bb.productID = p.id) and u.id = b.bidderID and i.prodID = p.id GROUP BY (b.productID) ORDER BY (CURRENT_TIMESTAMP - p.endDate) ASC LIMIT 5 ;"
+    "SELECT p.id, p.prodName, p.startDate AS ngaydang, p.endDate AS ketthuc, u.username AS bestbidder, b.priceBid AS giahientai, COUNT(DISTINCT b2.bidderID) as bids, i.imgLink FROM product p, bidders b, user u, bidders b2, img i WHERE p.id = b.productID and p.id = b2.productID and u.id = (SELECT bidderID FROM bidders bb WHERE priceBid = (SELECT MAX(priceBid) FROM bidders WHERE bb.productID = productID) and bb.productID = p.id) and u.id = b.bidderID and i.prodID = p.id GROUP BY (b.productID) ORDER BY (CURRENT_TIMESTAMP - p.endDate) DESC LIMIT 5 ;"
   );
 };
 

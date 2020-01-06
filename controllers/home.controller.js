@@ -19,7 +19,10 @@ module.exports.welcome = async (req, res) => {
     return {
       ID: row.id,
       itemName: row.prodName,
-      price: row.giahientai,
+      price: row.giahientai.toLocaleString({
+        style: 'currency',
+        currency: 'VND',
+      }),
       top1: row.bestbidder,
       postDate: row.ngaydang.toLocaleDateString("vi-VN"),
       timeLeft: moment(row.ketthuc).from(), // truyen vao ngay ket thuc
@@ -32,7 +35,10 @@ module.exports.welcome = async (req, res) => {
     return {
       ID: row.id,
       itemName: row.prodName,
-      price: row.giahientai,
+      price: row.giahientai.toLocaleString({
+        style: 'currency',
+        currency: 'VND',
+      }),
       top1: row.bestbidder,
       postDate: row.ngaydang.toLocaleDateString("vi-VN"),
       timeLeft: moment(row.ketthuc).from(), // truyen vao ngay ket thuc
@@ -45,7 +51,10 @@ module.exports.welcome = async (req, res) => {
     return {
       ID: row.id,
       itemName: row.prodName,
-      price: row.giahientai,
+      price: row.giahientai.toLocaleString({
+        style: 'currency',
+        currency: 'VND',
+      }),
       top1: row.bestbidder,
       postDate: row.ngaydang.toLocaleDateString("vi-VN"),
       timeLeft: moment(row.ketthuc).from(), // truyen vao ngay ket thuc
