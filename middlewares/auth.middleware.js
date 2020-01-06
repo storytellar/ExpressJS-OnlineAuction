@@ -5,3 +5,11 @@ module.exports = function restrict(req, res, next) {
 
     next();
 }
+
+module.exports = function userRestrict(req, res, next) {
+    if (!req.session.isAuthenticated) {
+        return res.redirect(`/user/login?retUrl=${req.originalUrl}`);
+    }
+    
+    next();
+}

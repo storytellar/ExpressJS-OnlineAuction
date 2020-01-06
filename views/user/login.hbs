@@ -9,8 +9,8 @@
 <head>
     <title>Chợ đen | Đăng nhập</title>
 
-  <link rel="shortcut icon" type="image/png" href="/public/icons/favicon.ico" />
-  <link rel="shortcut icon" type="image/png" href="/public/icons/favicon.ico" />
+    <link rel="shortcut icon" type="image/png" href="/public/icons/favicon.ico" />
+    <link rel="shortcut icon" type="image/png" href="/public/icons/favicon.ico" />
 
     <!--Bootsrap 4 CDN-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -33,6 +33,14 @@
                 </div>
                 <div class="card-body">
                     <form method="POST" action="">
+                        {{#if err_message}}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{err_message}}
+                        </div>
+                        {{/if}}
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -50,7 +58,7 @@
                             <input type="checkbox">Remember Me
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Login" class="btn float-right login_btn"/>
+                            <input type="submit" value="Login" class="btn float-right login_btn" />
                         </div>
                     </form>
                 </div>
@@ -68,3 +76,44 @@
 </body>
 
 </html>
+
+{{!-- {{#if err_message}}
+<script>
+    var inputs = document.forms['register'].getElementsByTagName('input');
+
+    function valid() {
+        var errors = false;
+
+        for (var i = 0; i < inputs.length; i++) {
+            var value = inputs[i].value;
+            var id = inputs[i].getAttribute('name');
+
+            // Tạo phần tử span lưu thông tin lỗi
+            var span = document.createElement('span');
+            // Nếu span đã tồn tại thì remove
+            var p = inputs[i].parentNode;
+            if (p.lastChild.nodeName == 'SPAN') { p.removeChild(p.lastChild); }
+
+            // Kiểm tra rỗng
+            if ({{ err_message }
+        } !== '') {
+            span.innerHTML = "<span style='color: red; font-size: 10px;'>{{err_message}}</span>";
+        }
+
+        // Nếu có lỗi thì chèn span vào hồ sơ, chạy onchange, submit return false, highlight border
+        if (span.innerHTML != '') {
+            inputs[i].parentNode.appendChild(span);
+            errors = true;
+            run_onchange = true;
+            inputs[i].style.border = '1px solid #c6807b';
+            inputs[i].style.background = '#fffcf9';
+        }
+    }// end for
+
+
+    return !errors;
+    }// end valid()
+
+
+</script>
+{{/if}} --}}

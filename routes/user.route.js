@@ -12,6 +12,7 @@ router.use(express.json());
 // Thêm link ở dưới đây
 // localhost/user/ + ....
 router.get("/", controller.profile);
+
 router.get("/login", controller.login);
 router.post("/login", controller.postLogin);
 

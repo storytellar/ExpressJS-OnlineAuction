@@ -12,11 +12,20 @@ module.exports.login = async (req, res) => {
 };
 
 module.exports.postLogin = async (req, res) => {
-  console.log(req.body);
+  const urs = await userModel.getUserName(req.body.username);
+  const isValid = userModel.isValid(req.body.password, urs.password);
 
-  res.render("user/login", {
-    layout: false
-  });
+  if(!isValid){
+    console.log('Cant Validate '+ isValid);
+    return res.render("user/login", {layout:false, err_message: 'Invalid name or password!'});
+  }
+
+  delete urs.password;
+  delete isValid;
+  req.session.isAuthenticated = true;
+  req.session.authUser = urs;
+
+  res.redirect('/user/profile')
 };
 
 module.exports.signup = async (req, res) => {
