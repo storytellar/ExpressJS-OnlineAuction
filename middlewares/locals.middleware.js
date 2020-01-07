@@ -22,6 +22,7 @@ module.exports.getMenu = async (req, res, next) => {
   });
   
   res.locals.lcMenu = Menu;
+  
 
   next();
 };

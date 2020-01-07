@@ -128,6 +128,11 @@ module.exports.showDetailItem = async (req, res) => {
     productImages: productImages,
     productDescription: productInfo[0].prodDes,
     productIsSold: productInfo[0].isSold,
+    instantPrice: productInfo[0].instantPrice,
+    displayInstantPrice: productInfo[0].instantPrice.toLocaleString({
+      style: 'currency',
+      currency: 'VND',
+    }) ,
     displayPrice: (bestBidder[0].Price ? bestBidder[0].Price : productInfo[0].initPrice) ? (bestBidder[0].Price ? bestBidder[0].Price : productInfo[0].initPrice).toLocaleString({
       style: 'currency',
       currency: 'VND',
@@ -146,7 +151,36 @@ module.exports.showDetailItem = async (req, res) => {
     return;
   }
   console.log(fullData);
-
+  console.log(fullData.displayInstantPrice);
 
   res.render("product/item-detail", { data: fullData });
 };
+
+
+module.exports.bidingAndBuy = async (req, res) => {
+  if (!req.session.isAuthenticated){
+    res.redirect('/user/login');
+  }
+  // console.log(req);
+  // if (req.body.bidprice) {
+  // console.log(req.body.bidprice);
+  // }
+  // else {console.log('null');}
+  // console.log(req.session.isAuthenticated);
+  if (req.session.isAuthenticated){
+    var bidprice = req.body.bidprice;
+    if (!req.body.bidprice){
+      let instantPrice = await productModel.getItem(req.params.id).instantPrice;
+      bidprice = instantPrice;
+      
+    }
+    productModel.addBidderbyID(req.session.authUser.id, req.params.id, bidprice);
+    productModel.setProductBought(req.params.id);
+    // let productInfo = await productModel.getItem(req.params.id);
+    res.redirect('/user/profile');
+
+
+
+  }
+ 
+}

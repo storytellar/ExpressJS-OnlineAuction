@@ -8,6 +8,7 @@
 
 <link rel="stylesheet" type="text/css" href="/./public/styles/profileStyle.css">
 
+
 <style>
   .item {
     background-color: #353a40;
@@ -35,6 +36,9 @@
     border-radius: 10px;
   }
 </style>
+
+
+
 
 {{/section}}
 
@@ -213,9 +217,9 @@
   <div class="tab-pane fade" id="nav-wishlist" role="tabpanel">
     <div class="items-list">
       <div class="d-flex  flex-wrap">
-        {{#each wishlist}}
+        {{#each wishlistViewModel}}
         <div class="item">
-          <a href="########" class="" style="text-decoration: none  ;">
+          <a href="/product/detail/{{id}}" class="" style="text-decoration: none  ;">
             <img src="/./public/images/product/1/ak1.jpg" alt="" style="width: 300px;
                                   height: 200px; 
                                   border-top-left-radius: 20px;
@@ -342,7 +346,7 @@
     <div class="items-list">
       <div class="d-flex  flex-wrap">
         <div class="item">
-          <a href="########" class="" style="text-decoration: none  ;">
+          <a href="####" class="" style="text-decoration: none  ;">
             <img src="{{imgLink}}" alt="" style="width: 300px;
                                           height: 200px; 
                                           border-top-left-radius: 20px;
