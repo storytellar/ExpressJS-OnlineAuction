@@ -114,4 +114,14 @@ module.exports.getAllItems = (key, offset) => {
         and u.id = b.bidderID and i.prodID = p.id and p.isSold = 0 and p.prodName LIKE '%${key}%'
   GROUP BY (b.productID) limit ${config.pagination.limit} offset ${offset}`);
 
-};
+module.exports.getItems = () => {
+  return db.load(`SELECT p.id, p.prodName, p.startDate AS ngaydang, p.endDate AS ketthuc, u.username AS bestbidder, b.priceBid AS giahientai, COUNT(DISTINCT b2.bidderID) as bids, i.imgLink
+  FROM product p, bidders b, user u, bidders b2, img i
+  WHERE p.id = b.productID and p.id = b2.productID
+        and u.id = (SELECT bidderID
+                    FROM bidders bb 
+                    WHERE priceBid = (SELECT MAX(priceBid) FROM bidders WHERE bb.productID = productID) 
+                          and bb.productID = p.id)
+        and u.id = b.bidderID and i.prodID = p.id and p.isSold = 0
+  GROUP BY (b.productID)`);
+}

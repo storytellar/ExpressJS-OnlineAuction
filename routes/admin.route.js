@@ -1,7 +1,8 @@
 var express = require("express");
 var router = express.Router();
-
 var controller = require("../controllers/admin.controller");
+const restrict = require('../middlewares/auth.middleware').adminRestrict;
+
 
 // middleware
 router.use(express.json());
@@ -13,11 +14,10 @@ router.get("/test", controller.test);
 router.get("/login", controller.login);
 router.post("/login", controller.postLogin);
 router.post("/logout", controller.logout);
-//router.get("/mngr", controller.mngr);
-const restrict = require('../middlewares/auth.middleware').adminRestrict;
-router.get('/mngr', restrict, async function (req, res) {
-    res.render("admin/mngr", { layout: false });
-})
+router.get('/mngr', restrict, controller.mngr);
+router.post('/delete', controller.delete);
+router.post('/deleteBidder', controller.deleteBidder);
+router.post('/edit', controller.edit);
 
 
 module.exports = router;
