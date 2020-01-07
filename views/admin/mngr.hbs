@@ -25,9 +25,6 @@
                 <a class="nav-link" href="#cgr" style="color: #8d9eac;">Danh mục</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#prd" style="color: #8d9eac;">Sản phẩm</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="#bidders" style="color: #8d9eac;">Bidder</a>
             </li>
             <li class="nav-item">
@@ -63,141 +60,66 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <figure class="media">
-                                            <figcaption class="media-body">
-                                                <h6 class="title text-truncate">Điện thoại</h6>
-                                            </figcaption>
-                                        </figure>
-                                    </td>
-                                    <td class="text-right">
-                                        <a href="" class="btn btn-outline-warning">Sửa</a>
-                                        <a href="" class="btn btn-outline-danger">Xoá</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <figure class="media">
-                                            <figcaption class="media-body">
-                                                <h6 class="title text-truncate">Máy tính</h6>
-                                            </figcaption>
-                                        </figure>
-                                    </td>
-                                    <td class="text-right">
-                                        <a href="" class="btn btn-outline-warning">Sửa</a>
-                                        <a href="" class="btn btn-outline-danger">Xoá</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <figure class="media">
-                                            <figcaption class="media-body">
-                                                <h6 class="title text-truncate">Bất động sản</h6>
-                                            </figcaption>
-                                        </figure>
-                                    </td>
-                                    <td class="text-right">
-                                        <a href="" class="btn btn-outline-warning">Sửa</a>
-                                        <a href="" class="btn btn-outline-danger">Xoá</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <figure class="media">
-                                            <figcaption class="media-body">
-                                                <h6 class="title text-truncate">Xe</h6>
-                                            </figcaption>
-                                        </figure>
-                                    </td>
-                                    <td class="text-right">
-                                        <a href="" class="btn btn-outline-warning">Sửa</a>
-                                        <a href="" class="btn btn-outline-danger">Xoá</a>
-                                    </td>
-                                </tr>
+                                {{#each this.categories}}
+                                <form method="POST">
+                                    <tr>
+                                        <td>
+                                            <figure class="media">
+                                                <figcaption class="media-body">
+                                                    <input
+                                                        style="background-color:transparent !important; border:none !important;"
+                                                        type="text" class="form-control" id="txtCatID" name="id"
+                                                        readonly value="{{catName}}">
+                                                </figcaption>
+                                            </figure>
+                                        </td>
+                                        <td class="text-right">
+                                            <button type="button" class="btn btn-outline-warning" data-toggle="modal"
+                                                data-target="#edit{{catID}}">
+                                                Sửa
+                                            </button>
+                                            <button type="submit" class="btn btn-outline-danger"
+                                                formaction="/admin/delete">
+                                                Xoá
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <div class="modal fade" id="edit{{catID}}" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">{{catName}}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <label for="new">New name</label>
+                                                    <input
+                                                        style="background-color:transparent !important; border:none !important;"
+                                                        type="text" class="form-control" id="new" name="id2"
+                                                        value="{{catName}}">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-outline-warning"
+                                                        formaction="/admin/edit" data-dismiss="modal">Change</button>
+                                                    <button type="submit" class="btn btn-outline-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                {{/each}}
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="prd" style="color: #8d9eac;">
-            <div class="row" style="padding: 10px;">
-                <div class="col-md-11">
-                    <h4>Quản lý sản phẩm</h4>
-                </div>
-                <div>
-                    <button class="btn btn-warning">Thêm</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <table class="table table-hover shopping-cart-wrap">
-                            <thead class="text-muted">
-                                <tr>
-                                    <th scope="col">Sản phẩm</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <figure class="media">
-                                            <figcaption class="media-body">
-                                                <h6 class="title text-truncate">iPhone 11</h6>
-                                                <a href="" style="color: #8d9eac;">Chi tiết</a>
-                                            </figcaption>
-                                        </figure>
-                                    </td>
-                                    <td class="text-right">
-                                        <a href="" class="btn btn-outline-danger">Xoá</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <figure class="media">
-                                            <figcaption class="media-body">
-                                                <h6 class="title text-truncate">Nhà nguyên căn quận 10</h6>
-                                                <a href="" style="color: #8d9eac;">Chi tiết</a>
-                                            </figcaption>
-                                        </figure>
-                                    </td>
-                                    <td class="text-right">
-                                        <a href="" class="btn btn-outline-danger">Xoá</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <figure class="media">
-                                            <figcaption class="media-body">
-                                                <h6 class="title text-truncate">Honda Civic</h6>
-                                                <a href="" style="color: #8d9eac;">Chi tiết</a>
-                                            </figcaption>
-                                        </figure>
-                                    </td>
-                                    <td class="text-right">
-                                        <a href="" class="btn btn-outline-danger">Xoá</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <figure class="media">
-                                            <figcaption class="media-body">
-                                                <h6 class="title text-truncate">Toyota Camry</h6>
-                                                <a href="" style="color: #8d9eac;">Chi tiết</a>
-                                            </figcaption>
-                                        </figure>
-                                    </td>
-                                    <td class="text-right">
-                                        <a href="" class="btn btn-outline-danger">Xoá</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <div id="bidders" style="color: #8d9eac;">
             <div class="col-md-11" style="padding: 10px;">
                 <h4>Quản lý bidder</h4>
@@ -212,62 +134,58 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <figure class="media">
-                                            <figcaption class="media-body">
-                                                <h6 class="title text-truncate">Lê Tấn Thịnh</h6>
-                                                <a href="" style="color: #8d9eac;">Chi tiết</a>
-                                            </figcaption>
-                                        </figure>
-                                    </td>
-                                    <td class="text-right">
-                                        <a href="" class="btn btn-outline-warning">Sửa</a>
-                                        <a href="" class="btn btn-outline-danger">Xoá</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <figure class="media">
-                                            <figcaption class="media-body">
-                                                <h6 class="title text-truncate">Lê Hồng Thái</h6>
-                                                <a href="" style="color: #8d9eac;">Chi tiết</a>
-                                            </figcaption>
-                                        </figure>
-                                    </td>
-                                    <td class="text-right">
-                                        <a href="" class="btn btn-outline-warning">Sửa</a>
-                                        <a href="" class="btn btn-outline-danger">Xoá</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <figure class="media">
-                                            <figcaption class="media-body">
-                                                <h6 class="title text-truncate">Cao Đình Vĩ</h6>
-                                                <a href="" style="color: #8d9eac;">Chi tiết</a>
-                                            </figcaption>
-                                        </figure>
-                                    </td>
-                                    <td class="text-right">
-                                        <a href="" class="btn btn-outline-warning">Sửa</a>
-                                        <a href="" class="btn btn-outline-danger">Xoá</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <figure class="media">
-                                            <figcaption class="media-body">
-                                                <h6 class="title text-truncate">John Cena</h6>
-                                                <a href="" style="color: #8d9eac;">Chi tiết</a>
-                                            </figcaption>
-                                        </figure>
-                                    </td>
-                                    <td class="text-right">
-                                        <a href="" class="btn btn-outline-warning">Sửa</a>
-                                        <a href="" class="btn btn-outline-danger">Xoá</a>
-                                    </td>
-                                </tr>
+                                {{#each bidders}}
+                                <form method="POST">
+                                    <tr>
+                                        <td>
+                                            <figure class="media">
+                                                <figcaption class="media-body">
+                                                    <input
+                                                        style="background-color:transparent !important; border:none !important;"
+                                                        type="hidden" class="form-control" name="id" readonly
+                                                        value="{{id}}">
+                                                    <input
+                                                        style="background-color:transparent !important; border:none !important;"
+                                                        type="text" class="form-control" name="name" readonly
+                                                        value="{{firstName}} {{lastName}}">
+                                                </figcaption>
+                                            </figure>
+                                        </td>
+                                        <td class="text-right">
+                                            <button type="button" class="btn btn-outline-warning" data-toggle="modal"
+                                                data-target="#bidderInfo{{id}}">
+                                                Chi tiết
+                                            </button>
+                                            <button type="submit" class="btn btn-outline-danger" data-toggle="modal"
+                                                formaction="/admin/deleteBidder">
+                                                Xoá
+                                            </button>
+                                        </td>
+                                        <div class="modal fade" id="bidderInfo{{id}}" tabindex="-1" role="dialog"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">{{firstName}}
+                                                            {{lastName}}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h6>id: {{id}}</h6>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </tr>
+                                </form>
+                                {{/each}}
                             </tbody>
                         </table>
                     </div>
@@ -339,11 +257,62 @@
                         <table class="table table-hover shopping-cart-wrap">
                             <thead class="text-muted">
                                 <tr>
-                                    <th scope="col">Bidder</th>
+                                    <th scope="col">Seller</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                {{#each sellers}}
+                                <form method="POST">
+                                    <tr>
+                                        <td>
+                                            <figure class="media">
+                                                <figcaption class="media-body">
+                                                    <input
+                                                        style="background-color:transparent !important; border:none !important;"
+                                                        type="hidden" class="form-control" name="id" readonly
+                                                        value="{{id}}">
+                                                    <input
+                                                        style="background-color:transparent !important; border:none !important;"
+                                                        type="text" class="form-control" name="name" readonly
+                                                        value="{{firstName}} {{lastName}}">
+                                                </figcaption>
+                                            </figure>
+                                        </td>
+                                        <td class="text-right">
+                                            <button type="button" class="btn btn-outline-warning" data-toggle="modal"
+                                                data-target="#sellerInfo{{id}}">
+                                                Chi tiết
+                                            </button>
+                                            <button type="submit" class="btn btn-outline-danger" data-toggle="modal">
+                                                Xoá
+                                            </button>
+                                        </td>
+                                        <div class="modal fade" id="sellerInfo{{id}}" tabindex="-1" role="dialog"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">{{firstName}}
+                                                            {{lastName}}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h6>id: {{id}}</h6>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </tr>
+                                </form>
+                                {{/each}}
+                                {{!-- <tr>
                                     <td>
                                         <figure class="media">
                                             <figcaption class="media-body">
@@ -402,7 +371,7 @@
                                         <a href="" class="btn btn-outline-danger">Xoá</a>
                                         <a href="" class="btn btn-outline-secondary">Hạ cấp</a>
                                     </td>
-                                </tr>
+                                </tr> --}}
                             </tbody>
                         </table>
                     </div>
