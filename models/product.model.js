@@ -115,7 +115,7 @@ module.exports.getAllItems = (key, offset) => {
   GROUP BY (b.productID) limit ${config.pagination.limit} offset ${offset}`);
 }
 
-module.exports.getAllItems = () => {
+module.exports.getItems = () => {
   return db.load(`SELECT p.id, p.prodName, p.startDate AS ngaydang, p.endDate AS ketthuc, u.username AS bestbidder, b.priceBid AS giahientai, COUNT(DISTINCT b2.bidderID) as bids, i.imgLink
   FROM product p, bidders b, user u, bidders b2, img i
   WHERE p.id = b.productID and p.id = b2.productID
