@@ -111,14 +111,15 @@
         </button>
       </div>
       <div class="modal-body">
-        Sản phẩm này có giá mua ngay là 28.000.000 VNĐ. Bạn có thật sự muốn
+        Sản phẩm này có giá mua ngay là {{data.displayInstantPrice}} VND. Bạn có thật sự muốn
         mua ngay bây giờ không?
+        <form method="POST" id="buynow-form"></form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
           HUỶ BỎ
         </button>
-        <button type="button" class="btn btn-danger">QUYẾT ĐỊNH MUA</button>
+        <button type="submit" class="btn btn-danger" form="buynow-form">QUYẾT ĐỊNH MUA</button>
       </div>
     </div>
   </div>
@@ -135,11 +136,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <form>
+      <div class="modal-body" >
+        <form method="POST" id="bid-form">
           <div class="form-group ">
             <label for="bidprice" class="col-form-label">Nhập giá muốn trả cho sản phẩm này:</label>
-            <input type="text" class="form-control" id="bidprice" />
+            <input type="text" class="form-control" name="bidprice" />
           </div>
         </form>
       </div>
@@ -147,10 +148,10 @@
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
           HUỶ BỎ
         </button>
-        <button type="button" class="btn btn-warning">
+        <button type="submit" class="btn btn-warning" form="bid-form">
           QUYẾT ĐỊNH ĐẤU GIÁ
         </button>
       </div>
     </div>
   </div>
-</div>
+</div

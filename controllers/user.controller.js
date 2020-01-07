@@ -1,4 +1,5 @@
 var userModel = require('../models/user.model');
+var productModel = require('../models/product.model')
 //const bcrypt = require('bcryptjs');
 
 module.exports.welcome = async (req, res) => {
@@ -6,9 +7,15 @@ module.exports.welcome = async (req, res) => {
 };
 
 module.exports.login = async (req, res) => {
-  res.render("user/login", {
-    layout: false
-  });
+  if (req.session.isAuthenticated) {
+    res.redirect("/user/profile");
+  }
+  else {
+    res.render("user/login", {
+      layout: false
+    });
+  }
+
 };
 
 module.exports.postLogin = async (req, res) => {
@@ -25,7 +32,13 @@ module.exports.postLogin = async (req, res) => {
   req.session.isAuthenticated = true;
   req.session.authUser = urs;
 
-  res.redirect('/user/profile')
+  console.log(req.query.retUrl);
+  if (req.query.retUrl) {
+    res.redirect(req.query.retUrl);
+  }
+  else {
+    res.redirect('/user/profile')
+  }
 };
 
 module.exports.signup = async (req, res) => {
@@ -57,27 +70,58 @@ module.exports.postSignup = async (req, res) => {
 
 module.exports.profile = async (req, res) => {
 
- user_info = req.session.authUser;
- 
+  user_info = req.session.authUser;
+
   isCurrent = true;
   if (req.query.id) {
     isCurrent = false;
 
     user_info = await userModel.getByID(req.query.id);
-   console.log('ID: ' +user_info.id);
+    console.log('ID: ' + user_info.id);
 
-    
+
 
   }
 
- // console.log(req.query);
+  // console.log(req.query);
   //console.log(isCurrent);
-  wishlist = await  userModel.getWishlistByID(user_info.id);
-    console.log( wishlist[0]);
+  wishlist = await userModel.getWishlistByID(user_info.id);
 
-  res.render("user/profile", { user_info, isCurrent, wishlist});
+  //console.log(wishlist[0]);
+  // const wishlistViewModel = wishlist.map(async each => {
+  //   return {
+  //     id: each.id,
+  //     prodName: each.prodName,
+  //     //imgLink: await productModel.getProductImages(each.id),
+  //     initPrice: each.initPrice.toLocaleString({
+  //       style: 'currency',
+  //       currency: 'VND'
+  //     }),
+  //     startDate: each.startDate,
+  //     endDate: each.endDate,
+  //   }
+  // });
+
+  for (let wish in wishlist) {
+    wishlist[wish]['imgLink'] = (await productModel.getProductImages(wishlist[wish].id))[0].imgLink;
+    wishlist[wish].initPrice = wishlist[wish].initPrice.toLocaleString({
+      style: 'currency',
+      currency: 'VND'
+    });
+  }
+
+
+
+  console.log(wishlist[0]);
+  res.render("user/profile", { user_info, isCurrent, wishlistViewModel: wishlist });
 };
 
+module.exports.signout = (req, res) => {
+  req.session.isAuthenticated = false;
+  req.session.authUser = null;
+
+  res.redirect('/user/login');
+}
 
 module.exports.category = async (req, res) => {
   const caterogry_name = [

@@ -58,11 +58,3 @@ module.exports.logout = async (req, res) => {
 
   res.redirect('/admin/login');
 }
-
-// module.exports.mngr = async (req, res) => {
-//   if(!req.session.isAuthenticated){
-
-//     res.redirect('/login');
-//   }
-//   res.render("admin/mngr", {layout:false});
-// }
