@@ -1,4 +1,5 @@
 var userModel = require('../models/user.model');
+var productModel = require('../models/product.model')
 //const bcrypt = require('bcryptjs');
 
 module.exports.welcome = async (req, res) => {
@@ -85,21 +86,34 @@ module.exports.profile = async (req, res) => {
   // console.log(req.query);
   //console.log(isCurrent);
   wishlist = await userModel.getWishlistByID(user_info.id);
-  console.log(wishlist[0]);
-  const wishlistViewModel = wishlist.map(each => {
-    return {
-      id: each.id,
-      prodName: each.prodName,
-      initPrice: each.initPrice.toLocaleString({
-        style: 'currency',
-        currency: 'VND'
-      }),
-      startDate: each.startDate,
-      endDate: each.endDate,
-    }
-  })
 
-  res.render("user/profile", { user_info, isCurrent, wishlistViewModel });
+  //console.log(wishlist[0]);
+  // const wishlistViewModel = wishlist.map(async each => {
+  //   return {
+  //     id: each.id,
+  //     prodName: each.prodName,
+  //     //imgLink: await productModel.getProductImages(each.id),
+  //     initPrice: each.initPrice.toLocaleString({
+  //       style: 'currency',
+  //       currency: 'VND'
+  //     }),
+  //     startDate: each.startDate,
+  //     endDate: each.endDate,
+  //   }
+  // });
+
+  for (let wish in wishlist) {
+    wishlist[wish]['imgLink'] = (await productModel.getProductImages(wishlist[wish].id))[0].imgLink;
+    wishlist[wish].initPrice = wishlist[wish].initPrice.toLocaleString({
+      style: 'currency',
+      currency: 'VND'
+    });
+  }
+
+
+
+  console.log(wishlist[0]);
+  res.render("user/profile", { user_info, isCurrent, wishlistViewModel: wishlist });
 };
 
 module.exports.signout = (req, res) => {
