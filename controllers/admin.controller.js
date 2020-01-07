@@ -34,19 +34,19 @@ module.exports.test = async (req, res) => {
 };
 
 module.exports.login = async (req, res) => {
-  res.render("admin/login", {layout:false});
+  res.render("admin/login", { layout: false });
 }
 
 module.exports.postLogin = async (req, res) => {
   const ad = await adminModel.getAdminName(req.body.adminName);
 
-  if(ad === null){
-    
-    return res.render("admin/login", {layout:false, err_message: 'Invalid name or password!'});
+  if (ad === null) {
+
+    return res.render("admin/login", { layout: false, err_message: 'Invalid name or password!' });
   }
 
-  if(req.body.password !== ad.password){
-    return res.render("admin/login", {layout:false, err_message: 'Invalid name or password!'});
+  if (req.body.password !== ad.password) {
+    return res.render("admin/login", { layout: false, err_message: 'Invalid name or password!' });
   }
 
   delete ad.password;
@@ -63,7 +63,7 @@ module.exports.mngr = async (req, res) => {
   const sellersRaw = await adminModel.listAllSellers();
 
   const cats = catRaw.map(raw => {
-    return{
+    return {
       catID: raw.id,
       catName: raw.catName,
       bigCatID: raw.bigCatID
@@ -87,7 +87,7 @@ module.exports.mngr = async (req, res) => {
   })
 
   const bidders = biddersRaw.map(raw => {
-    return{
+    return {
       id: raw.id,
       firstName: raw.firstName,
       lastName: raw.lastName,
@@ -95,7 +95,7 @@ module.exports.mngr = async (req, res) => {
   })
 
   const sellers = sellersRaw.map(raw => {
-    return{
+    return {
       id: raw.id,
       firstName: raw.firstName,
       lastName: raw.lastName,
@@ -112,19 +112,25 @@ module.exports.logout = async (req, res) => {
 }
 
 module.exports.delete = async (req, res) => {
-  const rs = await adminModel.delCat(req.body.id);
-  console.log(req.body);
-  res.redirect('/admin/mngr');
+  const count = await productModel.countByCat(req.body.id);
+  if (count == 0) {
+    await adminModel.delCat(req.body.id);
+    return res.redirect('/admin/mngr');
+  }
+  return res.redirect('/admin/mngr');
 }
 
 module.exports.deleteBidder = async (req, res) => {
-  const rs = await adminModel.delBid(req.body.id);
-  console.log(req.body.id);
+  await adminModel.delBid(req.body.id);
   res.redirect('/admin/mngr');
 }
 
 module.exports.edit = async (req, res) => {
-  const rs = await adminModel.editCat(req.body);
-  console.log(req.body);
+  await adminModel.editCat(req.body.id, req.body.newName);
+  res.redirect('/admin/mngr');
+}
+
+module.exports.downgrade = async (req, res) => {
+  await adminModel.downgrade(req.body.id);
   res.redirect('/admin/mngr');
 }

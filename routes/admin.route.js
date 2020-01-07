@@ -18,6 +18,7 @@ router.get('/mngr', restrict, controller.mngr);
 router.post('/delete', controller.delete);
 router.post('/deleteBidder', controller.deleteBidder);
 router.post('/edit', controller.edit);
+router.post('/downgrade', controller.downgrade);
 
 
 module.exports = router;

@@ -18,15 +18,18 @@ module.exports.listAllCategories = async () => {
   return db.load('SELECT * FROM cataloge');
 }
 
-module.exports.delCat = name => db.del({ catName: name }, 'cataloge');
+module.exports.delCat = id => db.del({ id: id }, 'cataloge');
 
 module.exports.delBid = id => db.del({ id: id }, 'user');
 
-module.exports.editCat = entity => {
-  const condition = { catName: entity.id2 };
-  delete entity.id2;
-  delete entity.id;
-  return db.patch(entity, condition, 'cataloge');
+module.exports.editCat = (id, name) => {
+  const condition = { id: id };
+  return db.patch({ catName: name }, condition, 'cataloge');
+}
+
+module.exports.downgrade = id => {
+  const condition = { id: id };
+  return db.patch({ isSeller: 0 }, condition, 'user');
 }
 
 module.exports.getAdminName = async adminName => {
