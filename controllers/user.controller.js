@@ -77,43 +77,22 @@ module.exports.profile = async (req, res) => {
     isCurrent = false;
 
     user_info = await userModel.getByID(req.query.id);
-    console.log('ID: ' + user_info.id);
+    //console.log('ID: ' + user_info.id);
 
-
+    console.log('XXXXXX');
 
   }
 
   // console.log(req.query);
   //console.log(isCurrent);
   wishlist = await userModel.getWishlistByID(user_info.id);
+  auchoning = await userModel.getAuchoningByID(user_info.id);
+  //console.log(auchoning[0]);
+
+
 
   //console.log(wishlist[0]);
-  // const wishlistViewModel = wishlist.map(async each => {
-  //   return {
-  //     id: each.id,
-  //     prodName: each.prodName,
-  //     //imgLink: await productModel.getProductImages(each.id),
-  //     initPrice: each.initPrice.toLocaleString({
-  //       style: 'currency',
-  //       currency: 'VND'
-  //     }),
-  //     startDate: each.startDate,
-  //     endDate: each.endDate,
-  //   }
-  // });
-
-  for (let wish in wishlist) {
-    wishlist[wish]['imgLink'] = (await productModel.getProductImages(wishlist[wish].id))[0].imgLink;
-    wishlist[wish].initPrice = wishlist[wish].initPrice.toLocaleString({
-      style: 'currency',
-      currency: 'VND'
-    });
-  }
-
-
-
-  console.log(wishlist[0]);
-  res.render("user/profile", { user_info, isCurrent, wishlistViewModel: wishlist });
+  res.render("user/profile", { user_info, isCurrent, wishlistViewModel: wishlist, auchoning });
 };
 
 module.exports.signout = (req, res) => {

@@ -1,5 +1,7 @@
 const db = require('../utils/db');
 
+const productModel = require("../models/product.model");
+
 const bcrypt = require('bcryptjs');
 module.exports.hashPassword = async (password) => {
     try {
@@ -75,13 +77,49 @@ module.exports.getByID = async  id =>{
 }
 
 module.exports.getWishlistByID = async id =>{
-    const rows = await db.load(`SELECT p.* FROM product as p, wishlist as wl WHERE wl.userID  = '${id}' && wl.productID = p.id`);
+    const wishlist = await db.load(`SELECT p.* FROM product as p, wishlist as wl WHERE wl.userID  = '${id}' && wl.productID = p.id`);
+   // const top1 = await productModel.getBestBidder();
+    //const highestPrice = 
 
-    console.log('abc'+ rows[0]);
-    console.log(rows.length);
+    for (let wish in wishlist) {
+        //console.log(wishlist[wish].id);
+        wishlist[wish]['imgLink'] = (await productModel.getProductImages(wishlist[wish].id))[0].imgLink;
+        wishlist[wish]['isLoved'] = true;
+        wishlist[wish]['top1'] = (await productModel.getBestBidder(wishlist[wish].id))[0].lastName + ' ' + (await productModel.getBestBidder(wishlist[wish].id))[0].firstName ;
+        wishlist[wish]['highestPrice'] = (await productModel.getBestBidder(wishlist[wish].id))[0].Price.toLocaleString({
+            style: 'currency',
+            currency: 'VND'
+        });
+        wishlist[wish].initPrice = wishlist[wish].initPrice.toLocaleString({
+          style: 'currency',
+          currency: 'VND'
+        });
+      }
 
-    if (rows.length === 0) {
-        return rows;
-    }
-    return rows;
+    // console.log('abc'+ wishlist[0]);
+    // console.log(wishlist.length);  
+    return wishlist;
+}
+
+module.exports.getAuchoningByID = async id => {
+    const auchoning = await db.load(`SELECT DISTINCT p.* FROM product as p, bidders AS b WHERE b.bidderID = '${id}' && b.productID = p.id && p.endDate > NOW()`);
+    console.log(auchoning[0].prodName);
+    //const tmp = (await productModel.getProductImages(auchoning[1].id));
+    //console.log(tmp);
+    for (let item in auchoning) {
+        console.log('Test in' + auchoning[item].id);
+        auchoning[item]['imgLink'] = (await productModel.getProductImages(auchoning[item].id))[0].imgLink;
+        auchoning[item]['isLoved'] = true;
+        auchoning[item]['top1'] = (await productModel.getBestBidder(auchoning[item].id))[0].lastName + ' ' + (await productModel.getBestBidder(auchoning[item].id))[0].firstName ;
+        auchoning[item]['highestPrice'] = (await productModel.getBestBidder(auchoning[item].id))[0].Price.toLocaleString({
+            style: 'currency',
+            currency: 'VND'
+        });
+        auchoning[item].initPrice = auchoning[item].initPrice.toLocaleString({
+          style: 'currency',
+          currency: 'VND'
+        });
+      }
+      console.log(auchoning[0]);
+      return auchoning;
 }

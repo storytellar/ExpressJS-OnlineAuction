@@ -1,6 +1,5 @@
 {{#section 'js'}}
-{{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script> --}}
+
 {{/section}}
 {{#section 'css'}}
 
@@ -218,46 +217,55 @@
     <div class="items-list">
       <div class="d-flex  flex-wrap">
         {{#each wishlistViewModel}}
-        <div class="item">
-          <a href="/product/detail/{{id}}" class="" style="text-decoration: none  ;">
-            <img src="{{imgLink}}" alt="" style="width: 300px;
-                                  height: 200px; 
-                                  border-top-left-radius: 20px;
-                                  border-top-right-radius: 20px;" />
-            <div class="itemContent mx-3 my-2">
-              <h3 class="" style="color: #bacbd8">
-                {{prodName}}
-              </h3>
+        <div>
+          <div class="item">
+            <a href="/product/detail/{{id}}" class="" style="text-decoration: none  ;">
+              <img src="{{imgLink}}" alt="" style="width: 300px;
+                                      height: 200px; 
+                                      border-top-left-radius: 20px;
+                                      border-top-right-radius: 20px;" />
+              <div class="itemContent px-3 py-2">
+                <h3 class="" style="color: #bacbd8">
+                  {{!-- Lô 6 người Do Thái --}}
+                  {{prodName}}
+                </h3>
 
-              <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
-                style="width: 265px; height: 40px; font-size: 20px;">
-                {{initPrice}} VND
-              </span>
-              <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
-                👉 TOP 1 : Lê Hồng Thái
-              </span>
-              <div class="detailInfo d-flex flex-direction-row justify-content-between"
-                style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
-                <div class="text-muted">
-                  <div class="">Ngày đăng</div>
-                  <span>{{startDate}}</span>
+                <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
+                  style="width: 265px; height: 40px; font-size: 20px;">
+                  {{!-- 180.000.000 VND --}}
+                  {{highestPrice}} VNĐ
+                </span>
+                <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
+                  👉 TOP 1 :
+                  {{!-- Lê Hồng Thái --}}
+                  {{top1}}
+                </span>
+                <div class="detailInfo d-flex flex-direction-row justify-content-between"
+                  style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
+                  <div class="text-muted">
+                    <div class="">Ngày đăng</div>
+                    <span>{{startDate}}</span>
+                  </div>
+                  <div class="text-muted">
+                    <div class="">Kết thúc vào</div>
+                    <span>{{endDate}}</span>
+                  </div>
+
                 </div>
-                <div class="text-muted">
-                  <div class="">Kết thúc</div>
-                  <span>{{endDate}}</span>
-                </div>
-                {{!-- <div class="text-muted">
-                    <div class="">Lượt đấu</div>
-                    <span>23 lượt</span>
-                  </div> --}}
               </div>
-            </div>
-          </a>
+            </a>
 
-          <a href="###" class="love-button">
-            <i class="fa fa-heart-o" aria-hidden="true"></i>
-          </a>
+            <button class="love-button">
+              {{#if isLoved}}
+              <div id="lovebutton{{id}}" class="fa fa-heart" aria-hidden="true" onclick="clickLoveButton({{id}})"></div>
+              {{else}}
+              <div id="lovebutton{{id}}" class="fa fa-heart-o" aria-hidden="true" onclick="clickLoveButton({{id}})">
+              </div>
+              {{/if}}
+            </button>
+          </div>
         </div>
+
         {{/each}}
         {{!-- <div class="item">
           <a href="########" class="" style="text-decoration: none  ;">
@@ -345,126 +353,57 @@
   <div class="tab-pane fade" id="nav-auctioning" role="tabpanel">
     <div class="items-list">
       <div class="d-flex  flex-wrap">
-        <div class="item">
-          <a href="####" class="" style="text-decoration: none  ;">
-            <img src="{{imgLink}}" alt="" style="width: 300px;
-                                          height: 200px; 
-                                          border-top-left-radius: 20px;
-                                          border-top-right-radius: 20px;" />
-            <div class="itemContent mx-3 my-2">
-              <h3 class="" style="color: #bacbd8">
-                Cần bán gấp lô 6 người Do Thái
-              </h3>
+        {{#each auchoning}}
+        <div>
+          <div class="item">
+            <a href="/product/detail/{{id}}" class="" style="text-decoration: none  ;">
+              <img src="{{imgLink}}" alt="" style="width: 300px;
+                                      height: 200px; 
+                                      border-top-left-radius: 20px;
+                                      border-top-right-radius: 20px;" />
+              <div class="itemContent px-3 py-2">
+                <h3 class="" style="color: #bacbd8">
+                  {{!-- Lô 6 người Do Thái --}}
+                  {{prodName}}
+                </h3>
 
-              <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
-                style="width: 265px; height: 40px; font-size: 20px;">
-                180.000.000 VND
-              </span>
-              <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
-                Your rank: 👉 28
-              </span>
-              <div class="detailInfo d-flex flex-direction-row justify-content-between"
-                style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
-                <div class="text-muted">
-                  <div class="">Ngày đăng</div>
-                  <span>12/12/2012</span>
-                </div>
-                <div class="text-muted">
-                  <div class="">Còn lại</div>
-                  <span>3 ngày</span>
-                </div>
-                <div class="text-muted">
-                  <div class="">Lượt đấu</div>
-                  <span>23 lượt</span>
+                <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
+                  style="width: 265px; height: 40px; font-size: 20px;">
+                  {{!-- 180.000.000 VND --}}
+                  {{highestPrice}} VNĐ
+                </span>
+                <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
+                  👉 TOP 1 :
+                  {{!-- Lê Hồng Thái --}}
+                  {{top1}}
+                </span>
+                <div class="detailInfo d-flex flex-direction-row justify-content-between"
+                  style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
+                  <div class="text-muted">
+                    <div class="">Ngày đăng</div>
+                    <span>{{startDate}}</span>
+                  </div>
+                  <div class="text-muted">
+                    <div class="">Kết thúc vào</div>
+                    <span>{{endDate}}</span>
+                  </div>
+
                 </div>
               </div>
-            </div>
-          </a>
+            </a>
 
-          <a href="###" class="love-button">
-            <i class="fa fa-heart-o" aria-hidden="true"></i>
-          </a>
-        </div>
-        <div class="item">
-          <a href="########" class="" style="text-decoration: none  ;">
-            <img src="{{imgLink}}" alt="" style="width: 300px;
-                                            height: 200px; 
-                                            border-top-left-radius: 20px;
-                                            border-top-right-radius: 20px;" />
-            <div class="itemContent mx-3 my-2">
-              <h3 class="" style="color: #bacbd8">
-                Cần bán gấp lô 6 người Do Thái
-              </h3>
-
-              <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
-                style="width: 265px; height: 40px; font-size: 20px;">
-                180.000.000 VND
-              </span>
-              <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
-                Your rank: 👉 28
-              </span>
-              <div class="detailInfo d-flex flex-direction-row justify-content-between"
-                style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
-                <div class="text-muted">
-                  <div class="">Ngày đăng</div>
-                  <span>12/12/2012</span>
-                </div>
-                <div class="text-muted">
-                  <div class="">Còn lại</div>
-                  <span>3 ngày</span>
-                </div>
-                <div class="text-muted">
-                  <div class="">Lượt đấu</div>
-                  <span>23 lượt</span>
-                </div>
+            <button class="love-button">
+              {{#if isLoved}}
+              <div id="lovebutton{{id}}" class="fa fa-heart" aria-hidden="true" onclick="clickLoveButton({{id}})"></div>
+              {{else}}
+              <div id="lovebutton{{id}}" class="fa fa-heart-o" aria-hidden="true" onclick="clickLoveButton({{id}})">
               </div>
-            </div>
-          </a>
-
-          <a href="###" class="love-button">
-            <i class="fa fa-heart-o" aria-hidden="true"></i>
-          </a>
+              {{/if}}
+            </button>
+          </div>
         </div>
-        <div class="item">
-          <a href="########" class="" style="text-decoration: none  ;">
-            <img src="{{imgLink}}" alt="" style="width: 300px;
-                                              height: 200px; 
-                                              border-top-left-radius: 20px;
-                                              border-top-right-radius: 20px;" />
-            <div class="itemContent mx-3 my-2">
-              <h3 class="" style="color: #bacbd8">
-                Cần bán gấp lô 6 người Do Thái
-              </h3>
 
-              <span class="badge badge-warning d-flex justify-content-center align-items-center text-dark"
-                style="width: 265px; height: 40px; font-size: 20px;">
-                180.000.000 VND
-              </span>
-              <span class="badge badge-danger px-3 py-1 mt-1" style="font-size: 16px; font-weight: 400;">
-                Your rank: 👉 28
-              </span>
-              <div class="detailInfo d-flex flex-direction-row justify-content-between"
-                style="position:absolute;bottom: 10px;width: 265px; font-size: 12px;">
-                <div class="text-muted">
-                  <div class="">Ngày đăng</div>
-                  <span>12/12/2012</span>
-                </div>
-                <div class="text-muted">
-                  <div class="">Còn lại</div>
-                  <span>3 ngày</span>
-                </div>
-                <div class="text-muted">
-                  <div class="">Lượt đấu</div>
-                  <span>23 lượt</span>
-                </div>
-              </div>
-            </div>
-          </a>
-
-          <a href="###" class="love-button">
-            <i class="fa fa-heart-o" aria-hidden="true"></i>
-          </a>
-        </div>
+        {{/each}}
       </div>
     </div>
   </div>

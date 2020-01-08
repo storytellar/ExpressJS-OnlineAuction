@@ -177,7 +177,7 @@ module.exports.bidingAndBuy = async (req, res) => {
     productModel.addBidderbyID(req.session.authUser.id, req.params.id, bidprice);
     productModel.setProductBought(req.params.id);
     // let productInfo = await productModel.getItem(req.params.id);
-    res.redirect('/user/profile');
+    res.redirect('/user/profile#nav-auctioning');
 
 
 
