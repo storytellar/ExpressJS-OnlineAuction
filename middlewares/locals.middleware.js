@@ -32,7 +32,7 @@ module.exports.getAuthUser = async (req, res, next) => {
      req.session.isAuthenticated = false;
    }
 
-   res.locals.lcAuthenticated = req.session.isAuthenticated;
+   res.locals.lcAuthenticated = req.session.isUser;
    res.locals.lcAuthUser = req.session.authUser;
 
    next();

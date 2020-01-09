@@ -47,6 +47,9 @@ app.use("/admin", adminRoute);
 var productRoute = require("./routes/product.route");
 app.use("/product", productRoute);
 
+var sellerRoute = require("./routes/seller.route");
+app.use("/seller", sellerRoute);
+
 // TRANG CHỦ
 app.get("/", localMiddleware.getMenu, localMiddleware.getAuthUser, HomeController.welcome);
 

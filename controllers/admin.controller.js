@@ -34,7 +34,12 @@ module.exports.test = async (req, res) => {
 };
 
 module.exports.login = async (req, res) => {
-  res.render("admin/login", { layout: false });
+  if(req.session.isAdmin) {
+    res.redirect("/admin/mngr");
+  }
+  else {
+    res.render("admin/login", { layout: false });
+  }
 }
 
 module.exports.postLogin = async (req, res) => {
@@ -50,8 +55,8 @@ module.exports.postLogin = async (req, res) => {
   }
 
   delete ad.password;
-  req.session.isAuthenticated = true;
-  req.session.authUser = ad;
+  req.session.isAdmin = true;
+  req.session.authAd = ad;
 
   res.redirect('/admin/mngr')
 }
@@ -105,8 +110,8 @@ module.exports.mngr = async (req, res) => {
 }
 
 module.exports.logout = async (req, res) => {
-  req.session.isAuthenticated = false;
-  req.session.authUser = null;
+  req.session.isAdmin = false;
+  req.session.authAd = null;
 
   res.redirect('/admin/login');
 }
