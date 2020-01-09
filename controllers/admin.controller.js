@@ -66,6 +66,7 @@ module.exports.mngr = async (req, res) => {
   const prodRaw = await productModel.getItems();
   const biddersRaw = await adminModel.listAllBidders();
   const sellersRaw = await adminModel.listAllSellers();
+  const pendRaw = await adminModel.getPendingSeller();
 
   const cats = catRaw.map(raw => {
     return {
@@ -96,6 +97,18 @@ module.exports.mngr = async (req, res) => {
       id: raw.id,
       firstName: raw.firstName,
       lastName: raw.lastName,
+      username: raw.username,
+      address: raw.address
+    }
+  })
+
+  const penders = pendRaw.map(raw => {
+    return {
+      id: raw.id,
+      firstName: raw.firstName,
+      lastName: raw.lastName,
+      username: raw.username,
+      address: raw.address
     }
   })
 
@@ -104,9 +117,11 @@ module.exports.mngr = async (req, res) => {
       id: raw.id,
       firstName: raw.firstName,
       lastName: raw.lastName,
+      username: raw.username,
+      address: raw.address
     }
   })
-  res.render("admin/mngr", { layout: false, categories: cats, products: prods, bidders: bidders, sellers: sellers });
+  res.render("admin/mngr", { layout: false, categories: cats, products: prods, bidders: bidders, sellers: sellers, penders: penders });
 }
 
 module.exports.logout = async (req, res) => {
@@ -125,14 +140,27 @@ module.exports.delete = async (req, res) => {
   return res.redirect('/admin/mngr');
 }
 
+module.exports.approveSeller = async (req, res) => {
+  await adminModel.upgrade(req.body.id);
+  res.redirect('/admin/mngr');
+}
+
+module.exports.disapproveSeller = async (req, res) => {
+  await adminModel.downgrade(req.body.id);
+  res.redirect('/admin/mngr');
+}
+
 module.exports.deleteBidder = async (req, res) => {
   await adminModel.delBid(req.body.id);
   res.redirect('/admin/mngr');
 }
 
 module.exports.edit = async (req, res) => {
+  if(req.body.newName == '') {
+    return res.redirect('/admin/mngr')
+  }
   await adminModel.editCat(req.body.id, req.body.newName);
-  res.redirect('/admin/mngr');
+  return res.redirect('/admin/mngr');
 }
 
 module.exports.downgrade = async (req, res) => {
