@@ -27,9 +27,9 @@ module.exports.getMenu = async (req, res, next) => {
   next();
 };
 
-module.exports.getAuthUser = (req, res, next) => {
-   if (req.session.isUser === null) {
-     req.session.isUser = false;
+module.exports.getAuthUser = async (req, res, next) => {
+   if (req.session.isAuthenticated === null) {
+     req.session.isAuthenticated = false;
    }
 
    res.locals.lcAuthenticated = req.session.isUser;

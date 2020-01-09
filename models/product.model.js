@@ -271,3 +271,15 @@ WHERE p.isSold = 0 AND i.prodID = p.id
           WHERE priceBid = (SELECT MAX(priceBid) FROM bidders WHERE bt.productID = productID AND bt.productID = p.id GROUP BY productID))
 GROUP BY (p.id)`);
 }
+
+module.exports.countLove = (uID, productID) => {
+  return db.load(`SELECT count(*) as COUNT FROM wishlist WHERE userID=${uID} and productID=${productID}`);
+}
+
+module.exports.removeLove = (uID, productID) => {
+  return db.load(`DELETE FROM wishlist WHERE (userID = ${uID} AND productID = ${productID})`);
+}
+
+module.exports.addLove = (uID, productID) => {
+  return db.load(`INSERT INTO wishlist (userID, productID) VALUES (${uID}, ${productID})`);
+}

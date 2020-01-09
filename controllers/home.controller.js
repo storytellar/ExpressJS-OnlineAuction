@@ -15,6 +15,9 @@ module.exports.welcome = async (req, res) => {
     productModel.getFiveSuperProducts()
   ]);
 
+  console.log(req.session.authUser);
+  
+
   top5ketthuc = rawData_Top5KetThuc.map(row => {
     return {
       ID: row.id,
@@ -28,7 +31,8 @@ module.exports.welcome = async (req, res) => {
       timeLeft: moment(row.ketthuc).from(), // truyen vao ngay ket thuc
       numOfBid: row.bids,
       imgLink: row.imgLink,
-      isLoved: true
+      isLoved: true,
+      uID: req.session.authUser ? req.session.authUser.id : 0
     };
   });
   top5xuhuong = rawData_Top5XuHuong.map(row => {
@@ -44,7 +48,8 @@ module.exports.welcome = async (req, res) => {
       timeLeft: moment(row.ketthuc).from(), // truyen vao ngay ket thuc
       numOfBid: row.bids,
       imgLink: row.imgLink,
-      isLoved: true
+      isLoved: true,
+      uID: req.session.authUser ? req.session.authUser.id : 0
     };
   });
   top5sieupham = rawData_Top5SieuPham.map(row => {
@@ -60,10 +65,11 @@ module.exports.welcome = async (req, res) => {
       timeLeft: moment(row.ketthuc).from(), // truyen vao ngay ket thuc
       numOfBid: row.bids,
       imgLink: row.imgLink,
-      isLoved: true
+      isLoved: true,
+      uID: req.session.authUser ? req.session.authUser.id : 0
     };
   });
-
+  
   res.render("home", {
     top5ketthuc,
     top5xuhuong,
