@@ -126,3 +126,15 @@ module.exports.getItems = () => {
         and u.id = b.bidderID and i.prodID = p.id and p.isSold = 0
   GROUP BY (b.productID)`);
 }
+
+module.exports.countLove = (uID, productID) => {
+  return db.load(`SELECT count(*) as COUNT FROM wishlist WHERE userID=${uID} and productID=${productID}`);
+}
+
+module.exports.removeLove = (uID, productID) => {
+  return db.load(`DELETE FROM wishlist WHERE (userID = ${uID} AND productID = ${productID})`);
+}
+
+module.exports.addLove = (uID, productID) => {
+  return db.load(`INSERT INTO wishlist (userID, productID) VALUES (${uID}, ${productID})`);
+}

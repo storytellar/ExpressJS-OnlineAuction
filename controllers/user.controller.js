@@ -160,3 +160,23 @@ module.exports.category = async (req, res) => {
   res.render("user/item-caterogry", { caterogry_name });
 }
 
+module.exports.love = async (req, res) => {
+  let productID = req.query.productID;
+  let uID = req.query.uID;
+  if (!uID){
+    res.send('err');
+    return;
+  }
+
+  let a = await productModel.countLove(uID,productID);
+
+  if (a[0].COUNT == 0){
+    productModel.addLove(uID,productID);
+  }
+  else{
+    productModel.removeLove(uID,productID);
+  }
+
+  res.send('test');
+  
+};

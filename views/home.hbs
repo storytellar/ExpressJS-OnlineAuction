@@ -85,20 +85,6 @@
     });
   });
 </script>
-<script type="text/javascript">
-
-  function clickLoveButton(ID) {
-
-    a = document.querySelector('#lovebutton' + ID).className; if (a == "fa fa-heart-o") {
-      document.querySelector('#lovebutton' + ID).className = "fa fa-heart";
-    } else {
-      document.querySelector('#lovebutton' + ID).className = "fa fa-heart-o";
-    }
-
-    console.log('Gửi ajax post đến /love/' + ID)
-
-  }
-</script>
 {{/section}}
 
 {{#section 'css'}}
@@ -168,6 +154,29 @@
 {{/section}}
 
 
+<script type="text/javascript">
+  function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+  function clickLoveButton(ID, uID) {
+    a = document.querySelector('#lovebutton' + ID).className; if (a == "fa fa-heart-o") {
+      document.querySelector('#lovebutton' + ID).className = "fa fa-heart";
+    } else {
+      document.querySelector('#lovebutton' + ID).className = "fa fa-heart-o";
+    }
+
+    console.log('Gửi ajax get đến /love/' + ID)
+    console.log('User:' + uID)
+
+    httpGet(`/user/love?uID=${uID}&productID=${ID}`);
+  }
+</script>
+
 <div class="container my-5">
 
   <!-- Khung TOP 5 sản phẩm -->
@@ -225,9 +234,9 @@
 
           <button class="love-button">
             {{#if isLoved}}
-            <div id="lovebutton{{ID}}" class="fa fa-heart" aria-hidden="true" onclick="clickLoveButton({{ID}})"></div>
+            <div id="lovebutton{{ID}}" class="fa fa-heart" aria-hidden="true" onclick="clickLoveButton({{ID}},{{uID}})"></div>
             {{else}}
-            <div id="lovebutton{{ID}}" class="fa fa-heart-o" aria-hidden="true" onclick="clickLoveButton({{ID}})"></div>
+            <div id="lovebutton{{ID}}" class="fa fa-heart-o" aria-hidden="true" onclick="clickLoveButton({{ID}},{{uID}})"></div>
             {{/if}}
           </button>
         </div>
@@ -291,9 +300,9 @@
 
           <button class="love-button">
             {{#if isLoved}}
-            <div id="lovebutton{{ID}}" class="fa fa-heart" aria-hidden="true" onclick="clickLoveButton({{ID}})"></div>
+            <div id="lovebutton{{ID}}" class="fa fa-heart" aria-hidden="true" onclick="clickLoveButton({{ID}},{{uID}})"></div>
             {{else}}
-            <div id="lovebutton{{ID}}" class="fa fa-heart-o" aria-hidden="true" onclick="clickLoveButton({{ID}})"></div>
+            <div id="lovebutton{{ID}}" class="fa fa-heart-o" aria-hidden="true" onclick="clickLoveButton({{ID}},{{uID}})"></div>
             {{/if}}
           </button>
         </div>
@@ -357,9 +366,9 @@
 
           <button class="love-button">
             {{#if isLoved}}
-            <div id="lovebutton{{ID}}" class="fa fa-heart" aria-hidden="true" onclick="clickLoveButton({{ID}})"></div>
+            <div id="lovebutton{{ID}}" class="fa fa-heart" aria-hidden="true" onclick="clickLoveButton({{ID}},{{uID}})"></div>
             {{else}}
-            <div id="lovebutton{{ID}}" class="fa fa-heart-o" aria-hidden="true" onclick="clickLoveButton({{ID}})"></div>
+            <div id="lovebutton{{ID}}" class="fa fa-heart-o" aria-hidden="true" onclick="clickLoveButton({{ID}},{{uID}})"></div>
             {{/if}}
           </button>
         </div>
@@ -369,3 +378,4 @@
     </div>
   </div>
 </div>
+

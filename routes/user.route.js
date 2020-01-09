@@ -27,6 +27,8 @@ router.get('/profile', restrict, localMiddleware.getAuthUser,  controller.profil
 
 router.get("/category", controller.category);
 
+router.get("/love", controller.love);
+
 module.exports = router;
 
 
