@@ -1,5 +1,4 @@
 const db = require('../utils/db');
-const bcrypt = require('bcryptjs');
 
 module.exports.getUser = async username => {
     const rows = await db.load(`SELECT * FROM user as urs WHERE urs.username  = '${username}'`);
@@ -7,12 +6,6 @@ module.exports.getUser = async username => {
         return null;
     }
     return rows[0];
-}
-
-module.exports.isValid = async (req, password) => {
-    bcrypt.compare(req, password, function (err, res) {
-        return res;
-    })
 }
 
 module.exports.isSeller = async username => {

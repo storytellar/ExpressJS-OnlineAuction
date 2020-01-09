@@ -14,10 +14,7 @@ module.exports.welcome = async (req, res) => {
     productModel.getFiveTrendingProducts(),
     productModel.getFiveSuperProducts()
   ]);
-
-  console.log(req.session.authUser);
   
-
   top5ketthuc = rawData_Top5KetThuc.map(row => {
     return {
       ID: row.id,

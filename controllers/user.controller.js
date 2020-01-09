@@ -1,6 +1,6 @@
 var userModel = require('../models/user.model');
 var productModel = require('../models/product.model')
-//const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 
 module.exports.welcome = async (req, res) => {
   res.render("home");
@@ -20,15 +20,18 @@ module.exports.login = async (req, res) => {
 
 module.exports.postLogin = async (req, res) => {
   const urs = await userModel.getUserName(req.body.username);
-  const isValid = userModel.isValid(req.body.password, urs.password);
 
-  if (!isValid) {
-    console.log('Cant Validate ' + isValid);
+  if (urs === null) {
+    return res.render("user/login", { layout: false, err_message: 'Invalid name or password!' });
+  }
+
+  const rs = bcrypt.compareSync(req.body.password, urs.password);
+
+  if(!rs){
     return res.render("user/login", { layout: false, err_message: 'Invalid name or password!' });
   }
 
   delete urs.password;
-  delete isValid;
   req.session.isUser = true;
   req.session.authUser = urs;
 
