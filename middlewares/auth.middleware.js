@@ -1,5 +1,5 @@
 module.exports.adminRestrict = (req, res, next) => {
-    if (!req.session.isAuthenticated) {
+    if (!req.session.isAdmin) {
         return res.redirect(`/admin/login?retUrl=${req.originalUrl}`);
     }
 
@@ -7,9 +7,16 @@ module.exports.adminRestrict = (req, res, next) => {
 }
 
 module.exports.userRestrict = (req, res, next) => {
-    if (!req.session.isAuthenticated) {
-        console.log('You have not logined yet. ' + req);
+    if (!req.session.isUser) {
         return res.redirect(`/user/login?retUrl=${req.originalUrl}`);
+    }
+
+    next();
+}
+
+module.exports.sellerRestrict = (req, res, next) => {
+    if (!req.session.isSeller) {
+        return res.redirect(`/seller/login?retUrl=${req.originalUrl}`);
     }
 
     next();

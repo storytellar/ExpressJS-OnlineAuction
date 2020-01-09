@@ -4,25 +4,39 @@ const config = require("../config/default.json");
 moment.locale("vi");
 
 module.exports.search = async (req, res) => {
-  //res.send("Từ khoá search:" + req.query.keyword);
-  // const page = +req.query.page || 1;
-  // if (page < 0) page = 1;
-  // const offset = (page - 1) * config.pagination.limit;
-
   const [total, rows] = await Promise.all([
     productModel.getTotalItems(req.query.keyword),
     productModel.getAllItems(req.query.keyword)
   ])
 
-  // const nPages = Math.ceil(total / config.pagination.limit);
-  // const page_items = [];
-  // for (i = 1; i <= nPages; i++) {
-  //   const item = {
-  //     value: i,
-  //     isActive: i === page
-  //   }
-  //   page_items.push(item);
-  // }
+  const caterogry_name = rows.map(row => {
+    return {
+      ID: row.id,
+      itemName: row.prodName,
+      price: row.giahientai.toLocaleString({
+        style: 'currency',
+        currency: 'VND'
+      }),
+      top1: row.bestbidder,
+      postDate: row.ngaydang.toLocaleString("vi-VN"),
+      timeLeft: moment(row.ketthuc).from(),
+      numOfBid: row.bids,
+      imgLink: row.imgLink
+    }
+  })
+
+  res.render("product/item-search", {
+    keyword: req.query.keyword,
+    caterogry_name: caterogry_name,
+    empty: rows.length === 0
+  });
+};
+
+module.exports.searchAsc = async (req, res) => {
+  const [total, rows] = await Promise.all([
+    productModel.getTotalItems(req.body.keyword),
+    productModel.getAllItemsAsc(req.body.keyword)
+  ])
 
   const caterogry_name = rows.map(row => {
     return {
@@ -34,45 +48,112 @@ module.exports.search = async (req, res) => {
       }),
       top1: row.bestbidder,
       postDate: row.ngaydang.toLocaleString("vi-VN"),
-      timeLeft: moment(row.ketthuc).from(row.ngaydang),
+      timeLeft: moment(row.ketthuc).from(),
       numOfBid: row.bids,
       imgLink: row.imgLink
     }
   })
-  //console.log(caterogry_name);
 
   res.render("product/item-search", {
+    keyword: req.body.keyword,
     caterogry_name: caterogry_name,
-    empty: rows.length === 0,
-    // page_items,
-    // can_go_prev: page > 1,
-    // can_go_next: page < nPages,
-    // prev_value: page - 1,
-    // next_value: page + 1
+    empty: rows.length === 0
+  });
+};
+
+module.exports.searchDesc = async (req, res) => {
+  const [total, rows] = await Promise.all([
+    productModel.getTotalItems(req.body.keyword),
+    productModel.getAllItemsDesc(req.body.keyword)
+  ])
+
+  const caterogry_name = rows.map(row => {
+    return {
+      ID: row.id,
+      itemName: row.prodName,
+      price: row.giahientai.toLocaleString({
+        style: 'currency',
+        currency: 'VND'
+      }),
+      top1: row.bestbidder,
+      postDate: row.ngaydang.toLocaleString("vi-VN"),
+      timeLeft: moment(row.ketthuc).from(),
+      numOfBid: row.bids,
+      imgLink: row.imgLink
+    }
+  })
+
+  res.render("product/item-search", {
+    keyword: req.body.keyword,
+    caterogry_name: caterogry_name,
+    empty: rows.length === 0
+  });
+};
+
+module.exports.searchAscDate = async (req, res) => {
+  const [total, rows] = await Promise.all([
+    productModel.getTotalItems(req.body.keyword),
+    productModel.getAllItemsAscDate(req.body.keyword)
+  ])
+
+  const caterogry_name = rows.map(row => {
+    return {
+      ID: row.id,
+      itemName: row.prodName,
+      price: row.giahientai.toLocaleString({
+        style: 'currency',
+        currency: 'VND'
+      }),
+      top1: row.bestbidder,
+      postDate: row.ngaydang.toLocaleString("vi-VN"),
+      timeLeft: moment(row.ketthuc).from(),
+      numOfBid: row.bids,
+      imgLink: row.imgLink
+    }
+  })
+
+  res.render("product/item-search", {
+    keyword: req.body.keyword,
+    caterogry_name: caterogry_name,
+    empty: rows.length === 0
+  });
+};
+
+module.exports.searchDescDate = async (req, res) => {
+  const [total, rows] = await Promise.all([
+    productModel.getTotalItems(req.body.keyword),
+    productModel.getAllItemsDescDate(req.body.keyword)
+  ])
+
+  const caterogry_name = rows.map(row => {
+    return {
+      ID: row.id,
+      itemName: row.prodName,
+      price: row.giahientai.toLocaleString({
+        style: 'currency',
+        currency: 'VND'
+      }),
+      top1: row.bestbidder,
+      postDate: row.ngaydang.toLocaleString("vi-VN"),
+      timeLeft: moment(row.ketthuc).from(),
+      numOfBid: row.bids,
+      imgLink: row.imgLink
+    }
+  })
+
+  res.render("product/item-search", {
+    keyword: req.body.keyword,
+    caterogry_name: caterogry_name,
+    empty: rows.length === 0
   });
 };
 
 module.exports.category = async (req, res) => {
-  // const page = +req.query.page || 1;
-  // if (page < 0) page = 1;
-  // const offset = (page - 1) * config.pagination.limit;
-
   const [total, rows] = await Promise.all([
     productModel.countByCat(req.query.id),
     productModel.getProductsByCat(req.query.id)
   ])
 
-  // const nPages = Math.ceil(total / config.pagination.limit);
-  // const page_items = [];
-  // for (i = 1; i <= nPages; i++) {
-  //   const item = {
-  //     value: i,
-  //     isActive: i === page
-  //   }
-  //   page_items.push(item);
-  // }
-
-  //const raw = await productModel.getProductsByCat(req.query.id);
   const caterogry_name = rows.map(row => {
     return {
       ID: row.id,
@@ -88,16 +169,127 @@ module.exports.category = async (req, res) => {
       imgLink: row.imgLink
     }
   })
-  //console.log(caterogry_name);
 
   res.render("product/item-caterogry", {
+    id: req.query.id,
     caterogry_name: caterogry_name,
-    empty: rows.length === 0,
-    // page_items,
-    // can_go_prev: page > 1,
-    // can_go_next: page < nPages,
-    // prev_value: page - 1,
-    // next_value: page + 1
+    empty: rows.length === 0
+  });
+};
+
+module.exports.categoryAsc = async (req, res) => {
+  const [total, rows] = await Promise.all([
+    productModel.countByCat(req.body.id),
+    productModel.getProductsByCatAsc(req.body.id)
+  ])
+
+  const caterogry_name = rows.map(row => {
+    return {
+      ID: row.id,
+      itemName: row.prodName,
+      price: row.giahientai.toLocaleString({
+        style: 'currency',
+        currency: 'VND'
+      }),
+      top1: row.bestbidder,
+      postDate: row.ngaydang.toLocaleString("vi-VN"),
+      timeLeft: moment(row.ketthuc).from(row.ngaydang),
+      numOfBid: row.bids,
+      imgLink: row.imgLink
+    }
+  })
+
+  res.render("product/item-caterogry", {
+    id: req.body.id,
+    caterogry_name: caterogry_name,
+    empty: rows.length === 0
+  });
+};
+
+module.exports.categoryDesc = async (req, res) => {
+  const [total, rows] = await Promise.all([
+    productModel.countByCat(req.body.id),
+    productModel.getProductsByCatDesc(req.body.id)
+  ])
+
+  const caterogry_name = rows.map(row => {
+    return {
+      ID: row.id,
+      itemName: row.prodName,
+      price: row.giahientai.toLocaleString({
+        style: 'currency',
+        currency: 'VND'
+      }),
+      top1: row.bestbidder,
+      postDate: row.ngaydang.toLocaleString("vi-VN"),
+      timeLeft: moment(row.ketthuc).from(row.ngaydang),
+      numOfBid: row.bids,
+      imgLink: row.imgLink
+    }
+  })
+
+  res.render("product/item-caterogry", {
+    id: req.body.id,
+    caterogry_name: caterogry_name,
+    empty: rows.length === 0
+  });
+};
+
+module.exports.categoryAscDate = async (req, res) => {
+  const [total, rows] = await Promise.all([
+    productModel.countByCat(req.body.id),
+    productModel.getProductsByCatAscDate(req.body.id)
+  ])
+
+  const caterogry_name = rows.map(row => {
+    return {
+      ID: row.id,
+      itemName: row.prodName,
+      price: row.giahientai.toLocaleString({
+        style: 'currency',
+        currency: 'VND'
+      }),
+      top1: row.bestbidder,
+      postDate: row.ngaydang.toLocaleString("vi-VN"),
+      timeLeft: moment(row.ketthuc).from(row.ngaydang),
+      numOfBid: row.bids,
+      imgLink: row.imgLink
+    }
+  })
+
+  res.render("product/item-caterogry", {
+    id: req.body.id,
+    caterogry_name: caterogry_name,
+    empty: rows.length === 0
+  });
+};
+
+module.exports.categoryDescDate = async (req, res) => {
+  const [total, rows] = await Promise.all([
+    productModel.countByCat(req.body.id),
+    productModel.getProductsByCatDescDate(req.body.id)
+  ])
+
+  const caterogry_name = rows.map(row => {
+    return {
+      ID: row.id,
+      itemName: row.prodName,
+      price: row.giahientai.toLocaleString({
+        style: 'currency',
+        currency: 'VND'
+      }),
+      top1: row.bestbidder,
+      postDate: row.ngaydang.toLocaleString("vi-VN"),
+      timeLeft: moment(row.ketthuc).from(row.ngaydang),
+      numOfBid: row.bids,
+      imgLink: row.imgLink
+    }
+  })
+
+  res.render("product/item-caterogry", {
+    id: req.body.id,
+    caterogry_name: caterogry_name,
+    empty: rows.length === 0
   });
 };
 

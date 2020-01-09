@@ -171,11 +171,30 @@
     <h4 style="color: #bacbd8;">Không có sản phẩm ở danh mục này!</h4>
   </div>
   {{else}}
+  <form method="POST">
+    <div class="col-1" align="center">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <input name="keyword" type="hidden" readonly value="{{this.keyword}}" />
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Sắp xếp
+          </a>
+          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+            <button class="dropdown-item" type="submit" formaction="/product/search/asc">Giá tăng dần</button>
+            <button class="dropdown-item" type="submit" formaction="/product/search/desc">Giá giảm dần</button>
+            <button class="dropdown-item" type="submit" formaction="/product/search/ascDate">Gần kết thúc</button>
+            <button class="dropdown-item" type="submit" formaction="/product/search/descDate">Lâu kết thúc</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </form>
   <div class="flex-row d-flex flex-wrap" style="padding: 10px;">
     {{#each this.caterogry_name}}
     <div>
       <div class="item">
-        <a href="/pages/detail-item.html" class="" style="text-decoration: none  ;">
+        <a href="/product/detail/{{ID}}" class="" style="text-decoration: none  ;">
           <img src="{{imgLink}}" alt="" style="width: 300px;
                                       height: 200px; 
                                       border-top-left-radius: 20px;

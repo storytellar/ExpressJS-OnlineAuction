@@ -28,11 +28,11 @@ module.exports.getMenu = async (req, res, next) => {
 };
 
 module.exports.getAuthUser = (req, res, next) => {
-   if (req.session.isAuthenticated === null) {
-     req.session.isAuthenticated = false;
+   if (req.session.isUser === null) {
+     req.session.isUser = false;
    }
 
-   res.locals.lcAuthenticated = req.session.isAuthenticated;
+   res.locals.lcAuthenticated = req.session.isUser;
    res.locals.lcAuthUser = req.session.authUser;
 
    next();

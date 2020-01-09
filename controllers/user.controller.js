@@ -7,7 +7,7 @@ module.exports.welcome = async (req, res) => {
 };
 
 module.exports.login = async (req, res) => {
-  if (req.session.isAuthenticated) {
+  if (req.session.isUser) {
     res.redirect("/user/profile");
   }
   else {
@@ -29,7 +29,7 @@ module.exports.postLogin = async (req, res) => {
 
   delete urs.password;
   delete isValid;
-  req.session.isAuthenticated = true;
+  req.session.isUser = true;
   req.session.authUser = urs;
 
   console.log(req.query.retUrl);
@@ -117,7 +117,7 @@ module.exports.profile = async (req, res) => {
 };
 
 module.exports.signout = (req, res) => {
-  req.session.isAuthenticated = false;
+  req.session.isUser = false;
   req.session.authUser = null;
 
   res.redirect('/user/login');
