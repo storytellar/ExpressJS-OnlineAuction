@@ -23,7 +23,10 @@ router.post("/signup", controller.postSignup);
 router.get("/signout", controller.signout)
 
 
-router.get('/profile', restrict, localMiddleware.getAuthUser,  controller.profile);
+router.get("/profile", restrict, localMiddleware.getAuthUser,  controller.profile);
+router.post("/profile", localMiddleware.getAuthUser,  controller.postProfile);
+
+router.get("/upgrade",restrict, localMiddleware.getAuthUser,  controller.upgrade);
 
 router.get("/category", controller.category);
 

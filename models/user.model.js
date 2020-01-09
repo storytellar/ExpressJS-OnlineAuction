@@ -107,7 +107,7 @@ module.exports.getAuchoningByID = async id => {
     //const tmp = (await productModel.getProductImages(auchoning[1].id));
     //console.log(tmp);
     for (let item in auchoning) {
-        console.log('Test in' + auchoning[item].id);
+       //console.log('Test in' + auchoning[item].id);
         auchoning[item]['imgLink'] = (await productModel.getProductImages(auchoning[item].id))[0].imgLink;
         auchoning[item]['isLoved'] = true;
         auchoning[item]['top1'] = (await productModel.getBestBidder(auchoning[item].id))[0].lastName + ' ' + (await productModel.getBestBidder(auchoning[item].id))[0].firstName ;
@@ -120,6 +120,36 @@ module.exports.getAuchoningByID = async id => {
           currency: 'VND'
         });
       }
-      console.log(auchoning[0]);
+      //console.log(auchoning[0]);
       return auchoning;
+}
+
+module.exports.getWonListByID = async id => {
+    const wontlist = await db.load(`SELECT p.* FROM product as p, bidders as b WHERE p.id = b.productID && b.bidderID = ${id} &&
+    ((p.isSold = 1 ) || (p.endDate < NOW()))`);
+
+    for(let item in wontlist) {
+        wontlist[item]['isSold'] = 1;
+        wontlist[item]['imgLink'] = (await productModel.getProductImages(auchoning[item].id))[0].imgLink;
+        wontlist[item]['instantPrice'] = (await productModel.getBestBidder(auchoning[item].id))[0].Price.toLocaleString({
+            style: 'currency',
+            currency: 'VND'
+        });
+    }
+    
+    console.log(wontlist);
+
+
+    return wontlist;
+}
+
+module.exports.updateUser = async (userEntity,id) => {
+    //console.log('zzzzzzz ' userEntity)
+    console.log(userEntity);
+   return await db.patch(userEntity, {id: id}, 'user');
+}
+
+module.exports.upgradeToSeller = async (id) => {
+   // const entity = {isSeller: 100};
+    return await db.patch({isSeller: 100}, {id: id}, 'user');
 }

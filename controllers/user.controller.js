@@ -27,7 +27,7 @@ module.exports.postLogin = async (req, res) => {
 
   const rs = bcrypt.compareSync(req.body.password, urs.password);
 
-  if(!rs){
+  if (!rs) {
     return res.render("user/login", { layout: false, err_message: 'Invalid name or password!' });
   }
 
@@ -82,21 +82,69 @@ module.exports.profile = async (req, res) => {
     user_info = await userModel.getByID(req.query.id);
     //console.log('ID: ' + user_info.id);
 
-    console.log('XXXXXX');
+   
 
+  }
+
+  console.log('XXXXXX');
+  console.log(user_info.isSeller);
+  var pending = false;
+  if (user_info.isSeller === 100) {
+      pending = true;
   }
 
   // console.log(req.query);
   //console.log(isCurrent);
   wishlist = await userModel.getWishlistByID(user_info.id);
   auchoning = await userModel.getAuchoningByID(user_info.id);
+  wonlist = await userModel.getWonListByID(user_info.id);
   //console.log(auchoning[0]);
 
 
 
   //console.log(wishlist[0]);
-  res.render("user/profile", { user_info, isCurrent, wishlistViewModel: wishlist, auchoning });
+  res.render("user/profile", { user_info, isCurrent, wishlistViewModel: wishlist, auchoning, wonlist , pending});
 };
+
+module.exports.postProfile = async (req, res) => {
+
+  user_info = req.session.authUser;
+  console.log('Test for submit');
+  console.log(req.session.authUser);
+  isCurrent = true;
+
+  if (req.body.lastname !== '') {
+    user_info.lastName = req.body.lastname;
+
+  }
+  if (req.body.firstname !== '') {
+    user_info.firstName = req.body.firstname;
+
+  }
+  if (req.body.address !== '') {
+    user_info.address = req.body.address;
+
+  }
+  if (req.body.email !== '') {
+    user_info.email = req.body.email;
+
+  }
+
+  //console.log(user_info);
+  const userEntity =
+  {
+    email: user_info.email,
+    firstName: user_info.firstName,
+    lastName: user_info.lastName,
+    address: user_info.address,
+  };
+
+  await userModel.updateUser(userEntity, user_info.id)
+  //console.log(wishlist[0]);
+  //res.redirect('/');
+  res.redirect('back');
+}
+
 
 module.exports.signout = (req, res) => {
   req.session.isUser = false;
@@ -166,20 +214,29 @@ module.exports.category = async (req, res) => {
 module.exports.love = async (req, res) => {
   let productID = req.query.productID;
   let uID = req.query.uID;
-  if (!uID){
+  if (!uID) {
     res.send('err');
     return;
   }
 
-  let a = await productModel.countLove(uID,productID);
+  let a = await productModel.countLove(uID, productID);
 
-  if (a[0].COUNT == 0){
-    productModel.addLove(uID,productID);
+  if (a[0].COUNT == 0) {
+    productModel.addLove(uID, productID);
   }
-  else{
-    productModel.removeLove(uID,productID);
+  else {
+    productModel.removeLove(uID, productID);
   }
 
   res.send('test');
-  
+
 };
+
+
+module.exports.upgrade = async (req, res) => {
+  user_info = req.session.authUser;
+
+  userModel.upgradeToSeller(user_info.id);
+  res.redirect('back');
+};
+

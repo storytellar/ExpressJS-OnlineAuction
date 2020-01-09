@@ -343,7 +343,9 @@ module.exports.bidingAndBuy = async (req, res) => {
   if (!req.session.isUser){
     res.redirect('/user/login');
   }
-  // console.log(req);
+
+  let productInfo = await productModel.getItem(req.params.id);
+  console.log(productInfo.instantPrice);
   // if (req.body.bidprice) {
   // console.log(req.body.bidprice);
   // }
@@ -351,17 +353,15 @@ module.exports.bidingAndBuy = async (req, res) => {
   // console.log(req.session.isAuthenticated);
   if (req.session.isUser){
     var bidprice = req.body.bidprice;
-    if (!req.body.bidprice){
-      let instantPrice = await productModel.getItem(req.params.id).instantPrice;
+    console.log('is Bidprice available? ' + bidprice);
+    if (req.body.bidprice === undefined || req.body.bidprice === null){
+      const instantPrice = (await productModel.getItem(req.params.id))[0].instantPrice;
       bidprice = instantPrice;
-      
+      productModel.setProductBought(req.params.id);
+      console.log('Buy now with price: ' + instantPrice);
     }
     productModel.addBidderbyID(req.session.authUser.id, req.params.id, bidprice);
-    productModel.setProductBought(req.params.id);
-    // let productInfo = await productModel.getItem(req.params.id);
-    res.redirect('/user/profile#nav-auctioning');
-
-
+    res.redirect('/user/profile');
 
   }
  
