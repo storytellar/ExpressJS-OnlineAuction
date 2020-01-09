@@ -9,7 +9,12 @@ const localMiddleware = require('./middlewares/locals.middleware')
 require("express-async-errors");
 const app = express();
 
-
+const categoryModel = require('./models/category.model');
+app.use(async function (req, res, next) {
+  const rows = await categoryModel.getAllCataloge();
+  res.locals.lcCategories = rows;
+  next();
+})
 
 app.engine(
   "hbs",

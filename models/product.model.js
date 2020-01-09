@@ -62,7 +62,7 @@ module.exports.countByCat = async catID => {
   return rows[0].total;
 };
 
-module.exports.pageByCat = (catID, offset) => {
+module.exports.pageByCat = async (catID, offset) => {
   return db.load(`SELECT p.id, p.prodName, p.startDate as ngaydang, p.endDate , u.username AS bestbidder, b.priceBid AS giahientai, COUNT(DISTINCT b2.bidderID) as bids, i.imgLink
   FROM product p, bidders b, user u, bidders b2, img i
   WHERE p.id = b.productID and p.id = b2.productID
@@ -103,7 +103,7 @@ module.exports.getTotalItems = async (key) => {
   return rows[0].total;
 };
 
-module.exports.getAllItems = (key, offset) => {
+module.exports.getAllItems = (key) => {
   return db.load(`SELECT p.id, p.prodName, p.startDate AS ngaydang, p.endDate AS ketthuc, u.username AS bestbidder, b.priceBid AS giahientai, COUNT(DISTINCT b2.bidderID) as bids, i.imgLink
   FROM product p, bidders b, user u, bidders b2, img i
   WHERE p.id = b.productID and p.id = b2.productID
@@ -112,7 +112,7 @@ module.exports.getAllItems = (key, offset) => {
                     WHERE priceBid = (SELECT MAX(priceBid) FROM bidders WHERE bb.productID = productID) 
                           and bb.productID = p.id)
         and u.id = b.bidderID and i.prodID = p.id and p.isSold = 0 and p.prodName LIKE '%${key}%'
-  GROUP BY (b.productID) limit ${config.pagination.limit} offset ${offset}`);
+  GROUP BY (b.productID)`);
 }
 
 module.exports.getItems = () => {
