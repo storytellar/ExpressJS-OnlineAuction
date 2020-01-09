@@ -340,7 +340,7 @@ module.exports.showDetailItem = async (req, res) => {
 
 
 module.exports.bidingAndBuy = async (req, res) => {
-  if (!req.session.isAuthenticated){
+  if (!req.session.isUser){
     res.redirect('/user/login');
   }
   // console.log(req);
@@ -349,7 +349,7 @@ module.exports.bidingAndBuy = async (req, res) => {
   // }
   // else {console.log('null');}
   // console.log(req.session.isAuthenticated);
-  if (req.session.isAuthenticated){
+  if (req.session.isUser){
     var bidprice = req.body.bidprice;
     if (!req.body.bidprice){
       let instantPrice = await productModel.getItem(req.params.id).instantPrice;

@@ -1,5 +1,6 @@
 var sellerModel = require('../models/seller.model');
 const moment = require("moment");
+const bcrypt = require('bcryptjs');
 moment.locale("vi");
 
 module.exports.welcome = async (req, res) => {
@@ -25,9 +26,9 @@ module.exports.postLogin = async (req, res) => {
         return res.render("seller/login", { layout: false, err_message: 'Invalid name or password!' });
     }
 
-    const isValid = sellerModel.isValid(req.body.password, seller.password);
-    if (!isValid) {
-        console.log("fail " + req.body.password + " vs " + seller.password);
+    const rs = bcrypt.compareSync(req.body.password, seller.password);
+
+    if (!rs) {
         return res.render("seller/login", { layout: false, err_message: 'Invalid name or password!' });
     }
 
