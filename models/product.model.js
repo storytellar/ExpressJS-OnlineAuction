@@ -8,7 +8,7 @@ module.exports.getFiveEndingProducts = () => {
 		FROM bidders b2 WHERE b2.productID = p.id
 		GROUP BY b2.productID) as bids, i.imgLink
 FROM product p, bidders b, bidders b2, user u, img i
-WHERE p.catalogeID = 1 AND p.isSold = 0 AND i.prodID = p.id
+WHERE p.isSold = 0 AND i.prodID = p.id
 		AND (u.id, b.priceBid) = (SELECT bt.bidderID, bt.priceBid
 						FROM bidders bt
 						WHERE priceBid = (SELECT MAX(priceBid) FROM bidders WHERE bt.productID = productID AND bt.productID = p.id GROUP BY productID))
@@ -23,7 +23,7 @@ module.exports.getFiveTrendingProducts = () => {
 		FROM bidders b2 WHERE b2.productID = p.id
 		GROUP BY b2.productID) as bids, i.imgLink
 FROM product p, bidders b, bidders b2, user u, img i
-WHERE p.catalogeID = 1 AND p.isSold = 0 AND i.prodID = p.id
+WHERE p.isSold = 0 AND i.prodID = p.id
 		AND (u.id, b.priceBid) = (SELECT bt.bidderID, bt.priceBid
 						FROM bidders bt
 						WHERE priceBid = (SELECT MAX(priceBid) FROM bidders WHERE bt.productID = productID AND bt.productID = p.id GROUP BY productID))
@@ -38,7 +38,7 @@ module.exports.getFiveSuperProducts = () => {
 		FROM bidders b2 WHERE b2.productID = p.id
 		GROUP BY b2.productID) as bids, i.imgLink
 FROM product p, bidders b, bidders b2, user u, img i
-WHERE p.catalogeID = 1 AND p.isSold = 0 AND i.prodID = p.id
+WHERE p.isSold = 0 AND i.prodID = p.id
 		AND (u.id, b.priceBid) = (SELECT bt.bidderID, bt.priceBid
 						FROM bidders bt
 						WHERE priceBid = (SELECT MAX(priceBid) FROM bidders WHERE bt.productID = productID AND bt.productID = p.id GROUP BY productID))

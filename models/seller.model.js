@@ -40,3 +40,19 @@ WHERE p.isSold = 1 AND i.prodID = p.id AND p.sellerID = ${id}
                     WHERE priceBid = (SELECT MAX(priceBid) FROM bidders WHERE bt.productID = productID AND bt.productID = p.id GROUP BY productID))
 GROUP BY (p.id)`)
 }
+
+module.exports.addProduct = async (entities) => {
+    await db.add(entities, 'product');
+}
+
+module.exports.addImg = async (entities) => {
+    await db.add(entities, 'img')
+}
+
+module.exports.initBid = async (entities) => {
+    await db.add(entities, 'bidders')
+}
+
+module.exports.selectLastIndex = async () => {
+    return db.load('SELECT * FROM product p ORDER BY p.id DESC LIMIT 1')
+}
