@@ -178,15 +178,8 @@ module.exports.addBidderbyID = async (userID, productID, price) => {
 };
 
 module.exports.setProductBought = async (productID) => {
-  boughtEntity = [
-    {
-      isSold: '1',
-    },
-    {
-      id: '${productID}',
-    }
-  ]
-  db.patch(boughtEntity[0], boughtEntity[1], 'product');
+
+  db.patch( {  isSold: 1   }, { id: productID  }, 'product');
 };
 
 module.exports.getTotalItems = async (key) => {
