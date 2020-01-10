@@ -19,6 +19,8 @@ router.post('/delete', controller.delete);
 router.post('/deleteBidder', controller.deleteBidder);
 router.post('/edit', controller.edit);
 router.post('/downgrade', controller.downgrade);
+router.post('/approveSeller', controller.approveSeller);
+router.post('/disapproveSeller', controller.disapproveSeller);
 
 
 module.exports = router;

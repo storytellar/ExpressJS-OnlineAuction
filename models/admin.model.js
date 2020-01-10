@@ -7,11 +7,11 @@ const db = require('../utils/db');
 // };
 
 module.exports.listAllBidders = async () => {
-  return db.load('SELECT u.id, u.firstName, u.lastName FROM `user` u');
+  return db.load('SELECT * FROM `user` u');
 };
 
 module.exports.listAllSellers = async () => {
-   return db.load('SELECT u.id, u.firstName, u.lastName FROM `user` u WHERE u.isSeller = 1');
+   return db.load('SELECT * FROM `user` u WHERE u.isSeller = 1');
 };
 
 module.exports.listAllCategories = async () => {
@@ -30,6 +30,15 @@ module.exports.editCat = (id, name) => {
 module.exports.downgrade = id => {
   const condition = { id: id };
   return db.patch({ isSeller: 0 }, condition, 'user');
+}
+
+module.exports.upgrade = id => {
+  const condition = { id: id };
+  return db.patch({ isSeller: 1 }, condition, 'user');
+}
+
+module.exports.getPendingSeller = async => {
+  return db.load('SELECT * FROM user WHERE isSeller = 100')
 }
 
 module.exports.getAdminName = async adminName => {
