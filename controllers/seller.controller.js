@@ -73,6 +73,7 @@ module.exports.mngr = async (req, res) => {
                 style: 'currency',
                 currency: 'VND'
             }),
+            prodDes: row.prodDes,
             top1: row.bestbidder,
             postDate: row.ngaydang.toLocaleString("vi-VN"),
             timeLeft: moment(row.ketthuc).from(row.ngaydang),
@@ -89,6 +90,7 @@ module.exports.mngr = async (req, res) => {
                 style: 'currency',
                 currency: 'VND'
             }),
+            prodDes: row.prodDes,
             top1: row.bestbidder,
             postDate: row.ngaydang.toLocaleString("vi-VN"),
             timeLeft: moment(row.ketthuc).from(row.ngaydang),
@@ -115,7 +117,7 @@ module.exports.addProduct = async (req, res) => {
     }
 
     if (product.prodName === '' || product.prodDes === '' || product.initPrice >= product.instantPrice
-        || product.stepPrice > product.instantPrice ) {
+        || product.stepPrice > product.instantPrice) {
         return res.redirect('/seller/mngr');
     }
 
@@ -138,4 +140,12 @@ module.exports.addProduct = async (req, res) => {
     await sellerModel.initBid(bid);
 
     res.redirect('/seller/mngr');
+}
+
+module.exports.update = async (req, res) => {
+    if (req.body.des == '') {
+        return res.redirect('/seller/mngr')
+    }
+    await sellerModel.update(req.body.id, req.body.des);
+    return res.redirect('/seller/mngr');
 }

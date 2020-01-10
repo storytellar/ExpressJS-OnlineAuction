@@ -13,5 +13,6 @@ router.post("/login", controller.postLogin);
 router.post("/logout", controller.logout);
 router.get('/mngr', restrict, controller.mngr);
 router.post("/add", controller.addProduct);
+router.post("/update", controller.update);
 
 module.exports = router;

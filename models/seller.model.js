@@ -19,7 +19,7 @@ module.exports.productOnsale = async id => {
     return db.load(`SELECT p.id, p.prodName, p.startDate AS ngaydang, p.endDate AS ketthuc, u.username AS bestbidder, b.priceBid AS giahientai, 
     (SELECT COUNT(b2.bidderID)
     FROM bidders b2 WHERE b2.productID = p.id
-    GROUP BY b2.productID) as bids, i.imgLink
+    GROUP BY b2.productID) as bids, i.imgLink, p.prodDes
 FROM product p, bidders b, bidders b2, user u, img i
 WHERE p.isSold = 0 AND i.prodID = p.id AND p.sellerID = ${id}
     AND (u.id, b.priceBid) = (SELECT bt.bidderID, bt.priceBid
@@ -32,7 +32,7 @@ module.exports.productSold = async id => {
     return db.load(`SELECT p.id, p.prodName, p.startDate AS ngaydang, p.endDate AS ketthuc, u.username AS bestbidder, b.priceBid AS giahientai, 
     (SELECT COUNT(b2.bidderID)
     FROM bidders b2 WHERE b2.productID = p.id
-    GROUP BY b2.productID) as bids, i.imgLink
+    GROUP BY b2.productID) as bids, i.imgLink, p.prodDes
 FROM product p, bidders b, bidders b2, user u, img i
 WHERE p.isSold = 1 AND i.prodID = p.id AND p.sellerID = ${id}
     AND (u.id, b.priceBid) = (SELECT bt.bidderID, bt.priceBid
@@ -55,4 +55,8 @@ module.exports.initBid = async (entities) => {
 
 module.exports.selectLastIndex = async () => {
     return db.load('SELECT * FROM product p ORDER BY p.id DESC LIMIT 1')
+}
+
+module.exports.update = (id, name) => {
+    return db.load(`update product set prodDes = CONCAT(prodDes, '${name}') where id = ${id}`);
 }
