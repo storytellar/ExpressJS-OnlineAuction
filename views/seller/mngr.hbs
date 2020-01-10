@@ -184,10 +184,24 @@
                                                 </figcaption>
                                             </figure>
                                         </td>
+                                        <td>
+                                            <figure class="media">
+                                                <figcaption class="media-body">
+                                                    <input
+                                                        style="background-color:transparent !important; border:none !important;"
+                                                        type="text" class="form-control" placeholder="Bổ sung thông tin"
+                                                        name="des" value="">
+                                                </figcaption>
+                                            </figure>
+                                        </td>
                                         <td class="text-right">
                                             <button type="button" class="btn btn-outline-warning" data-toggle="modal"
                                                 data-target="#pInfo{{ID}}">
                                                 Chi tiết
+                                            </button>
+                                            <button type="submit" class="btn btn-outline-secondary"
+                                                    formaction="/seller/update">
+                                                Bổ sung
                                             </button>
                                         </td>
                                         <div class="modal fade" id="pInfo{{ID}}" tabindex="-1" role="dialog"
@@ -203,6 +217,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <h6>Giá cao nhất: {{price}}</h6>
+                                                        <h6>Mô tả: {{prodDes}}</h6>
                                                         <h6>Người ra: {{top1}}</h6>
                                                         <h6>Ngày đăng: {{postDate}}</h6>
                                                         <h6>Lượt bid: {{numOfBid}}</h6>

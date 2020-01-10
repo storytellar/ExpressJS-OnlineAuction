@@ -17,7 +17,7 @@ module.exports.search = async (req, res) => {
         style: 'currency',
         currency: 'VND'
       }),
-      top1: row.bestbidder,
+      top1: row.bestbidder.replace(/^.{3}/g, '***'),
       postDate: row.ngaydang.toLocaleString("vi-VN"),
       timeLeft: moment(row.ketthuc).from(),
       numOfBid: row.bids,
@@ -46,7 +46,7 @@ module.exports.searchAsc = async (req, res) => {
         style: 'currency',
         currency: 'VND'
       }),
-      top1: row.bestbidder,
+      top1: row.bestbidder.replace(/^.{3}/g, '***'),
       postDate: row.ngaydang.toLocaleString("vi-VN"),
       timeLeft: moment(row.ketthuc).from(),
       numOfBid: row.bids,
@@ -75,7 +75,7 @@ module.exports.searchDesc = async (req, res) => {
         style: 'currency',
         currency: 'VND'
       }),
-      top1: row.bestbidder,
+      top1: row.bestbidder.replace(/^.{3}/g, '***'),
       postDate: row.ngaydang.toLocaleString("vi-VN"),
       timeLeft: moment(row.ketthuc).from(),
       numOfBid: row.bids,
@@ -104,7 +104,7 @@ module.exports.searchAscDate = async (req, res) => {
         style: 'currency',
         currency: 'VND'
       }),
-      top1: row.bestbidder,
+      top1: row.bestbidder.replace(/^.{3}/g, '***'),
       postDate: row.ngaydang.toLocaleString("vi-VN"),
       timeLeft: moment(row.ketthuc).from(),
       numOfBid: row.bids,
@@ -133,7 +133,7 @@ module.exports.searchDescDate = async (req, res) => {
         style: 'currency',
         currency: 'VND'
       }),
-      top1: row.bestbidder,
+      top1: row.bestbidder.replace(/^.{3}/g, '***'),
       postDate: row.ngaydang.toLocaleString("vi-VN"),
       timeLeft: moment(row.ketthuc).from(),
       numOfBid: row.bids,
@@ -162,7 +162,7 @@ module.exports.category = async (req, res) => {
         style: 'currency',
         currency: 'VND'
       }),
-      top1: row.bestbidder,
+      top1: row.bestbidder.replace(/^.{3}/g, '***'),
       postDate: row.ngaydang.toLocaleString("vi-VN"),
       timeLeft: moment(row.ketthuc).from(row.ngaydang),
       numOfBid: row.bids,
@@ -191,7 +191,7 @@ module.exports.categoryAsc = async (req, res) => {
         style: 'currency',
         currency: 'VND'
       }),
-      top1: row.bestbidder,
+      top1: row.bestbidder.replace(/^.{3}/g, '***'),
       postDate: row.ngaydang.toLocaleString("vi-VN"),
       timeLeft: moment(row.ketthuc).from(row.ngaydang),
       numOfBid: row.bids,
@@ -220,7 +220,7 @@ module.exports.categoryDesc = async (req, res) => {
         style: 'currency',
         currency: 'VND'
       }),
-      top1: row.bestbidder,
+      top1: row.bestbidder.replace(/^.{3}/g, '***'),
       postDate: row.ngaydang.toLocaleString("vi-VN"),
       timeLeft: moment(row.ketthuc).from(row.ngaydang),
       numOfBid: row.bids,
@@ -249,7 +249,7 @@ module.exports.categoryAscDate = async (req, res) => {
         style: 'currency',
         currency: 'VND'
       }),
-      top1: row.bestbidder,
+      top1: row.bestbidder.replace(/^.{3}/g, '***'),
       postDate: row.ngaydang.toLocaleString("vi-VN"),
       timeLeft: moment(row.ketthuc).from(row.ngaydang),
       numOfBid: row.bids,
@@ -278,7 +278,7 @@ module.exports.categoryDescDate = async (req, res) => {
         style: 'currency',
         currency: 'VND'
       }),
-      top1: row.bestbidder,
+      top1: row.bestbidder.replace(/^.{3}/g, '***'),
       postDate: row.ngaydang.toLocaleString("vi-VN"),
       timeLeft: moment(row.ketthuc).from(row.ngaydang),
       numOfBid: row.bids,
